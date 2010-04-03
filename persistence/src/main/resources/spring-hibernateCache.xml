@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+	<!-- 2nd level cache properties configuration block.
+
+	<bean id="view.secondLevelCachePropertiesConfigurer" class="com.hexacta.motw.persistence.hibernate.SecondLevelCacheSettingsConfigurer">
+		<property name="location" value="classpath:hib-cache.properties" />
+	</bean>
+	-->
+	<!-- this path evaluation will result in a Properties object 
+	<bean id="hibernateClassCacheProperties" class="org.springframework.beans.factory.config.PropertyPathFactoryBean">
+		<property name="targetBeanName">
+			<value>view.secondLevelCachePropertiesConfigurer</value>
+		</property>
+		<property name="propertyPath">
+			<value>classCacheProperties</value>
+		</property>
+	</bean>
+        -->
+	<!-- this path evaluation will result in a Properties object 
+	
+	<bean id="hibernateCollectionCacheProperties" class="org.springframework.beans.factory.config.PropertyPathFactoryBean">
+		<property name="targetBeanName">
+			<value>view.secondLevelCachePropertiesConfigurer</value>
+		</property>
+		<property name="propertyPath">
+			<value>collectionCacheProperties</value>
+		</property>
+	</bean>
+	-->
+</beans>
+
+
+
