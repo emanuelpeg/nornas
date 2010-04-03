@@ -1,37 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
- 
-  <modelVersion>4.0.0</modelVersion>
-  
-  <parent>
-    <artifactId>nornas</artifactId>
-    <groupId>org.assembly</groupId>
-    <version>1.0-SNAPSHOT</version>
-  </parent>
-  
-  <groupId>org.assembly</groupId>
-  
-  <artifactId>model</artifactId>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 
-  <version>1.0-SNAPSHOT</version>
+	<modelVersion>4.0.0</modelVersion>
 
-  <name>model</name>
+	<parent>
+		<artifactId>nornas</artifactId>
+		<groupId>org.assembly</groupId>
+		<version>1.0-SNAPSHOT</version>
+	</parent>
 
-  <url>http://maven.apache.org</url>
+	<groupId>org.assembly</groupId>
 
-  <dependencies>
+	<artifactId>model</artifactId>
 
-<!-- Dependencia entre proyecto -->
+	<version>1.0-SNAPSHOT</version>
 
-    <dependency>
-      <groupId>org.assembly</groupId>
-      <artifactId>common</artifactId>
-      <version>1.0-SNAPSHOT</version>
-    </dependency>
+	<build>
+		<directory>target</directory>
+		<outputDirectory>target/classes</outputDirectory>
+		<!-- Esto hay que agregar si existe una dependencia entre tests. -->
 
-<!-- /Dependencia entre proyecto -->
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<executions>
+					<execution>
+						<goals>
+							<goal>test-jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
 
-  </dependencies>
+	</build>
+
+	<name>model</name>
+
+	<url>http://maven.apache.org</url>
+
+	<dependencies>
+
+		<!-- Dependencia entre proyecto -->
+
+		<dependency>
+			<groupId>org.assembly</groupId>
+			<artifactId>common</artifactId>
+			<version>1.0-SNAPSHOT</version>
+		</dependency>
+
+		<!-- /Dependencia entre proyecto -->
+
+	</dependencies>
 
 </project>
