@@ -31,17 +31,14 @@ public class Person extends PersistenEntity {
 	}
 
 	public Person(String nick, String email) {
-		super();
+		this(email);
 		this.nick = nick;
-		this.email = email;
 	}
 
 	public Person(String name, String nick, Date birthDate, String email) {
-		super();
+		this(nick, email);
 		this.name = name;
-		this.nick = nick;
 		this.birthDate = birthDate;
-		this.email = email;
 	}
 
 	public String getName() {
