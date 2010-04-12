@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mappings PUBLIC "-//DOZER//DTD MAPPINGS//EN"
+    "http://dozer.sourceforge.net/dtd/dozerbeanmapping.dtd">
+<mappings>
+	<mapping wildcard="false" map-id="Person_PersonDTO">
+		<class-a>org.assembly.nornas.model.person.Person</class-a>
+		<class-b>org.assembly.dto.model.person.PersonDTO</class-b>
+
+        <field>
+			<a>id</a>
+			<b>id</b>
+		</field>
+
+		<field>
+			<a>name</a>
+			<b>name</b>
+		</field>
+
+		<field>
+			<a>nick</a>
+			<b>nick</b>
+		</field>
+
+        <field>
+			<a>precio</a>
+			<b>precio</b>
+		</field>
+
+        <field>
+			<a>birthDate</a>
+			<b>birthDate</b>
+		</field>
+
+        <field>
+			<a>email</a>
+			<b>email</b>
+		</field>
+
+	</mapping>
+</mappings>

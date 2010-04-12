@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+  <!--  init-method="getMappingProcessor" --> 
+  	<bean id="dtoMapper" class="org.dozer.DozerBeanMapper" scope="singleton" lazy-init="false"  >
+		<property name="mappingFiles">
+		<list>
+                <value>org/assembly/theFamily/mappings/dozer-global-configuration.xml</value>
+      		</list>
+		</property>
+	</bean>       
+	
+</beans>

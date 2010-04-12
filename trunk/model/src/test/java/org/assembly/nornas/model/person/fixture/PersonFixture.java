@@ -1,11 +1,13 @@
 /**
  * 
  */
-package org.assembly.nornas.model.person;
+package org.assembly.nornas.model.person.fixture;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import org.assembly.nornas.model.person.Person;
 
 /**
  * @author emanuel

@@ -10,7 +10,7 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import org.assembly.nornas.model.person.Person;
-import org.assembly.nornas.model.person.PersonFixture;
+import org.assembly.nornas.model.person.fixture.PersonFixture;
 import org.assembly.nornas.persistence.DaoTestBase;
 import org.junit.Test;
 import org.springframework.transaction.annotation.Transactional;

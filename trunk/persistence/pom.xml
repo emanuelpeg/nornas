@@ -1,162 +1,157 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 
-  <modelVersion>4.0.0</modelVersion>
+	<modelVersion>4.0.0</modelVersion>
 
-  <parent>
-    <artifactId>nornas</artifactId>
-    <groupId>org.assembly</groupId>
-    <version>1.0-SNAPSHOT</version>
-  </parent>
+	<parent>
+		<artifactId>nornas</artifactId>
+		<groupId>org.assembly.nornas</groupId>
+		<version>1.0-SNAPSHOT</version>
+	</parent>
 
-  <groupId>org.assembly</groupId>
+	<groupId>org.assembly.nornas</groupId>
 
-  <artifactId>persistence</artifactId>
+	<artifactId>persistence</artifactId>
 
-  <version>1.0-SNAPSHOT</version>
+	<version>1.0-SNAPSHOT</version>
 
-   <build>
-        <directory>target</directory>
-        <outputDirectory>target/classes</outputDirectory>
-	<!-- Esto hay que agregar si existe una dependencia entre tests. -->
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jar-plugin</artifactId>
-                <version>2.2</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>test-jar</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
+	<build>
+		<directory>target</directory>
+		<outputDirectory>target/classes</outputDirectory>
+	</build>
 
-    </build>
+	<name>persistence</name>
 
-  <name>persistence</name>
+	<url>http://maven.apache.org</url>
 
-  <url>http://maven.apache.org</url>
+	<dependencies>
 
-  <dependencies>
+		<!-- Data Source -->
+		<dependency>
+			<groupId>commons-dbcp</groupId>
+			<artifactId>commons-dbcp</artifactId>
+			<version>1.2.2</version>
+			<exclusions>
+				<exclusion>
+					<groupId>xerces</groupId>
+					<artifactId>xercesImpl</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
 
-        <!-- Data Source -->
-        <dependency>
-            <groupId>commons-dbcp</groupId>
-            <artifactId>commons-dbcp</artifactId>
-            <version>1.2.2</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>xerces</groupId>
-                    <artifactId>xercesImpl</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
+		<!-- /Data Source -->
 
-         <!-- /Data Source -->
+		<dependency>
+			<groupId>hsqldb</groupId>
+			<artifactId>hsqldb</artifactId>
+			<version>1.8.0.10</version>
+		</dependency>
 
-        <dependency>
-            <groupId>hsqldb</groupId>
-            <artifactId>hsqldb</artifactId>
-            <version>1.8.0.10</version>
-        </dependency>
-	
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate</artifactId>
-            <version>3.2.6.ga</version>
-            <exclusions>
-                <exclusion>
-                    <artifactId>jta</artifactId>
-                    <groupId>javax.transaction</groupId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-	
-        <dependency>
-            <groupId>org.apache.geronimo.specs</groupId>
-            <artifactId>geronimo-jta_1.1_spec</artifactId>
-            <version>1.1.1</version>
-        </dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate</artifactId>
+			<version>3.2.6.ga</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>jta</artifactId>
+					<groupId>javax.transaction</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
 
-        <dependency>
-            <groupId>net.sf.ehcache</groupId>
-            <artifactId>ehcache</artifactId>
-            <version>1.2.4</version>
-        </dependency>
+		<dependency>
+			<groupId>org.apache.geronimo.specs</groupId>
+			<artifactId>geronimo-jta_1.1_spec</artifactId>
+			<version>1.1.1</version>
+		</dependency>
 
-        <dependency>
-            <groupId>swarmcache</groupId>
-            <artifactId>swarmcache</artifactId>
-            <version>1.0RC2</version>
-        </dependency>
+		<dependency>
+			<groupId>net.sf.ehcache</groupId>
+			<artifactId>ehcache</artifactId>
+			<version>1.2.4</version>
+		</dependency>
 
-        <dependency>
-            <groupId>postgresql</groupId>
-            <artifactId>postgresql</artifactId>
-            <version>8.3-603.jdbc4</version>
-        </dependency>
+		<dependency>
+			<groupId>swarmcache</groupId>
+			<artifactId>swarmcache</artifactId>
+			<version>1.0RC2</version>
+		</dependency>
 
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <version>5.1.6</version>
-        </dependency>
+		<dependency>
+			<groupId>postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<version>8.3-603.jdbc4</version>
+		</dependency>
 
-        <dependency>
-            <groupId>org.ow2.jotm</groupId>
-            <artifactId>jotm-core</artifactId>
-            <version>2.1.4</version>
-        </dependency>
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>5.1.6</version>
+		</dependency>
 
-        <dependency>
-            <groupId>org.ow2.jotm</groupId>
-            <artifactId>jotm-datasource</artifactId>
-            <version>2.1.4</version>
-            <scope>provided</scope>
-        </dependency>
+		<dependency>
+			<groupId>org.ow2.jotm</groupId>
+			<artifactId>jotm-core</artifactId>
+			<version>2.1.4</version>
+		</dependency>
 
-        <dependency>
-            <groupId>org.ow2.spec.ee</groupId>
-            <artifactId>ow2-connector-1.5-spec</artifactId>
-            <version>1.0.2</version>
-        </dependency>
+		<dependency>
+			<groupId>org.ow2.jotm</groupId>
+			<artifactId>jotm-datasource</artifactId>
+			<version>2.1.4</version>
+			<scope>provided</scope>
+		</dependency>
 
-        <dependency>
-            <groupId>com.experlog</groupId>
-            <artifactId>xapool</artifactId>
-            <version>1.5.0</version>
-        </dependency>
+		<dependency>
+			<groupId>org.ow2.spec.ee</groupId>
+			<artifactId>ow2-connector-1.5-spec</artifactId>
+			<version>1.0.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.experlog</groupId>
+			<artifactId>xapool</artifactId>
+			<version>1.5.0</version>
+		</dependency>
 
 
-<!-- Dependencia entre proyecto -->
+		<!-- Dependencia entre proyecto -->
 
 
-    <dependency>
-      <groupId>org.assembly</groupId>
-      <artifactId>common</artifactId>
-      <version>1.0-SNAPSHOT</version>
-    </dependency>
+		<dependency>
+			<groupId>org.assembly.nornas</groupId>
+			<artifactId>common</artifactId>
+			<version>1.0-SNAPSHOT</version>
+		</dependency>
 
-    <dependency>
-      <groupId>org.assembly</groupId>
-      <artifactId>model</artifactId>
-      <version>1.0-SNAPSHOT</version>
-      <type>test-jar</type>
-    </dependency>
-    
-    <dependency>
-      <groupId>org.assembly</groupId>
-      <artifactId>repository</artifactId>
-      <version>1.0-SNAPSHOT</version>
-    </dependency>
-        
+		<dependency>
+			<groupId>org.assembly.nornas</groupId>
+			<artifactId>model</artifactId>
+			<version>1.0-SNAPSHOT</version>
+		</dependency>
 
-<!-- /Dependencia entre proyecto -->
-	
-  </dependencies>
+		<dependency>
+			<groupId>org.assembly.nornas</groupId>
+			<artifactId>repository</artifactId>
+			<version>1.0-SNAPSHOT</version>
+		</dependency>
+
+		<!-- Test -->
+
+		<dependency>
+			<groupId>org.assembly.nornas</groupId>
+			<artifactId>model</artifactId>
+			<version>1.0-SNAPSHOT</version>
+			<type>test-jar</type>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- /Test -->
+
+		<!-- /Dependencia entre proyecto -->
+
+	</dependencies>
 
 </project>
