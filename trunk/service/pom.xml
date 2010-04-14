@@ -28,6 +28,13 @@
 
 	<dependencies>
 
+		<dependency>
+			<groupId>org.apache.tuscany.sca</groupId>
+			<artifactId>tuscany-sca-api</artifactId>
+			<version>1.6</version>
+		</dependency>
+
+
 		<!-- Dependencia entre proyecto -->
 
 		<dependency>

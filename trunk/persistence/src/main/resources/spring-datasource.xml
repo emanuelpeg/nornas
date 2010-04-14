@@ -14,7 +14,7 @@
      -->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
             <property name="driverClassName" value="org.postgresql.Driver" />
-            <property name="url" value="jdbc:postgresql://localhost:5432/thefamily" />
+            <property name="url" value="jdbc:postgresql://localhost:5432/nornas" />
             <property name="username" value="postgres" />
             <property name="password" value="titocosa" />
             <property name="initialSize" value="5" />

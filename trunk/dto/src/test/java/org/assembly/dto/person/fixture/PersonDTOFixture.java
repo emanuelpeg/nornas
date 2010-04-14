@@ -8,6 +8,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.assembly.dto.person.PersonDTO;
+import org.assembly.norna.common.util.date.DateUtils;
 
 /**
  * @author emanuel
@@ -18,22 +19,22 @@ import org.assembly.dto.person.PersonDTO;
 public class PersonDTOFixture {
 
 	public static PersonDTO createEmanuel() {
-		PersonDTO aPerson = new PersonDTO("Emanuel", "peg", new Date(18-01-1983), "emanuelpeg@yahoo.com.ar");
+		PersonDTO aPerson = new PersonDTO("Emanuel", "peg", DateUtils.createDate(1983, 1, 18), "emanuelpeg@yahoo.com.ar");
 		return aPerson;
 	}
 	
 	public static PersonDTO createJose() {
-		PersonDTO aPerson = new PersonDTO("Jose", "pepe", new Date(18-02-1980), "pepe@yahoo.com.ar");
+		PersonDTO aPerson = new PersonDTO("Jose", "pepe", DateUtils.createDate(1980, 2, 14), "pepe@yahoo.com.ar");
 		return aPerson;
 	}
 	
 	public static PersonDTO createPedro() {
-		PersonDTO aPerson = new PersonDTO("Pedro", "coco", new Date(28-03-1993), "coco@yahoo.com.ar");
+		PersonDTO aPerson = new PersonDTO("Pedro", "coco", DateUtils.createDate(1980, 3, 14), "coco@yahoo.com.ar");
 		return aPerson;
 	}
 	
 	public static PersonDTO createJustina() {
-		PersonDTO aPerson = new PersonDTO("Justina", "jus", new Date(14-03-1980), "justina@yahoo.com.ar");
+		PersonDTO aPerson = new PersonDTO("Justina", "jus", DateUtils.createDate(1980, 3, 14), "justina@yahoo.com.ar");
 		return aPerson;
 	}
 

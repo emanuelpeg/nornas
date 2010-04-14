@@ -11,6 +11,7 @@ import org.assembly.nornas.model.person.Person;
 import org.assembly.nornas.repository.person.PersonRepository;
 import org.assembly.nornas.service.person.PersonService;
 import org.assembly.nornas.serviceImpl.BaseServiceImpl;
+import org.assembly.nornas.synchronizer.Synchronizer;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
@@ -27,11 +28,13 @@ public class PersonServiceImpl extends BaseServiceImpl implements PersonService 
 		this.personDAO = personDAO;
 	}
 	
-//	private PersonRepository personDAO;
-//
-//	public void setPersonDAO(PersonRepository personDAO) {
-//		this.personDAO = personDAO;
-//	}
+	
+	private Synchronizer<PersonDTO, Person> synchronizerPerson;
+
+	public void setSynchronizerPerson(
+			Synchronizer<PersonDTO, Person> synchronizerPerson) {
+		this.synchronizerPerson = synchronizerPerson;
+	}
 
 	@Transactional
 	@Override
@@ -51,9 +54,10 @@ public class PersonServiceImpl extends BaseServiceImpl implements PersonService 
 
 	@Transactional
 	@Override
-	public void savePerson(PersonDTO person) {
-		// TODO Auto-generated method stub
-
+	public void savePerson(PersonDTO personDTO) {
+		Person person = this.synchronizerPerson.synchronize(personDTO);
+		this.personDAO.save(person);
+		personDTO.setId(person.getId());
 	}
 
 }

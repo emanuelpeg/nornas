@@ -4,9 +4,9 @@
 package org.assembly.nornas.model.person.fixture;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
+import org.assembly.norna.common.util.date.DateUtils;
 import org.assembly.nornas.model.person.Person;
 
 /**
@@ -18,22 +18,22 @@ import org.assembly.nornas.model.person.Person;
 public class PersonFixture {
 
 	public static Person createEmanuel() {
-		Person aPerson = new Person("Emanuel", "peg", new Date(18-01-1983), "emanuelpeg@yahoo.com.ar");
+		Person aPerson = new Person("Emanuel", "peg", DateUtils.createDate(1983, 1, 18), "emanuelpeg@yahoo.com.ar");
 		return aPerson;
 	}
 	
 	public static Person createJose() {
-		Person aPerson = new Person("Jose", "pepe", new Date(18-02-1980), "pepe@yahoo.com.ar");
+		Person aPerson = new Person("Jose", "pepe", DateUtils.createDate(1982, 6, 14), "pepe@yahoo.com.ar");
 		return aPerson;
 	}
 	
 	public static Person createPedro() {
-		Person aPerson = new Person("Pedro", "coco", new Date(28-03-1993), "coco@yahoo.com.ar");
+		Person aPerson = new Person("Pedro", "coco", DateUtils.createDate(1985, 5, 14), "coco@yahoo.com.ar");
 		return aPerson;
 	}
 	
 	public static Person createJustina() {
-		Person aPerson = new Person("Justina", "jus", new Date(14-03-1980), "justina@yahoo.com.ar");
+		Person aPerson = new Person("Justina", "jus", DateUtils.createDate(1980, 3, 14), "justina@yahoo.com.ar");
 		return aPerson;
 	}
 
