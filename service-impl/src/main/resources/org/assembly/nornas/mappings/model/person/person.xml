@@ -4,7 +4,7 @@
 <mappings>
 	<mapping wildcard="false" map-id="Person_PersonDTO">
 		<class-a>org.assembly.nornas.model.person.Person</class-a>
-		<class-b>org.assembly.dto.model.person.PersonDTO</class-b>
+		<class-b>org.assembly.dto.person.PersonDTO</class-b>
 
         <field>
 			<a>id</a>
@@ -19,11 +19,6 @@
 		<field>
 			<a>nick</a>
 			<b>nick</b>
-		</field>
-
-        <field>
-			<a>precio</a>
-			<b>precio</b>
 		</field>
 
         <field>

@@ -3,15 +3,18 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
 
-    <bean id="service.base" class="org.assembly.nornas.service.BaseServiceImpl" abstract="true" >
+    <bean id="service.base" class="org.assembly.nornas.serviceImpl.BaseServiceImpl" abstract="true" >
         <property name="dtoMapper">
             <ref bean="dtoMapper"/>
         </property>
     </bean>
 
-    <bean id="service.articulo" class="com.assembly.theFamily.serviceImpl.articulo.ArticuloServiceImpl" parent="service.base">
-        <property name="articuloDao">
-            <ref bean="dao.articulo"/>
+    <bean id="service.person" class="org.assembly.nornas.serviceImpl.person.PersonServiceImpl" parent="service.base">
+        <property name="personDAO">
+            <ref bean="dao.person"/>
+        </property>
+        <property name="synchronizerPerson">
+            <ref bean="synchronizer.person"/>
         </property>
     </bean>
 

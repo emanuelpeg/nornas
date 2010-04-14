@@ -3,7 +3,7 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
 
-    <bean id="synchronizer.base" class="org.assembly.nornas.synchronizer.person.SynchronizerPerson"  >
+    <bean id="synchronizer.person" class="org.assembly.nornas.synchronizer.person.SynchronizerPerson"  >
         <property name="personDAO">
             <ref bean="dao.person"/>
         </property>

@@ -18,6 +18,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @ContextConfiguration (locations={
     "/spring-dao.xml",
     "/test-dataSource-context.xml",
+ //   "/spring-datasource.xml" ,
+ //   "/spring-hibernate.xml" ,
     "/spring-transaction.xml"
 })
 public abstract class DaoTestBase {
