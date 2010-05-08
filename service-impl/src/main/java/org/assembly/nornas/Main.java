@@ -24,14 +24,14 @@ public class Main {
 //
 //        node.stop();
 		
-		System.out.println("Starting ...");
-        SCADomain scaDomain = SCADomain.newInstance("Example.composite");
-        scaDomain.getURI();
-        System.out.println("store.composite ready for big business !!!");
-        System.in.read();
-        System.out.println("Stopping ...");
-        scaDomain.close();
-        System.out.println();
+//		  System.out.println("Starting ...");
+//        SCADomain scaDomain = SCADomain.newInstance("Example.composite");
+//        scaDomain.getURI();
+//        System.out.println("store.composite ready for big business !!!");
+//        System.in.read();
+//        System.out.println("Stopping ...");
+//        scaDomain.close();
+//        System.out.println();
 	}
 
 }
