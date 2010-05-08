@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:sca="http://www.springframework.org/schema/sca"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
 
@@ -17,6 +18,10 @@
             <ref bean="synchronizer.person"/>
         </property>
     </bean>
-
+<!--
+http://www.springframework.org/schema/sca http://www.osoa.org/xmlns/sca/1.0/spring-sca.xsd
+	<sca:service name="component.person"
+        type="org.assembly.nornas.service.person.PersonService" target="service.person"/>
+-->
 
 </beans>
