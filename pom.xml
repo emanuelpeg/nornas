@@ -37,7 +37,7 @@
        			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>		
-        	    	<artifactId>maven-project-info-reports-plugin</artifactId> 		
+        	    		<artifactId>maven-project-info-reports-plugin</artifactId> 		
 			</plugin>
 		</plugins>
   </build>
@@ -130,6 +130,7 @@
     <module>service</module>
     <module>synchronizer</module>
     <module>service-impl</module>
+    <module>web</module>
   </modules>
 
   <properties>
