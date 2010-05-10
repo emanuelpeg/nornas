@@ -34,9 +34,10 @@
 				<prop key="hibernate.cache.provider_class">org.hibernate.cache.EhCacheProvider</prop>
 				<prop key="hibernate.cache.use_second_level_cache">true</prop>
 				<prop key="hibernate.cache.use_query_cache">true</prop>
-
+				<prop key="hibernate.cache.provider_configuration_file_resource_path">/ehcache.xml</prop>
+				
 				<!-- Propiedades para las transacciones con JTA y JTOM -->
-				<prop key="connection.pool_size">0</prop>
+				<prop key="connection.pool_size">10</prop>
 				<prop key="hibernate.current_session_context_class">jta</prop>
 				<prop key="hibernate.transaction.flush_before_completion">true</prop>
 				<prop key="hibernate.transaction.factory_class">org.springframework.orm.hibernate3.SpringTransactionFactory
