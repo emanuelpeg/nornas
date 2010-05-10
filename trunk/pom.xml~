@@ -37,7 +37,7 @@
        			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>		
-        	    	<artifactId>maven-project-info-reports-plugin</artifactId> 		
+        	    		<artifactId>maven-project-info-reports-plugin</artifactId> 		
 			</plugin>
 		</plugins>
   </build>
@@ -120,6 +120,8 @@
 
 
   <modules>
+    <module>doc</module>
+    <module>sandbox</module>
     <module>common</module>
     <module>model</module>
     <module>dto</module>
@@ -128,8 +130,7 @@
     <module>service</module>
     <module>synchronizer</module>
     <module>service-impl</module>
-    <module>doc</module>
-    <module>sandbox</module>
+    <module>web</module>
   </modules>
 
   <properties>
