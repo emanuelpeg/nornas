@@ -19,13 +19,19 @@ import org.osoa.sca.annotations.Service;
 public class ExampleServiceImpl implements
 		ExampleService {
 
+	private String hello = "Holasss !!! \n";
+	
+	public void setHello(String hello) {
+		this.hello = hello;
+	}
+
 	/**
 	 * @see org.assembly.nornas.ExampleService#sayHello()
 	 */
 	@Override
 	public String sayHello() {
 	    System.out.print("llamaron a Say");
-		return "Holasss !!! \n";
+		return hello;
 	}
 
 	@Init
