@@ -14,8 +14,5 @@
 	<sca:service name="ExampleService"
         type="org.assembly.nornas.sandbox.service.example.ExampleService" target="service.example" />
         
-<!--
-http://www.springframework.org/schema/sca http://www.osoa.org/xmlns/sca/1.0/spring-sca.xsd
--->
 
 </beans>
