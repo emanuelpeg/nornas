@@ -4,7 +4,7 @@
 		   xmlns:t="http://tuscany.apache.org/xmlns/sca/1.0"
            targetNamespace="http://nornas"
            xmlns:nornas="http://nornas"
-           name="Example" >
+           name="ExampleSpring" >
 
 	<component name="ExampleServiceComponent">
 		<implementation.spring location="spring-sandbox.xml" />  
