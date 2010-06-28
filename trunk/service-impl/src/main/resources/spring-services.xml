@@ -2,7 +2,8 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	   xmlns:sca="http://www.springframework.org/schema/sca"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+                           http://www.springframework.org/schema/sca xsd/spring-sca.xsd">
 
     <bean id="service.base" class="org.assembly.nornas.serviceImpl.BaseServiceImpl" abstract="true" >
         <property name="dtoMapper">
@@ -18,10 +19,8 @@
             <ref bean="synchronizer.person"/>
         </property>
     </bean>
-<!--
-http://www.springframework.org/schema/sca http://www.osoa.org/xmlns/sca/1.0/spring-sca.xsd
-	<sca:service name="component.person"
-        type="org.assembly.nornas.service.person.PersonService" target="service.person"/>
--->
+
+	<sca:service name="component.personService" 
+	             type="org.assembly.nornas.service.person.PersonService" target="service.person"/>
 
 </beans>
