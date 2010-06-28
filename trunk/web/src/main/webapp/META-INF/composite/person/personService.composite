@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<composite xmlns="http://www.osoa.org/xmlns/sca/1.0"
+		   xmlns:t="http://tuscany.apache.org/xmlns/sca/1.0"
+           targetNamespace="http://nornas"
+           xmlns:nornas="http://nornas"
+           name="personService" >
+
+	<component name="component.personService">
+		<implementation.spring location="META-INF/spring/spring-config.xml" />  
+		
+		<service name="service.person">
+			<interface.java interface="org.assembly.nornas.service.person.PersonService"/>
+			<binding.ws  />
+			<binding.sca  />
+        </service>
+        
+	</component>
+	 	
+	
+</composite>

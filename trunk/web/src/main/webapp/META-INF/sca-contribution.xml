@@ -21,13 +21,11 @@
 <contribution xmlns="http://www.osoa.org/xmlns/sca/1.0"
     xmlns:nornas="http://nornas" >
 
+   
+  <import namespace="http://nornas" location="composite/person/personService.composite" />
   
-  <!--  
-  <import namespace="http://nornas" location="ExampleSpring.composite" />
-  
-  <deployable composite="nornas:ExampleSpring"/>
+  <deployable composite="nornas:personService"/>
  
-  -->
 
 </contribution>
 
