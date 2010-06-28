@@ -26,7 +26,7 @@
 	<build>
 		<finalName>web</finalName>
 		<plugins>
-			<plugin>
+	<!--  		<plugin>
 				<groupId>org.mortbay.jetty</groupId>
 				<artifactId>maven-jetty-plugin</artifactId>
 				<version>6.1.10</version>
@@ -56,7 +56,7 @@
 					</execution>
 				</executions>
 
-			</plugin>
+			</plugin> -->
 		</plugins>
 	</build>
 
