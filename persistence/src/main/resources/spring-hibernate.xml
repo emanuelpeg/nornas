@@ -24,10 +24,10 @@
 
 		<property name="hibernateProperties">
 			<props>
-				<prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</prop>
+				<prop key="hibernate.dialect">${hibernate.dialect}</prop>
 				<prop key="hibernate.show_sql">true</prop>
-				<prop key="hibernate.hbm2ddl.auto">update</prop>
-				<prop key="hibernate.default_schema">public</prop>
+				<prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto}</prop>
+				<prop key="hibernate.default_schema">${hibernate.default_schema}</prop>
 				<prop key="hibernate.cglib.use_reflection_optimizer">true</prop>
 
 				<!-- Propiedades para la configuración de la cache de segundo nivel -->
