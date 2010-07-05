@@ -12,6 +12,7 @@ import org.assembly.nornas.repository.person.PersonRepository;
 import org.assembly.nornas.service.person.PersonService;
 import org.assembly.nornas.serviceImpl.BaseServiceImpl;
 import org.assembly.nornas.synchronizer.Synchronizer;
+import org.osoa.sca.annotations.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
@@ -20,6 +21,7 @@ import org.springframework.transaction.annotation.Transactional;
  *         Implementation of {@link PersonService}
  * 
  */
+@Service(PersonService.class)
 public class PersonServiceImpl extends BaseServiceImpl implements PersonService {
 
 	private PersonRepository personDAO;
@@ -49,7 +51,7 @@ public class PersonServiceImpl extends BaseServiceImpl implements PersonService 
 	@Override
 	public PersonDTO findPersonById(Long id) {
 		Person person = this.personDAO.findBy(id);
-		return this.getDtoMapper().map(person, PersonDTO.class, "Person_PersonDTO");
+		return (person == null) ? null : this.getDtoMapper().map(person, PersonDTO.class, "Person_PersonDTO");
 	}
 
 	@Transactional
