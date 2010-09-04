@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<click-app> 
+
+  <pages package="org.assembly.nornas.web"/>
+  
+  <page-interceptor classname="org.apache.click.doubleclick.inject.DependencyInjectorPageInterceptor"
+                    scope="application"/>
+                      
+  <controls>
+      <control classname="org.apache.click.doubleclick.injectspring.SpringControl"/>
+  </controls>
+
+</click-app>  
