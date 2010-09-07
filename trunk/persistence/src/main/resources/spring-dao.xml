@@ -10,8 +10,8 @@
     </bean>
 
 
-    <bean id="dao.person"
-          class="org.assembly.nornas.persistence.person.PersonDAO"
+    <bean id="dao.user"
+          class="org.assembly.nornas.persistence.user.UserDAO"
           parent="dao.base">
     </bean>
 

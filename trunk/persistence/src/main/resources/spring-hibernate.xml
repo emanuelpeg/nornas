@@ -17,7 +17,7 @@
 		<property name="mappingResources">
 
 			<list>
-				<value>/mapping/org/assembly/model/person/person.hbm.xml</value>
+				<value>/mapping/org/assembly/model/user/user.hbm.xml</value>
 			</list>
 			
 		</property>
