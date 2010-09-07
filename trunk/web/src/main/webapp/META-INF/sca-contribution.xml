@@ -22,9 +22,9 @@
     xmlns:nornas="http://nornas" >
 
    
-  <import namespace="http://nornas" location="composite/person/personService.composite" />
+  <import namespace="http://nornas" location="composite/user/userService.composite" />
   
-  <deployable composite="nornas:personService"/>
+  <deployable composite="nornas:userService"/>
  
 
 </contribution>
