@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.assembly.serviceImpl.person;
+package org.assembly.serviceImpl.user;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -10,9 +10,9 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
-import org.assembly.dto.person.PersonDTO;
-import org.assembly.dto.person.fixture.PersonDTOFixture;
-import org.assembly.nornas.serviceImpl.person.PersonServiceImpl;
+import org.assembly.dto.user.UserDTO;
+import org.assembly.dto.user.fixture.UserDTOFixture;
+import org.assembly.nornas.serviceImpl.user.UserServiceImpl;
 import org.assembly.serviceImpl.BaseServiceTest;
 import org.junit.Test;
 
@@ -22,17 +22,17 @@ import org.junit.Test;
  * Test of PersonServiceImpl
  *
  */
-public class PersonServiceImplTest extends BaseServiceTest {
+public class UserServiceImplTest extends BaseServiceTest {
 	
-	@Resource(name="service.person")
-	private PersonServiceImpl personService;
+	@Resource(name="service.user")
+	private UserServiceImpl userService;
 	
 	@Test
 	public void findById() {
-		PersonDTO personDTO = PersonDTOFixture.createJustina();
-		personService.savePerson(personDTO);
+		UserDTO personDTO = UserDTOFixture.createJustina();
+		userService.saveUser(personDTO);
 		
-		PersonDTO personDTOSaved = personService.findPersonById(personDTO.getId());
+		UserDTO personDTOSaved = userService.findUserById(personDTO.getId());
 		
 		assertNotNull(personDTOSaved);
 		verifyPerson(personDTO, personDTOSaved);
@@ -40,20 +40,20 @@ public class PersonServiceImplTest extends BaseServiceTest {
 	
 	@Test
 	public void findAll() {
-		PersonDTO personDTO = PersonDTOFixture.createJustina();
-		personService.savePerson(personDTO);
+		UserDTO personDTO = UserDTOFixture.createJustina();
+		userService.saveUser(personDTO);
 		
-		List<PersonDTO> personDTOs = personService.findAllPerson();
+		List<UserDTO> personDTOs = userService.findAllUser();
 		
 		assertNotNull(personDTOs);
 		assertEquals(1, personDTOs.size());
 		
-		PersonDTO personDTOSaved = personDTOs.get(0);
+		UserDTO personDTOSaved = personDTOs.get(0);
 		
 		verifyPerson(personDTO, personDTOSaved);
 	}
 
-	private void verifyPerson(PersonDTO personDTO, PersonDTO otherPersonDTO) {
+	private void verifyPerson(UserDTO personDTO, UserDTO otherPersonDTO) {
 		assertEquals(personDTO.getName(), otherPersonDTO.getName());
 		assertEquals(personDTO.getNick(), otherPersonDTO.getNick());
 		assertEquals(personDTO.getBirthDate(), otherPersonDTO.getBirthDate());

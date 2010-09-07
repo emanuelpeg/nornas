@@ -2,9 +2,9 @@
 <!DOCTYPE mappings PUBLIC "-//DOZER//DTD MAPPINGS//EN"
     "http://dozer.sourceforge.net/dtd/dozerbeanmapping.dtd">
 <mappings>
-	<mapping wildcard="false" map-id="Person_PersonDTO">
-		<class-a>org.assembly.nornas.model.person.Person</class-a>
-		<class-b>org.assembly.dto.person.PersonDTO</class-b>
+	<mapping wildcard="false" map-id="User_UserDTO">
+		<class-a>org.assembly.nornas.model.user.User</class-a>
+		<class-b>org.assembly.dto.user.UserDTO</class-b>
 
         <field>
 			<a>id</a>
@@ -29,6 +29,11 @@
         <field>
 			<a>email</a>
 			<b>email</b>
+		</field>
+		
+		<field>
+			<a>password</a>
+			<b>password</b>
 		</field>
 
 	</mapping>

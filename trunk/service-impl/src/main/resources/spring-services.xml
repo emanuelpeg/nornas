@@ -11,16 +11,16 @@
         </property>
     </bean>
 
-    <bean id="service.person" class="org.assembly.nornas.serviceImpl.person.PersonServiceImpl" parent="service.base">
-        <property name="personDAO">
-            <ref bean="dao.person"/>
+    <bean id="service.user" class="org.assembly.nornas.serviceImpl.user.UserServiceImpl" parent="service.base">
+        <property name="userDAO">
+            <ref bean="dao.user"/>
         </property>
-        <property name="synchronizerPerson">
-            <ref bean="synchronizer.person"/>
+        <property name="synchronizerUser">
+            <ref bean="synchronizer.user"/>
         </property>
     </bean>
 
-	<sca:service name="component.personService" 
-	             type="org.assembly.nornas.service.person.PersonService" target="service.person"/>
+	<sca:service name="component.userService" 
+	             type="org.assembly.nornas.service.user.UserService" target="service.user"/>
 
 </beans>
