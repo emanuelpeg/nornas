@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.assembly.nornas.model.person;
+package org.assembly.nornas.model.user;
 
 import java.util.Date;
 
@@ -15,7 +15,7 @@ import org.assembly.nornas.model.PersistenEntity;
  *         class represents a person
  * 
  */
-public class Person extends PersistenEntity {
+public class User extends PersistenEntity {
 
 	private String name;
 
@@ -24,19 +24,18 @@ public class Person extends PersistenEntity {
 	private Date birthDate;
 
 	private String email;
+	
+	private String password;
 
-	public Person(String email) {
-		super();
+
+	public User(String nick, String email, String password) {
 		this.email = email;
-	}
-
-	public Person(String nick, String email) {
-		this(email);
 		this.nick = nick;
+		this.password = password;
 	}
 
-	public Person(String name, String nick, Date birthDate, String email) {
-		this(nick, email);
+	public User(String name, String nick, Date birthDate, String email, String password) {
+		this(nick, email, password);
 		this.name = name;
 		this.birthDate = birthDate;
 	}
@@ -72,6 +71,14 @@ public class Person extends PersistenEntity {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
 
 	@Override
 	public boolean equals(Object obj) {
@@ -82,7 +89,7 @@ public class Person extends PersistenEntity {
 		if (!obj.getClass().isAssignableFrom(getClass()))
 			return false;
 
-		Person otherPerson = (Person) obj;
+		User otherPerson = (User) obj;
 
 		return new EqualsBuilder()
 				.append(this.getNick(), otherPerson.getNick()).append(
@@ -96,7 +103,7 @@ public class Person extends PersistenEntity {
 	}
 
 	// is used by Hibernate.
-	public Person() {
+	public User() {
 	}
 
 }

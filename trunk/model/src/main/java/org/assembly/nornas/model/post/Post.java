@@ -7,7 +7,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 import org.apache.commons.lang.builder.EqualsBuilder;
-import org.assembly.nornas.model.person.Person;
+import org.assembly.nornas.model.user.User;
 
 /**
  * @author emanuel
@@ -25,9 +25,9 @@ public class Post {
 
 	private StatePost state = StatePost.DRAFT;
 
-	private Person author;
+	private User author;
 
-	public Post(String title, String content, Person author) {
+	public Post(String title, String content, User author) {
 		super();
 		this.title = title;
 		this.content = content;
@@ -35,7 +35,7 @@ public class Post {
 	}
 
 	public Post(String title, String content, Date date, StatePost state,
-			Person author) {
+			User author) {
 		super();
 		this.title = title;
 		this.content = content;
@@ -76,11 +76,11 @@ public class Post {
 		this.state = state;
 	}
 
-	public Person getAuthor() {
+	public User getAuthor() {
 		return author;
 	}
 
-	public void setAuthor(Person author) {
+	public void setAuthor(User author) {
 		this.author = author;
 	}
 
