@@ -9,10 +9,10 @@ http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd">
 	<import resource="classpath:META-INF/cxf/cxf-extension-soap.xml" />
 	<import resource="classpath:META-INF/cxf/cxf-servlet.xml" />
 
-	 <jaxws:client id="person.service"
-                  serviceClass="org.assembly.nornas.service.person.PersonService"
-                  address="http://localhost:8081/web/serviceSca.person" 
-                  wsdlLocation="http://localhost:8081/web/serviceSca.person?wsdl" />
+	 <jaxws:client id="user.service"
+                  serviceClass="org.assembly.nornas.service.user.UserService"
+                  address="http://localhost:8081/web/serviceSca.user" 
+                  wsdlLocation="http://localhost:8081/web/serviceSca.user?wsdl" />
                   
 	  
 </beans>
