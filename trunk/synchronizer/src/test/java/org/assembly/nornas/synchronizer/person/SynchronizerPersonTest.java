@@ -7,12 +7,13 @@ import static org.junit.Assert.assertEquals;
 
 import javax.annotation.Resource;
 
-import org.assembly.dto.person.PersonDTO;
-import org.assembly.dto.person.fixture.PersonDTOFixture;
-import org.assembly.nornas.model.person.Person;
-import org.assembly.nornas.model.person.fixture.PersonFixture;
-import org.assembly.nornas.repository.person.PersonRepository;
+import org.assembly.dto.user.UserDTO;
+import org.assembly.dto.user.fixture.UserDTOFixture;
+import org.assembly.nornas.model.user.User;
+import org.assembly.nornas.model.user.fixture.UserFixture;
+import org.assembly.nornas.repository.user.UserRepository;
 import org.assembly.nornas.synchronizer.SynchronizerTestBase;
+import org.assembly.nornas.synchronizer.user.SynchronizerUser;
 import org.junit.Test;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -25,15 +26,15 @@ import org.springframework.transaction.annotation.Transactional;
 public class SynchronizerPersonTest extends SynchronizerTestBase {
 
 	@Resource
-	private SynchronizerPerson synchronizerPerson;
+	private SynchronizerUser synchronizerUser;
 	
 	@Resource
-	private PersonRepository personDAO;
+	private UserRepository userDAO;
 	
 	@Test
 	public void synchronizerUnsavedPerson() {
-		PersonDTO dto = PersonDTOFixture.createEmanuel();
-		Person person = this.synchronizerPerson.synchronize(dto);
+		UserDTO dto = UserDTOFixture.createEmanuel();
+		User person = this.synchronizerUser.synchronize(dto);
 		
 		verifyPerson(dto, person);
 	}
@@ -41,18 +42,18 @@ public class SynchronizerPersonTest extends SynchronizerTestBase {
 	@Transactional
 	@Test
 	public void synchronizerSavedPerson() {
-		Person person = PersonFixture.createJose();
-		this.personDAO.save(person);
+		User user = UserFixture.createJose();
+		this.userDAO.save(user);
 		
-		PersonDTO dto = PersonDTOFixture.createEmanuel();
-		dto.setId(person.getId());
-		Person otherPerson = this.synchronizerPerson.synchronize(dto);
+		UserDTO dto = UserDTOFixture.createEmanuel();
+		dto.setId(user.getId());
+		User otherUser = this.synchronizerUser.synchronize(dto);
 		
-		verifyPerson(dto, otherPerson);
+		verifyPerson(dto, otherUser);
 	}
 	
 	
-	private void verifyPerson(PersonDTO dto, Person person) {
+	private void verifyPerson(UserDTO dto, User person) {
 		assertEquals(dto.getName(), person.getName());
 		assertEquals(dto.getNick(), person.getNick());
 		assertEquals(dto.getBirthDate(), person.getBirthDate());
