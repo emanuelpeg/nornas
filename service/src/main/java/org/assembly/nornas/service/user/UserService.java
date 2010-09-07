@@ -1,14 +1,14 @@
 /**
  * 
  */
-package org.assembly.nornas.service.person;
+package org.assembly.nornas.service.user;
 
 import java.util.List;
 
 import javax.jws.WebMethod;
 import javax.jws.WebService;
 
-import org.assembly.dto.person.PersonDTO;
+import org.assembly.dto.user.UserDTO;
 import org.osoa.sca.annotations.Remotable;
 
 /**
@@ -20,13 +20,15 @@ import org.osoa.sca.annotations.Remotable;
  */
 @Remotable
 @WebService
-public interface PersonService {
+public interface UserService {
 	
 	@WebMethod(operationName="findAllPerson")
-	List<PersonDTO> findAllPerson();
+	List<UserDTO> findAllUser();
 
-	PersonDTO findPersonById(Long id);
+	@WebMethod(operationName="findUserById")
+	UserDTO findUserById(Long id);
 	
-	void savePerson(PersonDTO personDTO);	
+	@WebMethod(operationName="saveUser")
+	void saveUser(UserDTO personDTO);	
 	
 }
