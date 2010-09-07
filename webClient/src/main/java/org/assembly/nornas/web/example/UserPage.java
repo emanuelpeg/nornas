@@ -5,29 +5,29 @@ package org.assembly.nornas.web.example;
 
 import org.apache.click.doubleclick.inject.annotation.InjectBean;
 import org.apache.click.util.Bindable;
-import org.assembly.dto.person.PersonDTO;
-import org.assembly.nornas.service.person.PersonService;
+import org.assembly.dto.user.UserDTO;
+import org.assembly.nornas.service.user.UserService;
 import org.assembly.nornas.web.template.Template;
 
 /**
  * @author emanuel
  *
  */
-public class PersonPage extends Template {
+public class UserPage extends Template {
 
 	private static final long serialVersionUID = 2163449704468426341L;
 	
 	@InjectBean
-	private PersonService personService;
+	private UserService userService;
 
 	@Bindable
-	private PersonDTO person;
+	private UserDTO user;
 	
 	@Override
 	public void onInit() {
 		this.title = "Example";
 		this.titlePage = "Example";
-		this.person = personService.findAllPerson().get(0);
+		this.user = userService.findAllUser().get(0);
 	}
 
 }
