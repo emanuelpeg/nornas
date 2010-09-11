@@ -4,7 +4,9 @@
 package org.assembly.dto.user;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author emanuel
@@ -24,7 +26,7 @@ public class UserDTO implements Serializable{
 
 	private Date birthDate;
 
-	private String email;
+	private List<String> emails = new ArrayList<String>();
 	
 	private String password;
 	
@@ -35,7 +37,16 @@ public class UserDTO implements Serializable{
 		this.name = name;
 		this.nick = nick;
 		this.birthDate = birthDate;
-		this.email = email;
+		this.emails.add(email);
+		this.password = password;
+	}
+	
+	public UserDTO(String name, String nick, Date birthDate, List<String> emails, String password) {
+		super();
+		this.name = name;
+		this.nick = nick;
+		this.birthDate = birthDate;
+		this.emails = emails;
 		this.password = password;
 	}
 
@@ -71,14 +82,14 @@ public class UserDTO implements Serializable{
 		this.birthDate = birthDate;
 	}
 
-	public String getEmail() {
-		return email;
+	public List<String> getEmails() {
+		return emails;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setEmails(List<String> emails) {
+		this.emails = emails;
 	}
-	
+
 	public String getPassword() {
 		return password;
 	}

@@ -57,7 +57,7 @@ public class SynchronizerPersonTest extends SynchronizerTestBase {
 		assertEquals(dto.getName(), person.getName());
 		assertEquals(dto.getNick(), person.getNick());
 		assertEquals(dto.getBirthDate(), person.getBirthDate());
-		assertEquals(dto.getEmail(), person.getEmail());
+		assertEquals(dto.getEmails(), person.getEmails());
 		
 	}
 	

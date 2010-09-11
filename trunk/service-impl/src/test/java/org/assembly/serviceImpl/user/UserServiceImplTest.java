@@ -57,7 +57,7 @@ public class UserServiceImplTest extends BaseServiceTest {
 		assertEquals(personDTO.getName(), otherPersonDTO.getName());
 		assertEquals(personDTO.getNick(), otherPersonDTO.getNick());
 		assertEquals(personDTO.getBirthDate(), otherPersonDTO.getBirthDate());
-		assertEquals(personDTO.getEmail(), otherPersonDTO.getEmail());		
+		assertEquals(personDTO.getEmails(), otherPersonDTO.getEmails());		
 	}
 	
 }

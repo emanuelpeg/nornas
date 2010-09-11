@@ -35,6 +35,12 @@ public class User extends PersistenEntity {
 		this.emails.add(email);
 		this.password = password;
 	}
+	
+	public User(String nick, List<String> emails, String password) {
+		this.nick = nick;
+		this.emails=emails;
+		this.password = password;
+	}
 
 	public User(String name, String nick, Date birthDate, String email, String password) {
 		this(nick, email, password);
@@ -42,6 +48,12 @@ public class User extends PersistenEntity {
 		this.birthDate = birthDate;
 	}
 
+	public User(String name, String nick, Date birthDate, List<String> emails, String password) {
+		this(nick, emails, password);
+		this.name = name;
+		this.birthDate = birthDate;
+	}
+	
 	public String getName() {
 		return name;
 	}
@@ -72,6 +84,16 @@ public class User extends PersistenEntity {
 
 	public void setEmails(List<String> emails) {
 		this.emails = emails;
+	}
+	
+	public String getEmail() {
+		return this.emails.get(0);
+	}
+	
+	public void setEmail(String email) {
+		if (!this.emails.contains(email)) {
+			this.emails.add(email);
+		}
 	}
 
 	public String getPassword() {
@@ -107,5 +129,6 @@ public class User extends PersistenEntity {
 	// is used by Hibernate.
 	public User() {
 	}
+
 
 }
