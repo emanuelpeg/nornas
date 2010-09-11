@@ -27,12 +27,12 @@ public class SynchronizerUser implements Synchronizer<UserDTO, User>{
 		User aPerson =  null;
 		
 		if (dto.getId() == null) {
-			aPerson = new User(dto.getName(), dto.getNick(), dto.getBirthDate(), dto.getEmail(), dto.getPassword());
+			aPerson = new User(dto.getName(), dto.getNick(), dto.getBirthDate(), dto.getEmails(), dto.getPassword());
 		} else {
 			aPerson = this.userDAO.findBy(dto.getId());
 			aPerson.setName(dto.getName());
 			aPerson.setNick(dto.getNick());
-			aPerson.setEmail(dto.getEmail());
+			aPerson.setEmails(dto.getEmails());
 			aPerson.setBirthDate(dto.getBirthDate());
 		}
 		
