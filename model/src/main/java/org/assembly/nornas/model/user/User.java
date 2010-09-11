@@ -3,7 +3,9 @@
  */
 package org.assembly.nornas.model.user;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
@@ -12,7 +14,7 @@ import org.assembly.nornas.model.PersistenEntity;
 /**
  * @author emanuel
  * 
- *         class represents a person
+ *         class represents a user
  * 
  */
 public class User extends PersistenEntity {
@@ -23,14 +25,14 @@ public class User extends PersistenEntity {
 
 	private Date birthDate;
 
-	private String email;
+	private List<String> emails = new ArrayList<String>();
 	
 	private String password;
 
 
 	public User(String nick, String email, String password) {
-		this.email = email;
 		this.nick = nick;
+		this.emails.add(email);
 		this.password = password;
 	}
 
@@ -63,15 +65,15 @@ public class User extends PersistenEntity {
 	public void setBirthDate(Date birthDate) {
 		this.birthDate = birthDate;
 	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
 	
+	public List<String> getEmails() {
+		return emails;
+	}
+
+	public void setEmails(List<String> emails) {
+		this.emails = emails;
+	}
+
 	public String getPassword() {
 		return password;
 	}
@@ -93,13 +95,13 @@ public class User extends PersistenEntity {
 
 		return new EqualsBuilder()
 				.append(this.getNick(), otherPerson.getNick()).append(
-						this.getEmail(), otherPerson.getEmail()).isEquals();
+						this.getEmails(), otherPerson.getEmails()).isEquals();
 	}
 
 	@Override
 	public int hashCode() {
 		return new HashCodeBuilder().append(this.getNick()).append(
-				this.getEmail()).hashCode();
+				this.getEmails()).hashCode();
 	}
 
 	// is used by Hibernate.

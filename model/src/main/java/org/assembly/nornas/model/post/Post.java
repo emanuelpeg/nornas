@@ -3,11 +3,16 @@
  */
 package org.assembly.nornas.model.post;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import org.apache.commons.lang.builder.EqualsBuilder;
-import org.assembly.nornas.model.user.User;
+import org.apache.commons.lang.builder.HashCodeBuilder;
+import org.assembly.nornas.model.author.Author;
+import org.assembly.nornas.model.comment.Comment;
+import org.assembly.nornas.model.tag.Tag;
 
 /**
  * @author emanuel
@@ -21,28 +26,34 @@ public class Post {
 
 	private String content;
 
-	private Date date = Calendar.getInstance().getTime();
+	private Date publishDate;
+	
+	private Date creationDate;
 
 	private StatePost state = StatePost.DRAFT;
 
-	private User author;
+	private Author author;
+	
+	private boolean commentAllow;
+	
+	private List<Tag> tags = new ArrayList<Tag>();
 
-	public Post(String title, String content, User author) {
+	private List<Comment> comment = new ArrayList<Comment>();
+	
+	public Post(String title, String content, Author author) {
 		super();
 		this.title = title;
 		this.content = content;
 		this.author = author;
+		this.creationDate = Calendar.getInstance().getTime();
 	}
 
-	public Post(String title, String content, Date date, StatePost state,
-			User author) {
-		super();
-		this.title = title;
-		this.content = content;
-		this.date = date;
+	public Post(String title, String content, StatePost state,
+			Author author) {
+		this(title, content, author);
 		this.state = state;
-		this.author = author;
 	}
+
 
 	public String getTitle() {
 		return title;
@@ -60,12 +71,20 @@ public class Post {
 		this.content = content;
 	}
 
-	public Date getDate() {
-		return date;
+	public Date getPublishDate() {
+		return publishDate;
 	}
 
-	public void setDate(Date date) {
-		this.date = date;
+	public void setPublishDate(Date publishDate) {
+		this.publishDate = publishDate;
+	}
+
+	public Date getCreationDate() {
+		return creationDate;
+	}
+
+	public void setCreationDate(Date creationDate) {
+		this.creationDate = creationDate;
 	}
 
 	public StatePost getState() {
@@ -76,12 +95,36 @@ public class Post {
 		this.state = state;
 	}
 
-	public User getAuthor() {
+	public Author getAuthor() {
 		return author;
 	}
 
-	public void setAuthor(User author) {
+	public void setAuthor(Author author) {
 		this.author = author;
+	}
+
+	public boolean isCommentAllow() {
+		return commentAllow;
+	}
+
+	public void setCommentAllow(boolean commentAllow) {
+		this.commentAllow = commentAllow;
+	}
+
+	public List<Tag> getTags() {
+		return tags;
+	}
+
+	public void setTags(List<Tag> tags) {
+		this.tags = tags;
+	}
+
+	public List<Comment> getComment() {
+		return comment;
+	}
+
+	public void setComment(List<Comment> comment) {
+		this.comment = comment;
 	}
 
 	@Override
@@ -92,12 +135,21 @@ public class Post {
 			return true;
 		if (!obj.getClass().isAssignableFrom(getClass()))
 			return false;
+
 		Post otherPost = (Post) obj;
+
 		return new EqualsBuilder()
 				.append(this.getTitle(), otherPost.getTitle()).append(
 						this.getAuthor(), otherPost.getAuthor()).append(
-						this.getDate(), otherPost.getDate()).append(
+						this.getCreationDate(), otherPost.getCreationDate()).append(
 						this.getState(), otherPost.getState()).isEquals();
+	}
+
+	@Override
+	public int hashCode() {
+		return new HashCodeBuilder().append(this.getTitle()).append(
+				this.getAuthor()).append(this.getCreationDate())
+				.append(this.getState()).toHashCode();
 	}
 
 	// is used by Hibernate.
