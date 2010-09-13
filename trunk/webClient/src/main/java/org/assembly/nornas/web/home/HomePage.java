@@ -17,8 +17,6 @@ public class HomePage extends Template {
 	
 	@Override
 	public void onInit() {
-		this.title = "WELCOME TO OUR WEBSITE";
-		this.titlePage = "Home";
 	}
 
 }
