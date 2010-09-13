@@ -22,6 +22,18 @@
   
   <url>http://maven.apache.org</url>
   
+  <build>
+		<resources>
+			<resource>
+  				<directory>src/main/java</directory>
+        		<includes>
+            		<include>**/*.properties</include>
+        		</includes>
+    		</resource>
+		</resources>
+  </build>
+  
+  
   <repositories>
       <repository>
           <id>doubleclick-repo</id>
@@ -49,12 +61,36 @@
         <groupId>org.apache.click.doubleclick</groupId>
         <artifactId>inject</artifactId>
         <version>1.0</version>
+        <exclusions>
+            <exclusion>
+				<groupId>org.apache.click</groupId>
+				<artifactId>click</artifactId>
+			</exclusion>
+		</exclusions>
     </dependency>
    
     <dependency>
         <groupId>org.apache.click.doubleclick</groupId>
         <artifactId>injectspring</artifactId>
         <version>1.0</version>
+        <exclusions>
+            <exclusion>
+				<groupId>org.apache.click</groupId>
+				<artifactId>click</artifactId>
+			</exclusion>
+			<exclusion>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-beans</artifactId>
+			</exclusion>
+			<exclusion>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-context</artifactId>
+			</exclusion>
+			<exclusion>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-core</artifactId>
+			</exclusion>
+		</exclusions>
     </dependency>
     
     <!-- /Apache Click -->

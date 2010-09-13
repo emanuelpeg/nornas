@@ -25,8 +25,6 @@ public class UserPage extends Template {
 	
 	@Override
 	public void onInit() {
-		this.title = "Example";
-		this.titlePage = "Example";
 		this.user = userService.findAllUser().get(0);
 	}
 
