@@ -11,8 +11,8 @@ http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd">
 
 	 <jaxws:client id="user.service"
                   serviceClass="org.assembly.nornas.service.user.UserService"
-                  address="http://localhost:8081/web/serviceSca.user" 
-                  wsdlLocation="http://localhost:8081/web/serviceSca.user?wsdl" />
+                  address="http://localhost:8080/web/serviceSca.user" 
+                  wsdlLocation="http://localhost:8080/web/serviceSca.user?wsdl" />
                   
 	  
 </beans>
