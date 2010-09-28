@@ -1,13 +1,68 @@
+  	<script type="text/javascript">
+		$(document).ready(addValidationNewUserForm);
+	</script>
+  
     <div>
       <p> $messages.introducction </p>
     </div>
    <div id="templatemo_content_bot">
 	    <div class="templatemo_bottom_text_left">
-	    	<h2> $messages.createUsers </h2>
-	      
+	    	<img src="../csss/images/Button_Add-01.png" alt="add user" class="icon" /> <h2> $messages.createUsers </h2>
+	        ${newUserForm.startTag()}
+	        <table >
+	        	<tr>
+	        		<td> $messages.newUserName <span class="requiered">*</span> </td>
+	        		<td> ${newUserForm.fields.userName} </td>
+	        	</tr>
+	        	<tr>
+	        		<td> $messages.newUserNick <span class="requiered">*</span> </td>
+	        		<td> ${newUserForm.fields.userNick} </td>
+	        	</tr>
+	        	<tr>
+	        		<td> $messages.newUserBirthDate </td>
+	        		<td> ${newUserForm.fields.userBirthDate} </td>
+	        	</tr>
+	        	<tr>
+	        		<td> $messages.newUserEmail <span class="requiered">*</span> </td>
+	        		<td> ${newUserForm.fields.userEmail} </td>
+	        	</tr>
+	        	<tr>
+	        		<td> $messages.newUserPassword <span class="requiered">*</span> </td>
+	        		<td> ${newUserForm.fields.userPassword} </td>
+	        	</tr>
+	        	<tr>
+	        		<td colspan="2" align="center"> ${newUserForm.fields.createUser} </td>
+	        	</tr>
+	        </table>
+	        ${newUserForm.endTag()}
 	    </div>
 	    <div class="templatemo_bottom_text_right">
-	      <h2> $messages.logIn </h2>
+	     <img src="../csss/images/User_Preppy_Green-01.png" alt="sing in" class="icon" /> <h2> $messages.logIn </h2>
 	      
 	    </div>
    </div>
+   <!-- TODO:Add to favorites -->
+   <table class="table" width="100%" >
+     <tr> 
+         <td valign="middle">
+           <a href="javascript:window.external.AddFavorite('http://sitio','Nornas');" >
+             <img src="../csss/images/Button_Favorite-01.png" alt="add favorite" class="icon" /> <h3>   $messages.addfavorite </h3>
+           </a>
+          </td>
+     </tr>
+     <tr>
+     	<td valign="middle">
+     	     <img src="../csss/images/Network_PC-01.png" alt="start Page" class="icon" /> <h3> $messages.startPage </h3>
+     	</td>
+     </tr> 
+   </table>
+   <div class='hidden'>
+		<div id="errorUserName">     $messages.newUserName     </div>
+		<div id="errorUserNick">     $messages.newUserNick     </div>
+		<div id="errorUserEmail">    $messages.newUserEmail    </div>
+		<div id="errorUserPassword"> $messages.newUserPassword </div>
+		<div id="errorUserBirthDate"> $messages.newUserBirthDate </div>
+   </div>
+   
+   
+   

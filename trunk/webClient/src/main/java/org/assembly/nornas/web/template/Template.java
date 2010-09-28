@@ -4,10 +4,11 @@
 package org.assembly.nornas.web.template;
 
 import org.apache.click.Page;
-import org.apache.click.util.Bindable;
 
 /**
  * @author emanuel
+ *
+ *	Class repesent the template, father of all pages.
  *
  */
 public abstract class Template extends Page {
