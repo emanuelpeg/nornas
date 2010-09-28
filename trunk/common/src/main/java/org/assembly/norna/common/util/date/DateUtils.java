@@ -3,6 +3,8 @@
  */
 package org.assembly.norna.common.util.date;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -23,6 +25,10 @@ public class DateUtils {
 	
 	public static Date createDate(int year, int month, int day) {
 		return createCalendar(year, month, day).getTime();
+	}
+
+	public static Date toDate(String date, String format) throws ParseException {
+		return new SimpleDateFormat(format).parse(date); 
 	}
 	
 }
