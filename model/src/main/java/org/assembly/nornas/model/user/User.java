@@ -3,12 +3,15 @@
  */
 package org.assembly.nornas.model.user;
 
+import java.io.IOException;
+import java.security.GeneralSecurityException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
+import org.assembly.norna.common.util.encrypt.EncryptUtil;
 import org.assembly.nornas.model.PersistenEntity;
 
 /**
@@ -28,6 +31,8 @@ public class User extends PersistenEntity {
 	private List<String> emails = new ArrayList<String>();
 	
 	private String password;
+	
+	private Boolean active = Boolean.FALSE;
 
 
 	public User(String nick, String email, String password) {
@@ -39,7 +44,7 @@ public class User extends PersistenEntity {
 	public User(String nick, List<String> emails, String password) {
 		this.nick = nick;
 		this.emails=emails;
-		this.password = password;
+		this.password = EncryptUtil.encrypt(password);
 	}
 
 	public User(String name, String nick, Date birthDate, String email, String password) {
@@ -103,7 +108,25 @@ public class User extends PersistenEntity {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	
+	public Boolean getActive() {
+		return active;
+	}
+	
+	public Boolean isActive() {
+		return active;
+	}
 
+	public void setActive(Boolean active) {
+		this.active = active;
+	}
+
+	/** Active user */
+	public void active(){
+		this.active = Boolean.TRUE;
+	}
+	
+	
 	@Override
 	public boolean equals(Object obj) {
 		if (obj == null)

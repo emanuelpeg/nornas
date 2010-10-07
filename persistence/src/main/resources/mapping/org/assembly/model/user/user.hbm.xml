@@ -17,7 +17,9 @@
     
     <property column="E_MAIL" length="200" name="email" not-null="true" type="string" unique="false"/>
     
-     <property column="PASSWORD" length="200" name="password" not-null="true" type="string" unique="false"/>
+    <property column="PASSWORD" length="200" name="password" not-null="true" type="string" unique="false"/>
+    
+    <property column="ACTIVE" name="active" not-null="true" unique="false"/>
     
   </class>
 </hibernate-mapping>

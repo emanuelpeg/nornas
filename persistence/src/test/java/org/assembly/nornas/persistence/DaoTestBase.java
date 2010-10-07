@@ -14,7 +14,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  * @author Emanuel
  */
 
-@RunWith(SpringJUnit4ClassRunner.class)
+@RunWith(SpringJUnit4ClassRunner .class)
 @ContextConfiguration (locations={
     "/spring-dao.xml",
     "/test-dataSource-context.xml",
