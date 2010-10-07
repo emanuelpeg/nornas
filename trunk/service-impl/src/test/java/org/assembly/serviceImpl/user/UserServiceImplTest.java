@@ -30,9 +30,9 @@ public class UserServiceImplTest extends BaseServiceTest {
 	@Test
 	public void findById() {
 		UserDTO personDTO = UserDTOFixture.createJustina();
-		userService.saveUser(personDTO);
+		Long id = userService.saveUser(personDTO);
 		
-		UserDTO personDTOSaved = userService.findUserById(personDTO.getId());
+		UserDTO personDTOSaved = userService.findUserById(id);
 		
 		assertNotNull(personDTOSaved);
 		verifyPerson(personDTO, personDTOSaved);

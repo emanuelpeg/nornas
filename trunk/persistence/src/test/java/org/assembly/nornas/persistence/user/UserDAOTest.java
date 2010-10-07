@@ -39,7 +39,13 @@ public class UserDAOTest extends DaoTestBase{
 		userDAO.save(aPerson);
 		User personSaved = userDAO.findBy(aPerson.getId());
 		
-		assertEquals(aPerson, personSaved);		
+		assertEquals(aPerson, personSaved);
+		
+		aPerson.active();
+		userDAO.save(aPerson);
+		personSaved = userDAO.findBy(aPerson.getId());
+		
+		assertEquals(aPerson, personSaved);
 	}
 	
 	@Test

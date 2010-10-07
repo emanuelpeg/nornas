@@ -38,7 +38,7 @@ public class UserToUserDTOTest extends DozerTest {
 		assertEquals(dto.getName(), user.getName());
 		assertEquals(dto.getNick(), user.getNick());
 		assertEquals(dto.getBirthDate(), user.getBirthDate());
-		assertEquals(dto.getEmails(), user.getEmails());		
+		assertEquals(dto.getEmails(), user.getEmails());	
 	}
 
 }

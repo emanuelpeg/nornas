@@ -29,6 +29,6 @@ public interface UserService {
 	UserDTO findUserById(Long id);
 	
 	@WebMethod(operationName="saveUser")
-	void saveUser(UserDTO personDTO);	
+	Long saveUser(UserDTO personDTO);	
 	
 }

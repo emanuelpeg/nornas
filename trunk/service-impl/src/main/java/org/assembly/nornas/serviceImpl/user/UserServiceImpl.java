@@ -54,10 +54,10 @@ public class UserServiceImpl extends BaseServiceImpl implements UserService {
 
 	@Transactional
 	@Override
-	public void saveUser(UserDTO userDTO) {
+	public Long saveUser(UserDTO userDTO) {
 		User user = this.synchronizerUser.synchronize(userDTO);
 		this.userDAO.save(user);
-		userDTO.setId(user.getId());
+		return user.getId();
 	}
 
 }
