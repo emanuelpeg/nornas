@@ -42,6 +42,19 @@ function warning(msg) {
 	
 }
 
+function getData(form) {
+	var data = form.serialize();
+	data +=  "&" + form.find("*[type=submit]").attr("name") + "=" + form.find("*[type=submit]").val();
+	return data;
+}
+
+function ajaxSubmit(form, successFunction, errorFunction) {
+	$.ajax({ url: form.attr("action"),
+			type: form.attr("method"),
+			data: getData(form),
+			success: successFunction,
+			error: errorFunction });
+}
 
 var dtCh= "/";
 var minYear=1900;

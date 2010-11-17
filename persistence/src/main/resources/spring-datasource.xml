@@ -13,7 +13,7 @@
 	</bean>
      -->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
-            <property name="driverClassName" value="org.postgresql.Driver" />
+            <property name="driverClassName" value="com.mysql.jdbc.Driver" />
             <property name="url" value="${database.url}" />
             <property name="username" value="${database.user}" />
             <property name="password" value="${database.password}" />

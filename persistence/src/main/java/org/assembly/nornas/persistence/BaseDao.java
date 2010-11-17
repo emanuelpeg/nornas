@@ -3,6 +3,7 @@ package org.assembly.nornas.persistence;
 import java.io.Serializable;
 import java.util.List;
 
+import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
@@ -55,5 +56,8 @@ public abstract class BaseDao<T> extends HibernateDaoSupport{
         this.getHibernateTemplate().delete(entidadPersistible);
     }   
 
-
+    protected Criteria createCriteria() {
+    	return this.getSession().createCriteria(persistentClass);		
+	}
+    
 }

@@ -37,7 +37,17 @@ function addValidationNewUserForm() {
 					return false;
 				}
 				
-				return true;
+				ajaxSubmit($('#newUserForm'), 
+				          function(html){
+					        if ($("<div>").html(html).find("#messageError").length == 0){
+					        	$("html").html(html)
+					        } else {
+					        	validationError(html)
+					        }
+				          }		
+				);
+				
+				return false;
 			}
 	);
 	
