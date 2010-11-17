@@ -39,13 +39,56 @@ public class UserDAOTest extends DaoTestBase{
 		userDAO.save(aPerson);
 		User personSaved = userDAO.findBy(aPerson.getId());
 		
-		assertEquals(aPerson, personSaved);
+		assertEqualsUsers(aPerson, personSaved);
 		
 		aPerson.active();
 		userDAO.save(aPerson);
 		personSaved = userDAO.findBy(aPerson.getId());
 		
+		assertEqualsUsers(aPerson, personSaved);
+	}
+	
+	@Test
+	@Transactional
+	public void testFindByNick() {
+		User aPerson = UserFixture.createEmanuel();
+		userDAO.save(aPerson);
+		User personSaved = userDAO.findByNick(aPerson.getNick());
+		
+		assertEqualsUsers(aPerson, personSaved);
+		
+		aPerson.active();
+		userDAO.save(aPerson);
+		personSaved = userDAO.findByNick(aPerson.getNick());
+		
+		assertEqualsUsers(aPerson, personSaved);
+		
+		aPerson.getEmails().add("test@test.com");
+		userDAO.save(aPerson);
+		personSaved = userDAO.findByNick(aPerson.getNick());
+		
+		assertEqualsUsers(aPerson, personSaved);
+		
+	}
+
+
+	private void assertEqualsUsers(User aPerson, User personSaved) {
 		assertEquals(aPerson, personSaved);
+		assertEquals(aPerson.getEmails(), personSaved.getEmails());
+		assertEquals(aPerson.getActive(), personSaved.getActive());
+		assertEquals(aPerson.getBirthDate(), personSaved.getBirthDate());
+		assertEquals(aPerson.getName(), personSaved.getName());
+		assertEquals(aPerson.getPassword(), personSaved.getPassword());
+	}
+	
+	@Test
+	@Transactional
+	public void testFindByEmail() {
+		User aPerson = UserFixture.createEmanuel();
+		userDAO.save(aPerson);
+		User personSaved = userDAO.findByEmail(aPerson.getEmail());
+		
+		assertEqualsUsers(aPerson, personSaved);
 	}
 	
 	@Test

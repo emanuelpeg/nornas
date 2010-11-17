@@ -12,6 +12,7 @@ import javax.annotation.Resource;
 
 import org.assembly.dto.user.UserDTO;
 import org.assembly.dto.user.fixture.UserDTOFixture;
+import org.assembly.norna.common.type.exceptions.user.DuplicateDataUsersException;
 import org.assembly.nornas.serviceImpl.user.UserServiceImpl;
 import org.assembly.serviceImpl.BaseServiceTest;
 import org.junit.Test;
@@ -28,7 +29,7 @@ public class UserServiceImplTest extends BaseServiceTest {
 	private UserServiceImpl userService;
 	
 	@Test
-	public void findById() {
+	public void findById() throws DuplicateDataUsersException {
 		UserDTO personDTO = UserDTOFixture.createJustina();
 		Long id = userService.saveUser(personDTO);
 		
@@ -39,7 +40,7 @@ public class UserServiceImplTest extends BaseServiceTest {
 	}
 	
 	@Test
-	public void findAll() {
+	public void findAll() throws DuplicateDataUsersException {
 		UserDTO personDTO = UserDTOFixture.createJustina();
 		userService.saveUser(personDTO);
 		

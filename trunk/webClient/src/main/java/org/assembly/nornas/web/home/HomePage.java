@@ -8,6 +8,8 @@ package org.assembly.nornas.web.home;
 import java.text.ParseException;
 import java.util.List;
 
+import javax.xml.ws.WebServiceException;
+
 import org.apache.click.control.Form;
 import org.apache.click.control.PasswordField;
 import org.apache.click.control.Submit;
@@ -17,9 +19,11 @@ import org.apache.click.element.Element;
 import org.apache.click.element.JsImport;
 import org.apache.click.extras.control.EmailField;
 import org.apache.click.util.Bindable;
+import org.apache.cxf.binding.soap.SoapFault;
 import org.assembly.dto.user.UserDTO;
 import org.assembly.norna.common.util.date.DateUtils;
 import org.assembly.nornas.service.user.UserService;
+import org.assembly.nornas.web.error.MessageErrorPage;
 import org.assembly.nornas.web.template.Template;
 import org.assembly.nornas.web.user.NewUserPage;
 
@@ -62,7 +66,7 @@ public class HomePage extends Template {
 	private void createNewUserForm() {
 	
 		newUserForm.setJavaScriptValidation(false);
-		
+		newUserForm.setMethod("GET");
 		newUserForm.add(new TextField("userName", true));
 		newUserForm.add(new TextField("userNick", true));
 		newUserForm.add(new TextField("userBirthDate"));
@@ -77,7 +81,17 @@ public class HomePage extends Template {
 	public boolean onSubmitNewUserForm() {
 		if (newUserForm.isValid()) {
 			UserDTO user = getUser();
-			Long id = userService.saveUser(user);
+			Long id = null;
+			try {
+				id = userService.saveUser(user);
+			} catch (WebServiceException e) {
+				e.printStackTrace();
+				SoapFault fault = (SoapFault) e.getCause();
+				String error = fault.getMessage();
+				String url = getContext().getPagePath(MessageErrorPage.class) + "?error=" + error;
+				setRedirect(url);
+				return true;
+			}
 			String url = getContext().getPagePath(NewUserPage.class) + "?userId=" + id.toString();
 			setRedirect(url);
 			return false;

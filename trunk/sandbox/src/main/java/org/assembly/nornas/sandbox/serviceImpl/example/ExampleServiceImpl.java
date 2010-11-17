@@ -3,6 +3,7 @@
  */
 package org.assembly.nornas.sandbox.serviceImpl.example;
 
+import org.assembly.nornas.sandbox.exception.SampleException;
 import org.assembly.nornas.sandbox.service.example.ExampleService;
 import org.osoa.sca.annotations.Init;
 import org.osoa.sca.annotations.Service;
@@ -37,6 +38,12 @@ public class ExampleServiceImpl implements
 	@Init
 	public void init() {
 		System.out.println("Starting with "+ExampleServiceImpl.class + " \n");
+	}
+
+	@Override
+	public String sayHelloWithException() throws SampleException {
+		System.out.print("llamaron a Say");
+		throw new SampleException("Esto es una prueba.."+hello);
 	}
 
 }

@@ -19,4 +19,8 @@ public interface UserRepository {
 	
 	List<User> findAll();
 
+	User findByEmail(String email);
+
+	User findByNick(String nick);
+
 }

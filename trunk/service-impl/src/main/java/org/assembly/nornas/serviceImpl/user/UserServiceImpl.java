@@ -3,9 +3,17 @@
  */
 package org.assembly.nornas.serviceImpl.user;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.xml.namespace.QName;
+import javax.xml.soap.SOAPException;
+import javax.xml.soap.SOAPFactory;
+import javax.xml.soap.SOAPFault;
+import javax.xml.ws.soap.SOAPFaultException;
+
 import org.assembly.dto.user.UserDTO;
+import org.assembly.norna.common.type.exceptions.user.DuplicateDataUsersException;
 import org.assembly.norna.common.util.transformer.DozerTransformer;
 import org.assembly.nornas.model.user.User;
 import org.assembly.nornas.repository.user.UserRepository;
@@ -24,6 +32,9 @@ import org.springframework.transaction.annotation.Transactional;
 @Service(UserService.class)
 public class UserServiceImpl extends BaseServiceImpl implements UserService {
 
+	private static final String NICK = "nick";
+	private static final String EMAIL = "email";
+	
 	private UserRepository userDAO;
 
 	public void setUserDAO(UserRepository userDAO) {
@@ -54,10 +65,32 @@ public class UserServiceImpl extends BaseServiceImpl implements UserService {
 
 	@Transactional
 	@Override
-	public Long saveUser(UserDTO userDTO) {
+	public Long saveUser(UserDTO userDTO) throws DuplicateDataUsersException {
 		User user = this.synchronizerUser.synchronize(userDTO);
+		List<String> userDataDuplicate = dataDuplicate(user);
+		if (!userDataDuplicate.isEmpty()) {
+			try {
+				throw new DuplicateDataUsersException(userDataDuplicate,new Exception("hola"));
+			} catch (SOAPException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 		this.userDAO.save(user);
 		return user.getId();
+	}
+
+	private List<String> dataDuplicate(User user) {
+		List<String> datas = new ArrayList<String>();
+		
+		if (this.userDAO.findByEmail(user.getEmail())!= null) {
+			datas.add(EMAIL);
+		}
+		
+		if (this.userDAO.findByNick(user.getNick())!= null) {
+			datas.add(NICK);
+		}
+		return datas;
 	}
 
 }

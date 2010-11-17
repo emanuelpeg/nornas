@@ -6,9 +6,11 @@ package org.assembly.nornas.service.user;
 import java.util.List;
 
 import javax.jws.WebMethod;
+import javax.jws.WebParam;
 import javax.jws.WebService;
 
 import org.assembly.dto.user.UserDTO;
+import org.assembly.norna.common.type.exceptions.user.DuplicateDataUsersException;
 import org.osoa.sca.annotations.Remotable;
 
 /**
@@ -26,9 +28,9 @@ public interface UserService {
 	List<UserDTO> findAllUser();
 
 	@WebMethod(operationName="findUserById")
-	UserDTO findUserById(Long id);
+	UserDTO findUserById(@WebParam Long id);
 	
 	@WebMethod(operationName="saveUser")
-	Long saveUser(UserDTO personDTO);	
+	Long saveUser(@WebParam UserDTO personDTO) throws DuplicateDataUsersException;	
 	
 }
