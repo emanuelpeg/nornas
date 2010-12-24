@@ -3,11 +3,11 @@
  */
 package org.assembly.nornas.web.user;
 
+import org.apache.click.Page;
 import org.apache.click.doubleclick.inject.annotation.InjectBean;
 import org.apache.click.util.Bindable;
 import org.assembly.dto.user.UserDTO;
 import org.assembly.nornas.service.user.UserService;
-import org.assembly.nornas.web.template.Template;
 
 /**
  * @author emanuel
@@ -15,7 +15,7 @@ import org.assembly.nornas.web.template.Template;
  * 		new user's page
  *
  */
-public class NewUserPage extends Template {
+public class NewUserPage extends Page {
 
 	private static final long serialVersionUID = -5984186602065679027L;
 	

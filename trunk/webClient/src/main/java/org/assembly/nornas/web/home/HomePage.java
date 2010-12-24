@@ -106,7 +106,9 @@ public class HomePage extends Template {
 		user.getEmails().add(newUserForm.getFieldValue("userEmail"));
 		user.setPassword(newUserForm.getFieldValue("userPassword"));
 		try {
-			user.setBirthDate(DateUtils.toDate(newUserForm.getFieldValue("userBirthDate"), getMessage("dateFromatJava")));
+			if (newUserForm.getFieldValue("userBirthDate") != null) {
+				user.setBirthDate(DateUtils.toDate(newUserForm.getFieldValue("userBirthDate"), getMessage("dateFromatJava")));			
+			}
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}

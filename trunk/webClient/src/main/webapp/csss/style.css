@@ -188,6 +188,7 @@ table {
 .templatemo_bottom_text_left {
 	float: left;
 	width: 490px;
+	height: 220px;
 }
 .templatemo_bottom_text_right {
 	float: right;

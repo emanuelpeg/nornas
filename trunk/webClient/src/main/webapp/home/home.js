@@ -40,7 +40,7 @@ function addValidationNewUserForm() {
 				ajaxSubmit($('#newUserForm'), 
 				          function(html){
 					        if ($("<div>").html(html).find("#messageError").length == 0){
-					        	$("html").html(html)
+					         	$("#templatemo_content_bot").html(html)
 					        } else {
 					        	validationError(html)
 					        }
