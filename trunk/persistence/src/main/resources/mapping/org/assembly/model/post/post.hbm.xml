@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="org.assembly.nornas.model.post.Post" table="POSTS">
+    
+    <id column="ID_POST" name="id">
+      <generator class="native"/>
+    </id>
+    
+    <version column="version" name="version" type="java.lang.Long"/>
+    
+    <property column="TITLE" length="255" name="title" not-null="true" type="string"  />
+    
+    <property column="CONTENT"  name="content" type="text" />
+    
+    <property column="PUBLISH_DATE" name="publishDate" type="date"  />
+    
+    <property column="CREATION_DATE" name="creationDate" not-null="true" type="date"  />
+    
+    <many-to-one column="ID_AUTHOR" name="author" class="org.assembly.nornas.model.author.Author"  /> 
+    
+    <property column="COMMENT_ALLOW" name="commentAllow" not-null="true" type="boolean"  />
+   
+    <list name="tags" table="POSTS_TAGS" >
+    	<key column="id_post" />
+    	<index column="index_post" />
+    	<many-to-many column="id_tag" 
+    	              unique="true" 
+    	              class="org.assembly.nornas.model.tag.Tag" 
+    	 />
+    </list>
+    
+    <list name="comments" cascade="all" inverse="true"  >
+       <key column="id_post" />
+       <list-index column="index_post" />
+       <one-to-many class="org.assembly.nornas.model.comment.Comment" />
+    </list>
+    
+  </class>
+</hibernate-mapping>

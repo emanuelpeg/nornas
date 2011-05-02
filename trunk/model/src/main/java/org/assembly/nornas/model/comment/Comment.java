@@ -27,7 +27,7 @@ public class Comment extends PersistenEntity {
 
 	private Date creationDate;
 
-	private boolean authorized;
+	private Boolean authorized = Boolean.FALSE;
 
 	private Post post;
 
@@ -72,12 +72,16 @@ public class Comment extends PersistenEntity {
 		this.creationDate = creationDate;
 	}
 
-	public boolean isAuthorized() {
+	public Boolean isAuthorized() {
 		return authorized;
 	}
 
-	public void setAuthorized(boolean authorized) {
+	public void setAuthorized(Boolean authorized) {
 		this.authorized = authorized;
+	}
+
+	public Boolean getAuthorized() {
+		return authorized;
 	}
 
 	@Override

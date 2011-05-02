@@ -37,10 +37,8 @@ public class Blog extends PersistenEntity {
 
 	private List<Post> posts;
 
-	private Set<Author> autors;
-
-	private String logo;
-
+	private Set<Author> authors;
+	
 	private Style style;
 
 	public Blog(String url, String title, String subTitle, User admin) {
@@ -100,20 +98,12 @@ public class Blog extends PersistenEntity {
 		this.posts = posts;
 	}
 
-	public Set<Author> getAutors() {
-		return autors;
+	public Set<Author> getAuthors() {
+		return authors;
 	}
 
-	public void setAutors(Set<Author> autors) {
-		this.autors = autors;
-	}
-
-	public String getLogo() {
-		return logo;
-	}
-
-	public void setLogo(String logo) {
-		this.logo = logo;
+	public void setAuthors(Set<Author> authors) {
+		this.authors = authors;
 	}
 
 	public Style getStyle() {
