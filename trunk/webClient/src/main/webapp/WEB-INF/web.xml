@@ -7,6 +7,16 @@
 	<display-name>Nornas Web Client Application</display-name>
 	<description>Nornas Web Client Application</description>
 
+	<filter>
+		<filter-name>UrlRewriteFilter</filter-name>
+		<filter-class>org.tuckey.web.filters.urlrewrite.UrlRewriteFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>UrlRewriteFilter</filter-name>
+		<url-pattern>/webBlog/*</url-pattern>
+	</filter-mapping>
+
+
 	<servlet>
 		<servlet-name>ClickServlet</servlet-name>
 		<servlet-class>org.apache.click.ClickServlet</servlet-class>
@@ -21,5 +31,5 @@
 	<welcome-file-list>
 		<welcome-file>redirect.html</welcome-file>
 	</welcome-file-list>
-  	
+
 </web-app>
