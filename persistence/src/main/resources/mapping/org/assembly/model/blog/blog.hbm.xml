@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="org.assembly.nornas.model.blog.Blog" table="BLOGS">
+    
+    <id column="ID_BLOG" name="id">
+      <generator class="native"/>
+    </id>
+    
+    <version column="version" name="version" type="java.lang.Long"/>
+    
+    <property column="URL" length="100" name="url" not-null="true" type="string" unique="true" />
+    
+    <property column="TITLE" length="250" name="title" not-null="true" type="string" />
+    
+    <property column="SUBTITLE" length="250" name="subTitle" not-null="true" type="string" />
+    
+    <property column="CREATION_DATE" name="creationDate" not-null="true" type="date"  />
+    
+    <many-to-one column="ID_USER" name="admin" class="org.assembly.nornas.model.user.User"  /> 
+    
+    <many-to-one column="ID_STYLE" name="style" class="org.assembly.nornas.model.style.Style"  /> 
+   
+    <list name="posts" cascade="all"  >
+       <key column="id_blog" />
+       <list-index column="index_blog" />
+       <one-to-many class="org.assembly.nornas.model.post.Post" />
+    </list>
+    
+    <set name="authors" table="BLOGS_AUTHORS" >
+    	<key column="id_blog" />
+    	<many-to-many column="id_author" 
+    	              unique="true" 
+    	              class="org.assembly.nornas.model.author.Author" 
+    	 />
+    </set>
+    
+  </class>
+</hibernate-mapping>

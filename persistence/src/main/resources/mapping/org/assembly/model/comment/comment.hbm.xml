@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="org.assembly.nornas.model.comment.Comment" table="COMMENTS">
+    
+    <id column="ID_COMMENT" name="id">
+      <generator class="native"/>
+    </id>
+    
+    <version column="version" name="version" type="java.lang.Long"/>
+       
+    <property column="CONTENT"  name="content" type="text" />
+    
+    <many-to-one column="ID_USER" name="author" class="org.assembly.nornas.model.user.User"  /> 
+        
+    <property column="CREATION_DATE" name="creationDate" not-null="true" type="date"  />
+       
+    <property column="AUTHORIZED" name="authorized" not-null="true" type="boolean"  />
+   
+    <many-to-one column="ID_POST" name="post" class="org.assembly.nornas.model.post.Post"  /> 
+    
+  </class>
+</hibernate-mapping>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="org.assembly.nornas.model.author.Author" table="AUTHORS">
+    
+    <id column="ID_AUTHOR" name="id">
+       <generator class="foreign">
+            <param name="property">user</param>
+        </generator>
+    </id>
+    
+    <version column="version" name="version" type="java.lang.Long"/>
+      
+    <one-to-one name="user" class="org.assembly.nornas.model.user.User" constrained="true" /> 
+       
+    <set name="blogs" table="BLOGS_AUTHORS" inverse="true" >
+    	<key column="id_author" />
+    	<many-to-many column="id_blog" 
+    	              unique="true" 
+    	              class="org.assembly.nornas.model.blog.Blog" 
+    	 />
+    </set>
+    
+  </class>
+</hibernate-mapping>

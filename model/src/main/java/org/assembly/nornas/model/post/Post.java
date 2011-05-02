@@ -10,6 +10,7 @@ import java.util.List;
 
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
+import org.assembly.nornas.model.PersistenEntity;
 import org.assembly.nornas.model.author.Author;
 import org.assembly.nornas.model.comment.Comment;
 import org.assembly.nornas.model.tag.Tag;
@@ -20,7 +21,7 @@ import org.assembly.nornas.model.tag.Tag;
  *         class represents a post
  * 
  */
-public class Post {
+public class Post extends PersistenEntity {
 
 	private String title;
 
@@ -34,11 +35,11 @@ public class Post {
 
 	private Author author;
 	
-	private boolean commentAllow;
+	private Boolean commentAllow = Boolean.FALSE;
 	
 	private List<Tag> tags = new ArrayList<Tag>();
 
-	private List<Comment> comment = new ArrayList<Comment>();
+	private List<Comment> comments = new ArrayList<Comment>();
 	
 	public Post(String title, String content, Author author) {
 		super();
@@ -103,11 +104,15 @@ public class Post {
 		this.author = author;
 	}
 
-	public boolean isCommentAllow() {
+	public Boolean getCommentAllow() {
 		return commentAllow;
 	}
 
-	public void setCommentAllow(boolean commentAllow) {
+	public Boolean isCommentAllow() {
+		return commentAllow;
+	}
+
+	public void setCommentAllow(Boolean commentAllow) {
 		this.commentAllow = commentAllow;
 	}
 
@@ -119,12 +124,12 @@ public class Post {
 		this.tags = tags;
 	}
 
-	public List<Comment> getComment() {
-		return comment;
+	public List<Comment> getComments() {
+		return comments;
 	}
 
-	public void setComment(List<Comment> comment) {
-		this.comment = comment;
+	public void setComments(List<Comment> comments) {
+		this.comments = comments;
 	}
 
 	@Override

@@ -17,6 +17,12 @@
 		<property name="mappingResources">
 
 			<list>
+				<value>/mapping/org/assembly/model/author/author.hbm.xml</value>
+				<value>/mapping/org/assembly/model/blog/blog.hbm.xml</value>
+				<value>/mapping/org/assembly/model/comment/comment.hbm.xml</value>
+				<value>/mapping/org/assembly/model/post/post.hbm.xml</value>
+				<value>/mapping/org/assembly/model/style/style.hbm.xml</value>
+				<value>/mapping/org/assembly/model/tag/tag.hbm.xml</value>
 				<value>/mapping/org/assembly/model/user/user.hbm.xml</value>
 			</list>
 			
