@@ -99,6 +99,12 @@
 		</dependency>
 
 		<dependency>
+	        <groupId>org.hibernate</groupId>
+	        <artifactId>hibernate-ehcache</artifactId>
+	        <version>3.3.2.GA</version>
+	    </dependency>
+
+		<dependency>
 			<groupId>org.apache.geronimo.specs</groupId>
 			<artifactId>geronimo-jta_1.1_spec</artifactId>
 			<version>1.1.1</version>

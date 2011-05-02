@@ -17,6 +17,12 @@
     
     <property column="CREATION_DATE" name="creationDate" not-null="true" type="date"  />
     
+    <property column="STATE" name="state" not-null="true">
+		<type name="org.assembly.nornas.persistence.util.enumType.EnumUserType">
+			<param name="enumClassName">org.assembly.nornas.model.post.StatePost</param>
+		</type>    
+    </property>
+    
     <many-to-one column="ID_AUTHOR" name="author" class="org.assembly.nornas.model.author.Author"  /> 
     
     <property column="COMMENT_ALLOW" name="commentAllow" not-null="true" type="boolean"  />
