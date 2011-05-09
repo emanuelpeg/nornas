@@ -1,4 +1,4 @@
-package org.assembly.nornas.synchronizer;
+package org.assembly.nornas.synchronizerTest;
 
 import javax.annotation.Resource;
 
