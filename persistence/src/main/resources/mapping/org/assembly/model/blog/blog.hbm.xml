@@ -19,7 +19,7 @@
     
     <many-to-one column="ID_USER" name="admin" class="org.assembly.nornas.model.user.User"  /> 
     
-    <many-to-one column="ID_STYLE" name="style" class="org.assembly.nornas.model.style.Style"  /> 
+    <many-to-one column="ID_STYLE" name="style" class="org.assembly.nornas.model.style.Style" cascade="all"  /> 
    
     <list name="posts" cascade="all"  >
        <key column="id_blog" />
