@@ -19,5 +19,7 @@ public interface BlogRepository {
 	
 	List<Blog> findAll();
 
+	Blog findBlogByUrl(String url);
+
 
 }

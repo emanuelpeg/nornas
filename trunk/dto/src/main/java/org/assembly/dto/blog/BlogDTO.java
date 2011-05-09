@@ -1,29 +1,29 @@
 /**
  * 
  */
-package org.assembly.nornas.model.blog;
+package org.assembly.dto.blog;
 
-import java.util.Calendar;
+import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
-import java.util.Set;
 
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
-import org.assembly.nornas.model.PersistenEntity;
-import org.assembly.nornas.model.author.Author;
-import org.assembly.nornas.model.post.Post;
-import org.assembly.nornas.model.style.Style;
-import org.assembly.nornas.model.user.User;
+import org.assembly.dto.style.StyleDTO;
+import org.assembly.dto.user.UserDTO;
+
 
 /**
  * @author emanuel
  * 
- *         class represents a Blog
+ *         DTO of Blog
  * 
  */
 
-public class Blog extends PersistenEntity {
+public class BlogDTO implements Serializable {
+
+	private static final long serialVersionUID = 55008293279477652L;
+	
+	private Long id;
 
 	private String url;
 
@@ -31,23 +31,28 @@ public class Blog extends PersistenEntity {
 
 	private String subTitle;
 
-	private User admin;
+	private UserDTO admin;
 
 	private Date creationDate;
-
-	private List<Post> posts;
-
-	private Set<Author> authors;
 	
-	private Style style;
+	private StyleDTO style;
+	
+	public BlogDTO() {	}
 
-	public Blog(String url, String title, String subTitle, User admin) {
+	public BlogDTO(String url, String title, String subTitle, UserDTO admin) {
 		super();
 		this.url = url;
 		this.title = title;
 		this.subTitle = subTitle;
 		this.admin = admin;
-		this.creationDate = Calendar.getInstance().getTime();
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getUrl() {
@@ -74,11 +79,11 @@ public class Blog extends PersistenEntity {
 		this.subTitle = subTitle;
 	}
 
-	public User getAdmin() {
+	public UserDTO getAdmin() {
 		return admin;
 	}
 
-	public void setAdmin(User admin) {
+	public void setAdmin(UserDTO admin) {
 		this.admin = admin;
 	}
 
@@ -90,27 +95,11 @@ public class Blog extends PersistenEntity {
 		this.creationDate = creationDate;
 	}
 
-	public List<Post> getPosts() {
-		return posts;
-	}
-
-	public void setPosts(List<Post> posts) {
-		this.posts = posts;
-	}
-
-	public Set<Author> getAuthors() {
-		return authors;
-	}
-
-	public void setAuthors(Set<Author> authors) {
-		this.authors = authors;
-	}
-
-	public Style getStyle() {
+	public StyleDTO getStyle() {
 		return style;
 	}
 
-	public void setStyle(Style style) {
+	public void setStyle(StyleDTO style) {
 		this.style = style;
 	}
 
@@ -125,7 +114,7 @@ public class Blog extends PersistenEntity {
 		if (!obj.getClass().isAssignableFrom(getClass()))
 			return false;
 
-		Blog otherBlog = (Blog) obj;
+		BlogDTO otherBlog = (BlogDTO) obj;
 
 		return new EqualsBuilder().append(this.url, otherBlog.getUrl()).isEquals();
 	}
@@ -135,7 +124,4 @@ public class Blog extends PersistenEntity {
 		return new HashCodeBuilder().append(this.url).toHashCode();
 	}
 	
-	// is used by hibernate
-	public Blog() {	}
-
 }

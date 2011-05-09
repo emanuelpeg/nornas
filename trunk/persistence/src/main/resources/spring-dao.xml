@@ -9,6 +9,30 @@
           <property name="sessionFactory" ref="sessionFactory"></property>
     </bean>
 
+    <bean id="dao.author"
+          class="org.assembly.nornas.persistence.author.AuthorDAO"
+          parent="dao.base">
+    </bean>
+    
+    <bean id="dao.blog"
+          class="org.assembly.nornas.persistence.blog.BlogDAO"
+          parent="dao.base">
+    </bean>
+
+    <bean id="dao.post"
+          class="org.assembly.nornas.persistence.post.PostDAO"
+          parent="dao.base">
+    </bean>
+    
+     <bean id="dao.style"
+          class="org.assembly.nornas.persistence.style.StyleDAO"
+          parent="dao.base">
+    </bean>
+    
+     <bean id="dao.tag"
+          class="org.assembly.nornas.persistence.tag.TagDAO"
+          parent="dao.base">
+    </bean>
 
     <bean id="dao.user"
           class="org.assembly.nornas.persistence.user.UserDAO"
