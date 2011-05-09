@@ -3,6 +3,25 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
 
+	<bean id="synchronizer.blog" class="org.assembly.nornas.synchronizer.blog.SynchronizerBlog"  >
+        <property name="blogDAO">
+            <ref bean="dao.blog"/>
+        </property>
+        <property name="userSynchronizer">
+            <ref bean="synchronizer.user"/>
+        </property>
+        <property name="styleSynchronizer">
+            <ref bean="synchronizer.style"/>
+        </property>
+    </bean>
+
+
+	<bean id="synchronizer.style" class="org.assembly.nornas.synchronizer.style.SynchronizerStyle"  >
+        <property name="styleDAO">
+            <ref bean="dao.style"/>
+        </property>
+    </bean>
+
     <bean id="synchronizer.user" class="org.assembly.nornas.synchronizer.user.SynchronizerUser"  >
         <property name="userDAO">
             <ref bean="dao.user"/>
