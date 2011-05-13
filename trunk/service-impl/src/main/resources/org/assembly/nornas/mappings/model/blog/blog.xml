@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mappings PUBLIC "-//DOZER//DTD MAPPINGS//EN"
+    "http://dozer.sourceforge.net/dtd/dozerbeanmapping.dtd">
+<mappings>
+	<mapping wildcard="false" map-id="blog_blogDTO">
+		<class-a>org.assembly.nornas.model.blog.Blog</class-a>
+		<class-b>org.assembly.dto.blog.BlogDTO</class-b>
+
+        <field>
+			<a>id</a>
+			<b>id</b>
+		</field>
+
+		<field>
+			<a>url</a>
+			<b>url</b>
+		</field>
+
+		<field>
+			<a>title</a>
+			<b>title</b>
+		</field>
+
+        <field>
+			<a>subTitle</a>
+			<b>subTitle</b>
+		</field>
+
+        <field>
+			<a>admin</a>
+			<b>admin</b>
+		</field>
+		
+		<field>
+			<a>creationDate</a>
+			<b>creationDate</b>
+		</field>
+		
+		<field>
+			<a>style</a>
+			<b>style</b>
+		</field>
+
+	</mapping>
+</mappings>
