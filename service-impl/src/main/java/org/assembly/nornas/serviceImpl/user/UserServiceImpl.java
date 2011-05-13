@@ -70,7 +70,7 @@ public class UserServiceImpl extends BaseServiceImpl implements UserService {
 		List<String> userDataDuplicate = dataDuplicate(user);
 		if (!userDataDuplicate.isEmpty()) {
 			try {
-				throw new DuplicateDataUsersException(userDataDuplicate,new Exception("hola"));
+				throw new DuplicateDataUsersException(userDataDuplicate,new Exception());
 			} catch (SOAPException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

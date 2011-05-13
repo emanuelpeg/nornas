@@ -11,6 +11,8 @@
 			<list>
 				<value>org/assembly/nornas/mappings/dozer-global-configuration.xml</value>
 				<value>org/assembly/nornas/mappings/model/user/user.xml</value>
+				<value>org/assembly/nornas/mappings/model/blog/blog.xml</value>
+				<value>org/assembly/nornas/mappings/model/style/style.xml</value>
 			</list>
 		</property>
 	</bean>

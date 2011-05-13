@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mappings PUBLIC "-//DOZER//DTD MAPPINGS//EN"
+    "http://dozer.sourceforge.net/dtd/dozerbeanmapping.dtd">
+<mappings>
+	<mapping wildcard="false" map-id="style_styleDTO">
+		<class-a>org.assembly.nornas.model.style.Style</class-a>
+		<class-b>org.assembly.dto.style.StyleDTO</class-b>
+
+        <field>
+			<a>id</a>
+			<b>id</b>
+		</field>
+
+		<field>
+			<a>css</a>
+			<b>css</b>
+		</field>
+
+	</mapping>
+</mappings>
