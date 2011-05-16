@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<composite xmlns="http://www.osoa.org/xmlns/sca/1.0"
+		   xmlns:t="http://tuscany.apache.org/xmlns/sca/1.0"
+           targetNamespace="http://nornas"
+           xmlns:nornas="http://nornas"
+           name="blogService" >
+
+	<component name="component.blogService">
+		<implementation.spring location="META-INF/spring/spring-config.xml" />          
+	</component>
+	 	
+	<service  name="serviceSca.blog" promote="component.blogService" >
+		<interface.java interface="org.assembly.nornas.service.blog.BlogService"/>
+		<binding.ws  />
+		<binding.sca  />
+    </service>
+	
+</composite>
