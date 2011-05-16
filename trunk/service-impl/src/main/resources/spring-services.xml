@@ -41,5 +41,7 @@
 
 	<sca:service name="component.blogService" 
 	             type="org.assembly.nornas.service.blog.BlogService" target="service.blog"/>
+	      
+	<!-- /Blog -->
 
 </beans>
