@@ -9,6 +9,7 @@ import org.assembly.nornas.repository.blog.BlogRepository;
 import org.assembly.nornas.service.blog.BlogService;
 import org.assembly.nornas.serviceImpl.BaseServiceImpl;
 import org.assembly.nornas.synchronizer.Synchronizer;
+import org.osoa.sca.annotations.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
@@ -17,6 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
  *         Implementation of {@link BlogService}
  *
  */
+@Service(BlogService.class)
 public class BlogServiceImpl extends BaseServiceImpl implements BlogService {
 
 	

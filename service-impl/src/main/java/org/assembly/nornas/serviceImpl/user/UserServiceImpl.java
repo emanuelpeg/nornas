@@ -6,11 +6,7 @@ package org.assembly.nornas.serviceImpl.user;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.xml.namespace.QName;
 import javax.xml.soap.SOAPException;
-import javax.xml.soap.SOAPFactory;
-import javax.xml.soap.SOAPFault;
-import javax.xml.ws.soap.SOAPFaultException;
 
 import org.assembly.dto.user.UserDTO;
 import org.assembly.norna.common.type.exceptions.user.DuplicateDataUsersException;
