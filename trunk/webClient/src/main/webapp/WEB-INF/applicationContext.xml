@@ -14,5 +14,9 @@ http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd">
                   address="http://localhost:8080/web/serviceSca.user" 
                   wsdlLocation="http://localhost:8080/web/serviceSca.user?wsdl" />
                   
+     <jaxws:client id="blog.service"
+                  serviceClass="org.assembly.nornas.service.blog.BlogService"
+                  address="http://localhost:8080/web/serviceSca.blog" 
+                  wsdlLocation="http://localhost:8080/web/serviceSca.blog?wsdl" />
 	  
 </beans>
