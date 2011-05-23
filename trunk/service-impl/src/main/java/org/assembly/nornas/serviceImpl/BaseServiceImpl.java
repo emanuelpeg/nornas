@@ -6,7 +6,7 @@ import org.dozer.DozerBeanMapper;
 /**
  * Esta clase tiene la responsabilidad de proveer el comportamiento base a todos los servicios de la aplicacion.
  *
- * @author lacosta
+ * @author pgoette
  */
 public abstract class BaseServiceImpl {
 
