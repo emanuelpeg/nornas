@@ -5,10 +5,22 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
                            http://www.springframework.org/schema/sca xsd/spring-sca.xsd">
 
-    <bean id="service.base" class="org.assembly.nornas.serviceImpl.BaseServiceImpl" abstract="true" >
-        <property name="dtoMapper">
-            <ref bean="dtoMapper"/>
+
+    <!-- Blog -->    
+	
+	<bean id="service.blog" class="org.assembly.nornas.serviceImpl.blog.BlogServiceImpl" parent="service.base">
+        <property name="blogDAO">
+            <ref bean="dao.blog"/>
+        </property>
+        <property name="synchronizerBlog">
+            <ref bean="synchronizer.blog"/>
         </property>
     </bean>
+
+	<sca:service name="component.blogService" 
+	             type="org.assembly.nornas.service.blog.BlogService" target="service.blog"/>
+	      
+	<!-- /Blog -->
+
 
 </beans>

@@ -5,10 +5,23 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
                            http://www.springframework.org/schema/sca xsd/spring-sca.xsd">
 
-    <bean id="service.base" class="org.assembly.nornas.serviceImpl.BaseServiceImpl" abstract="true" >
-        <property name="dtoMapper">
-            <ref bean="dtoMapper"/>
+
+    <!-- User -->
+
+    <bean id="service.user" class="org.assembly.nornas.serviceImpl.user.UserServiceImpl" parent="service.base">
+        <property name="userDAO">
+            <ref bean="dao.user"/>
+        </property>
+        <property name="synchronizerUser">
+            <ref bean="synchronizer.user"/>
         </property>
     </bean>
+
+	<sca:service  name="component.userService" 
+	             type="org.assembly.nornas.service.user.UserService" target="service.user"/>
+	          
+	<!--  /User -->
+
+  
 
 </beans>
