@@ -7,7 +7,7 @@
            name="userService" >
 
 	<component name="component.userService">
-		<implementation.spring location="META-INF/spring/spring-config.xml" />          
+		<implementation.spring location="META-INF/spring/spring-config-user.xml" />          
 	</component>
 	 	
 	<service  name="serviceSca.user" promote="component.userService" >
