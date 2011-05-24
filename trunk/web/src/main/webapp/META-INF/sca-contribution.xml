@@ -23,10 +23,10 @@
 
    
   <import namespace="http://nornas" location="composite/user/userService.composite" />
-  <import namespace="http://nornas" location="composite/blog/blogService.composite" />
+  <import namespace="http://nornas" location="composite/blog/blogService.composite" /> 
   
   <deployable composite="nornas:userService"/>
-  <deployable composite="nornas:blogService"/>
+  <deployable composite="nornas:blogService"/> 
 
 </contribution>
 
