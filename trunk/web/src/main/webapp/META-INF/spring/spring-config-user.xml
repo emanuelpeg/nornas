@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+    
+    <import resource="spring-properties.xml"/>
+    <import resource="spring-datasource.xml" />
+    <import resource="spring-transaction.xml" />
+    <import resource="spring-hibernate.xml"/>
+    <import resource="spring-hibernateCache.xml"/>
+    <import resource="spring-dao.xml"/>
+    <import resource="spring-dozer.xml"/>
+    <import resource="spring-synchronizer.xml"/>
+    <import resource="spring-services.xml"/>
+	<import resource="spring-service-user.xml"/>
+	
+</beans>
