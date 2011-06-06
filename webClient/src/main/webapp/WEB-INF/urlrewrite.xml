@@ -8,7 +8,7 @@
 
         <rule>
            <from>/webBlog/([a-z]+)$</from>
-           <to type="redirect">/webClient/blog/index.htm?name=$1</to>
+           <to type="redirect">/webClient/blog/index.htm?url=$1</to>
         </rule>
 
         
