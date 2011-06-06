@@ -3,9 +3,14 @@
  */
 package org.assembly.nornas.web.blog;
 
+import org.apache.click.doubleclick.inject.annotation.InjectBean;
 import org.apache.click.util.Bindable;
 import org.apache.commons.lang.WordUtils;
+import org.assembly.dto.blog.BlogDTO;
+import org.assembly.nornas.service.blog.BlogService;
+import org.assembly.nornas.web.error.BlogErrorPage;
 import org.assembly.nornas.web.template.BlogTemplate;
+import org.assembly.nornas.web.user.NewUserPage;
 
 /**
  * Home Page
@@ -17,12 +22,17 @@ public class IndexPage extends BlogTemplate {
 
 	private static final long serialVersionUID = -2868696724309671438L;
 	
+	@InjectBean
+	private BlogService blogService;
 	
 	@Bindable
-	private String name;
+	private String url;
 	
 	@Bindable
 	private String titlePage;
+	
+	@Bindable
+	private String subTitlePage;
 	
 	public IndexPage() {
 		super();
@@ -31,17 +41,25 @@ public class IndexPage extends BlogTemplate {
 	@Override
 	public void onInit() {
 		super.onInit();
-		name = WordUtils.capitalize(name);
-		titlePage = name;
+		BlogDTO blog = blogService.findBlogByUrl(url);
+		
+		if (blog == null) {
+			String error = getMessage("error.blog.not.found");
+			String url = getContext().getPagePath(BlogErrorPage.class)+ "?error=" + error;
+			setRedirect(url);
+			return;
+		}
+		
+		titlePage = blog.getTitle();
+		subTitlePage = blog.getSubTitle();
 	}
 
-	
-	public String getName() {
-		return name;
+	public String getUrl() {
+		return url;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setUrl(String url) {
+		this.url = url;
 	}
 
 	public String getTitlePage() {
@@ -52,6 +70,12 @@ public class IndexPage extends BlogTemplate {
 		this.titlePage = titlePage;
 	}
 
-	
-	
+	public String getSubTitlePage() {
+		return subTitlePage;
+	}
+
+	public void setSubTitlePage(String subTitlePage) {
+		this.subTitlePage = subTitlePage;
+	}
+
 }
