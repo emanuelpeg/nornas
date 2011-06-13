@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mappings PUBLIC "-//DOZER//DTD MAPPINGS//EN"
+    "http://dozer.sourceforge.net/dtd/dozerbeanmapping.dtd">
+<mappings>
+	<mapping wildcard="false" map-id="comment_commentDTO">
+		<class-a>org.assembly.nornas.model.comment.Comment</class-a>
+		<class-b>org.assembly.dto.comment.CommentDTO</class-b>
+
+        <field>
+			<a>id</a>
+			<b>id</b>
+		</field>
+
+	 	<field>
+			<a>content</a>
+			<b>content</b>
+		</field>
+	
+		<field map-id="User_UserDTO">
+			<a>author</a>
+			<b>author</b>
+		</field>
+		
+		<field>
+			<a>creationDate</a>
+			<b>creationDate</b>
+		</field>
+		
+		<field>
+			<a>authorized</a>
+			<b>authorized</b>
+		</field>
+
+	</mapping>
+</mappings>

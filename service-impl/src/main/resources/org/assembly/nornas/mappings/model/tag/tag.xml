@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mappings PUBLIC "-//DOZER//DTD MAPPINGS//EN"
+    "http://dozer.sourceforge.net/dtd/dozerbeanmapping.dtd">
+<mappings>
+	<mapping wildcard="false" map-id="tag_tagDTO">
+		<class-a>org.assembly.nornas.model.tag.Tag</class-a>
+		<class-b>org.assembly.dto.tag.TagDTO</class-b>
+
+        <field>
+			<a>id</a>
+			<b>id</b>
+		</field>
+		
+		<field>
+			<a>name</a>
+			<b>name</b>
+		</field>
+		
+	</mapping>
+</mappings>

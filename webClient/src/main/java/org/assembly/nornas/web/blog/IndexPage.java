@@ -3,7 +3,11 @@
  */
 package org.assembly.nornas.web.blog;
 
+import java.util.List;
+
 import org.apache.click.doubleclick.inject.annotation.InjectBean;
+import org.apache.click.element.Element;
+import org.apache.click.element.JsImport;
 import org.apache.click.util.Bindable;
 import org.apache.commons.lang.WordUtils;
 import org.assembly.dto.blog.BlogDTO;
@@ -36,6 +40,16 @@ public class IndexPage extends BlogTemplate {
 	
 	public IndexPage() {
 		super();
+	}
+	
+	@Override
+	public List<Element> getHeadElements() {
+		List<Element> elements = super.getHeadElements();
+		
+		JsImport jsImport = new JsImport("index.js");
+		
+		elements.add(jsImport);
+		return elements;
 	}
 	
 	@Override

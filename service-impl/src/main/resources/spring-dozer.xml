@@ -13,6 +13,9 @@
 				<value>org/assembly/nornas/mappings/model/user/user.xml</value>
 				<value>org/assembly/nornas/mappings/model/blog/blog.xml</value>
 				<value>org/assembly/nornas/mappings/model/style/style.xml</value>
+				<value>org/assembly/nornas/mappings/model/post/post.xml</value>
+				<value>org/assembly/nornas/mappings/model/tag/tag.xml</value>
+			    <value>org/assembly/nornas/mappings/model/comment/comment.xml</value>
 			</list>
 		</property>
 	</bean>
