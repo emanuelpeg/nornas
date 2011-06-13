@@ -3,8 +3,8 @@
  */
 package org.assembly.nornas.model.author;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
@@ -23,9 +23,9 @@ public class Author extends PersistenEntity {
 
 	private User user;
 
-	private List<Blog> blogs = new ArrayList<Blog>();
+	private Set<Blog> blogs = new HashSet<Blog>();
 	
-	public Author(User user, List<Blog> blogs) {
+	public Author(User user, Set<Blog> blogs) {
 		super();
 		this.user = user;
 		this.blogs = blogs;
@@ -45,11 +45,11 @@ public class Author extends PersistenEntity {
 		this.user = user;
 	}
 
-	public List<Blog> getBlogs() {
+	public Set<Blog> getBlogs() {
 		return blogs;
 	}
 
-	public void setBlogs(List<Blog> blogs) {
+	public void setBlogs(Set<Blog> blogs) {
 		this.blogs = blogs;
 	}
 

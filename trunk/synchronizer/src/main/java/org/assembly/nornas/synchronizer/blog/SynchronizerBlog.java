@@ -15,7 +15,7 @@ import org.assembly.nornas.synchronizer.Synchronizer;
 /**
  * @author emanuel
  * 
- *  class responsible of synchronize person with personDTO
+ *  class responsible of synchronize Blog with BlogDTO
  *
  */
 public class SynchronizerBlog implements Synchronizer<BlogDTO, Blog>{

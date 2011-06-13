@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mappings PUBLIC "-//DOZER//DTD MAPPINGS//EN"
+    "http://dozer.sourceforge.net/dtd/dozerbeanmapping.dtd">
+<mappings>
+	<mapping wildcard="false" map-id="post_postDTO">
+		<class-a>org.assembly.nornas.model.post.Post</class-a>
+		<class-b>org.assembly.dto.post.PostDTO</class-b>
+
+
+        <field>
+			<a>id</a>
+			<b>id</b>
+		</field>
+
+	 	<field>
+			<a>title</a>
+			<b>title</b>
+		</field>
+
+		<field>
+			<a>content</a>
+			<b>content</b>
+		</field>
+		
+		<field>
+			<a>publishDate</a>
+			<b>publishDate</b>
+		</field>
+		
+		<field>
+			<a>creationDate</a>
+			<b>creationDate</b>
+		</field>
+			
+   		<field>
+			<a>author.user.name</a>
+			<b>author</b>
+		</field>
+	
+		<field>
+			<a>commentAllow</a>
+			<b>commentAllow</b>
+		</field>
+		
+	  	<field map-id="tag_tagDTO" >
+			<a>tags</a>
+			<b>tags</b>
+		</field>
+		
+	  	<field map-id="comment_commentDTO">
+			<a>comments</a>
+			<b>comments</b>
+		</field> 
+	
+	</mapping>
+</mappings>

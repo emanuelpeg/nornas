@@ -27,7 +27,7 @@
        <one-to-many class="org.assembly.nornas.model.post.Post" />
     </list>
     
-    <set name="authors" table="BLOGS_AUTHORS" >
+    <set name="authors" table="BLOGS_AUTHORS" inverse="true"  >
     	<key column="id_blog" />
     	<many-to-many column="id_author" 
     	              unique="true" 
