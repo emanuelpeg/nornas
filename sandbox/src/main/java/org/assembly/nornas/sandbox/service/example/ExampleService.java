@@ -4,6 +4,7 @@
 package org.assembly.nornas.sandbox.service.example;
 
 import org.assembly.nornas.sandbox.exception.SampleException;
+import org.assembly.nornas.sandbox.model.Message;
 import org.osoa.sca.annotations.Remotable;
 
 /**
@@ -14,7 +15,7 @@ import org.osoa.sca.annotations.Remotable;
  */
 @Remotable
 public interface ExampleService {
-
+	
 	String sayHello();
 
 	String sayHelloWithException() throws SampleException;

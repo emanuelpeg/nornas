@@ -4,10 +4,11 @@
 package org.assembly.nornas.sandbox.serviceImpl.example;
 
 import org.assembly.nornas.sandbox.exception.SampleException;
+import org.assembly.nornas.sandbox.model.Message;
 import org.assembly.nornas.sandbox.service.example.ExampleService;
 import org.osoa.sca.annotations.Init;
-import org.osoa.sca.annotations.Property;
 import org.osoa.sca.annotations.Service;
+
 
 /**
  * @author emanuel
@@ -17,36 +18,34 @@ import org.osoa.sca.annotations.Service;
  */
 
 @Service(ExampleService.class)
-public class ExampleServiceImpl implements ExampleService {
+public class ExampleServiceSpringImpl implements
+		ExampleService {
 
 	private String hello = "Holasss ";
-
-	@Property
-	private String name;
-
-	public void setName(String name) {
-		this.name = name;
+	
+	public void setHello(String hello) {
+		this.hello = hello;
 	}
-
+	
+	
 	/**
 	 * @see org.assembly.nornas.ExampleService#sayHello()
 	 */
 	@Override
 	public String sayHello() {
-		System.out.print("llamaron a Say");
-		return hello + name;
+	    System.out.print("llamaron a Say");
+		return hello;
 	}
 
 	@Init
 	public void init() {
-		System.out.println("Starting with " + ExampleServiceImpl.class + " \n");
+		System.out.println("Starting with "+ExampleServiceSpringImpl.class + " \n");
 	}
 
 	@Override
 	public String sayHelloWithException() throws SampleException {
 		System.out.print("llamaron a Say");
-		throw new SampleException("Esto es una prueba.." + hello);
+		throw new SampleException("Esto es una prueba.."+hello);
 	}
-
 
 }

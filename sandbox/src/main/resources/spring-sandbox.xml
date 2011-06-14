@@ -6,7 +6,7 @@
                            http://www.springframework.org/schema/sca xsd/spring-sca.xsd">
 
  
-    <bean id="service.example" class="org.assembly.nornas.sandbox.serviceImpl.example.ExampleServiceImpl">
+    <bean id="service.example" class="org.assembly.nornas.sandbox.serviceImpl.example.ExampleServiceSpringImpl">
     	<property name="hello" value="Hola desde Spring!!" ></property>
     </bean>
     

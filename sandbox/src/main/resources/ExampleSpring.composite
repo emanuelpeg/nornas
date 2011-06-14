@@ -8,13 +8,13 @@
 
 	<component name="ExampleServiceComponent">
 		<implementation.spring location="spring-sandbox.xml" />  
-		
+			
 		<service name="ExampleService">
 			<interface.java interface="org.assembly.nornas.sandbox.service.example.ExampleService"/>
-			<binding.ws uri="http://localhost:8080/nornas/ws" />
-			<t:binding.atom uri="http://localhost:8080/nornas/atom" />
-			<t:binding.jsonrpc uri="http://localhost:8080/nornas/jsonrpc" />
-			<t:binding.rss uri = "http://localhost:8080/nornas/rss"/>
+			<binding.ws uri="http://localhost:8080/nornas-spring/ws" />
+			<t:binding.atom uri="http://localhost:8080/nornas-spring/atom" />
+			<t:binding.jsonrpc uri="http://localhost:8080/nornas-spring/jsonrpc" />
+			<t:binding.rss uri = "http://localhost:8080/nornas-spring/rss"/>
 			<binding.sca  />
         </service>
         
