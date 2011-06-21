@@ -117,17 +117,32 @@
 			<version>${cxf.version}</version>
 		</dependency>
 
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-bundle-jaxrs</artifactId>
+			<!-- 2.3.5 or 2.4.1 -->
+			<version>${cxf.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.eclipse.jetty</groupId>
+					<artifactId>jetty-server</artifactId>
+				</exclusion>
+			</exclusions>
+
+		</dependency>
+
 		<!-- /CXF -->
 
 		<!-- urlrewritefilter para url restful -->
-		
+
 		<dependency>
 			<groupId>org.tuckey</groupId>
 			<artifactId>urlrewritefilter</artifactId>
 			<version>3.1.0</version>
 		</dependency>
-		
+
 		<!-- /urlrewritefilter -->
+
 
 		<!-- Dependencia entre proyecto -->
 
@@ -162,7 +177,7 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<cxf.version>2.2.10</cxf.version>
+		<cxf.version>2.3.5</cxf.version>
 	</properties>
 
 </project>
