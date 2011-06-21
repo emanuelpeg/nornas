@@ -5,6 +5,7 @@ package org.assembly.nornas.model.blog;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -37,7 +38,7 @@ public class Blog extends PersistenEntity {
 
 	private List<Post> posts;
 
-	private Set<Author> authors;
+	private Set<Author> authors = new HashSet<Author>();
 	
 	private Style style;
 
@@ -48,6 +49,7 @@ public class Blog extends PersistenEntity {
 		this.subTitle = subTitle;
 		this.admin = admin;
 		this.creationDate = Calendar.getInstance().getTime();
+		authors.add(new Author(admin, this));
 	}
 
 	public String getUrl() {

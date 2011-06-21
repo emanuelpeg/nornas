@@ -24,7 +24,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
         "/spring-synchronizer.xml",
 		"/spring-transaction.xml",
         "/spring-service-user.xml",
-        "/spring-service-blog.xml"
+        "/spring-service-blog.xml",
+        "/spring-service-post.xml"
         })
 public abstract class BaseServiceTest {
 	
