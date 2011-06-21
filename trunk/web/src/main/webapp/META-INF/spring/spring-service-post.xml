@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:sca="http://www.springframework.org/schema/sca"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+                           http://www.springframework.org/schema/sca xsd/spring-sca.xsd">
+
+
+    <!-- Post -->
+
+    <bean id="service.post" class="org.assembly.nornas.serviceImpl.post.PostServiceImpl" parent="service.base">
+        <property name="postDAO">
+            <ref bean="dao.post"/>
+        </property>
+    </bean>
+
+	<sca:service  name="component.postService" 
+	             type="org.assembly.nornas.service.post.PostService" target="service.post"/>
+	          
+	<!--  /Post -->
+
+  
+
+</beans>
