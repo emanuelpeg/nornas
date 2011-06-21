@@ -24,7 +24,7 @@ import org.osoa.sca.annotations.Remotable;
 public interface PostService {
 	
 	@WebMethod(operationName="findPostsByBlogId")
-	List<PostDTO> findPostsByBlogId(@WebParam Long blogId, Integer from, Integer sizes);
+	List<PostDTO> findPostsPublishedByBlogId(@WebParam Long blogId, @WebParam Integer from, @WebParam Integer sizes);
 	
 	
 }

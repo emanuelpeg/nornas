@@ -29,7 +29,7 @@ public class PostDAO extends BaseDao<Post> implements PostRepository {
 		                     " inner join b.posts as p "+
 		                     "where b.id = :id " +
 		                     "  and p.state = :state " + 
-		                     "order by p.publishDate";
+		                     "order by p.publishDate desc,  p.id desc ";
 		Query query = this.getSession().createQuery(hql);
 		
 		query.setLong("id", blogId);

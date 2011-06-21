@@ -93,14 +93,12 @@
             <groupId>org.apache.tuscany.sca</groupId>
             <artifactId>tuscany-binding-atom-abdera</artifactId>
             <version>${org.apache.tuscany.version}</version>
-            <scope>runtime</scope>
         </dependency>
 
         <dependency>
             <groupId>org.apache.tuscany.sca</groupId>
             <artifactId>tuscany-binding-rss-rome</artifactId>
             <version>${org.apache.tuscany.version}</version>
-            <scope>runtime</scope>
         </dependency>
 
         <dependency>

@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.assembly.nornas.persistence.post;
+package org.assembly.serviceImpl.post;
 
 import static org.junit.Assert.assertEquals;
 
@@ -9,60 +9,52 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.assembly.dto.blog.BlogDTO;
+import org.assembly.dto.blog.fixture.BlogDTOFixture;
+import org.assembly.dto.post.PostDTO;
 import org.assembly.nornas.model.author.Author;
 import org.assembly.nornas.model.blog.Blog;
 import org.assembly.nornas.model.blog.fixture.BlogFixture;
-import org.assembly.nornas.model.post.Post;
 import org.assembly.nornas.model.post.fixture.PostFixture;
-import org.assembly.nornas.model.user.User;
-import org.assembly.nornas.persistence.DaoTestBase;
 import org.assembly.nornas.persistence.author.AuthorDAO;
 import org.assembly.nornas.persistence.blog.BlogDAO;
+import org.assembly.nornas.persistence.post.PostDAO;
 import org.assembly.nornas.persistence.user.UserDAO;
+import org.assembly.nornas.service.blog.BlogService;
+import org.assembly.nornas.service.post.PostService;
+import org.assembly.nornas.serviceImpl.user.UserServiceImpl;
+import org.assembly.serviceImpl.BaseServiceTest;
 import org.junit.Test;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
- * Dao's test of blog
- * 
  * @author emanuel
- *
+ * 
+ *         Test of PostServiceImpl
+ * 
  */
-public class PostDAOTest extends DaoTestBase{
+public class PostServiceImplTest extends BaseServiceTest {
 
+	@Resource(name="service.post")
+	private PostService postService;
+	
 	@Resource
 	private PostDAO postDAO;
 
-	public void setPostDAO(PostDAO postDAO) {
-		this.postDAO = postDAO;
-	}
-	
 	@Resource
 	private BlogDAO blogDAO;
 
-	public void setBlogDAO(BlogDAO blogDAO) {
-		this.blogDAO = blogDAO;
-	}
-	
 	@Resource
 	private UserDAO userDAO;
-	
-	public void setUserDAO(UserDAO userDAO) {
-		this.userDAO = userDAO;
-	}
 	
 	@Resource
 	private AuthorDAO authorDAO;
 	
-	public void setAuthorDAO(AuthorDAO authorDAO) {
-		this.authorDAO = authorDAO;
-	}
-	
 	@Test
-	@Transactional
-	public void findPostsByBlogId() {
+	@Transactional //transaccional test because this use daos
+	public void findPostsPublishedByBlogId() {
 		Blog blog = BlogFixture.createBlogOfEmanuel();
-				
+		
 		userDAO.save(blog.getAdmin());
 		blogDAO.save(blog);
 		
@@ -75,18 +67,18 @@ public class PostDAOTest extends DaoTestBase{
 		Blog blogSaved = blogDAO.findBy(blog.getId());
 		assertEquals(blogSaved.getPosts().size(), 14);
 		
-		List<Post> posts =postDAO.findPostsPublishedByBlogId(blog.getId(), 0, 28);
+		List<PostDTO> posts =postService.findPostsPublishedByBlogId(blogSaved.getId(), 0, 28);
 		assertEquals(posts.size(), 11);
 		
-		posts =postDAO.findPostsPublishedByBlogId(blog.getId(), 0, 10);
+		posts =postService.findPostsPublishedByBlogId(blogSaved.getId(), 0, 10);
 		assertEquals(posts.size(), 10);
 		
-		posts =postDAO.findPostsPublishedByBlogId(blog.getId(), 4, 10);
+		posts =postService.findPostsPublishedByBlogId(blogSaved.getId(), 4, 10);
 		assertEquals(posts.size(), 7);
 		
-		posts =postDAO.findPostsPublishedByBlogId(blog.getId(), 5, 10);
+		posts =postService.findPostsPublishedByBlogId(blogSaved.getId(), 5, 10);
 		assertEquals(posts.size(), 6);
+		
 	}
-	
-	
+
 }
