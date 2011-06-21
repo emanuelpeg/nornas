@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<composite xmlns="http://www.osoa.org/xmlns/sca/1.0"
+		   xmlns:t="http://tuscany.apache.org/xmlns/sca/1.0"
+           targetNamespace="http://nornas"
+           xmlns:nornas="http://nornas"
+           name="postService" >
+
+	<component name="component.postService">
+		<implementation.spring location="META-INF/spring/spring-config-post.xml" />          
+	</component>
+	 	
+	<service  name="serviceSca.post" promote="component.postService" >
+		<interface.java interface="org.assembly.nornas.service.post.PostService"/>
+		<binding.ws  />
+		<binding.sca  />
+    </service>
+	
+</composite>
