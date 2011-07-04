@@ -6,6 +6,8 @@ package org.assembly.dto.comment;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
 import org.assembly.dto.user.UserDTO;
 
 /**
@@ -14,7 +16,7 @@ import org.assembly.dto.user.UserDTO;
  *         class represents a Comment's DTO
  * 
  */
-
+@XmlRootElement(name="comment")
 public class CommentDTO implements Serializable {
 	
 	private static final long serialVersionUID = -6769562220809754974L;

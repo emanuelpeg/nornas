@@ -5,6 +5,8 @@ package org.assembly.dto.tag;
 
 import java.io.Serializable;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
 
 /**
  * @author emanuel
@@ -12,6 +14,7 @@ import java.io.Serializable;
  * 			 class represents a Tag's DTO
  *
  */
+@XmlRootElement(name="tag")
 public class TagDTO implements Serializable {
 	
 	private static final long serialVersionUID = -5778007578029086285L;

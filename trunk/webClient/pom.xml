@@ -133,6 +133,28 @@
 
 		<!-- /CXF -->
 
+		<!-- Jackson -->
+		
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-mapper-asl</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-jaxrs</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-xc</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
+
+		<!-- /Jackson -->
+
 		<!-- urlrewritefilter para url restful -->
 
 		<dependency>
@@ -178,6 +200,7 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<cxf.version>2.3.5</cxf.version>
+		<jackson.version>1.8.2</jackson.version>
 	</properties>
 
 </project>

@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
 import org.assembly.dto.comment.CommentDTO;
 import org.assembly.dto.tag.TagDTO;
 
@@ -17,10 +19,11 @@ import org.assembly.dto.tag.TagDTO;
  *         class represents a post's DTO
  * 
  */
+@XmlRootElement(name="post")
 public class PostDTO implements Serializable {
 
 	private static final long serialVersionUID = -6319037835355763839L;
-	
+
 	private Long id;
 
 	private String title;

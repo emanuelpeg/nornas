@@ -1,27 +1,55 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
 	xmlns:jaxws="http://cxf.apache.org/jaxws"
+	xmlns:jaxrs="http://cxf.apache.org/jaxrs"
+	xmlns:cxf="http://cxf.apache.org/core" 
 	xsi:schemaLocation="
 http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd">
+http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd
+http://cxf.apache.org/jaxrs http://cxf.apache.org/schemas/jaxrs.xsd
+http://cxf.apache.org/core http://cxf.apache.org/schemas/core.xsd">
 
 	<import resource="classpath:META-INF/cxf/cxf.xml" />
 	<import resource="classpath:META-INF/cxf/cxf-extension-soap.xml" />
 	<import resource="classpath:META-INF/cxf/cxf-servlet.xml" />
 
-	 <jaxws:client id="user.service"
-                  serviceClass="org.assembly.nornas.service.user.UserService"
-                  address="http://localhost:8080/web/serviceSca.user" 
-                  wsdlLocation="http://localhost:8080/web/serviceSca.user?wsdl" />
-                  
-     <jaxws:client id="blog.service"
-                  serviceClass="org.assembly.nornas.service.blog.BlogService"
-                  address="http://localhost:8080/web/serviceSca.blog" 
-                  wsdlLocation="http://localhost:8080/web/serviceSca.blog?wsdl" />
-                  
-     <jaxws:client id="post.service"
-                  serviceClass="org.assembly.nornas.service.post.PostService"
-                  address="http://localhost:8080/web/serviceSca.post" 
-                  wsdlLocation="http://localhost:8080/web/serviceSca.post?wsdl" /> 
-	  
+	<jaxws:client id="user.service"
+		serviceClass="org.assembly.nornas.service.user.UserService" address="http://localhost:8080/web/serviceSca.user"
+		wsdlLocation="http://localhost:8080/web/serviceSca.user?wsdl" />
+
+	<jaxws:client id="blog.service"
+		serviceClass="org.assembly.nornas.service.blog.BlogService" address="http://localhost:8080/web/serviceSca.blog"
+		wsdlLocation="http://localhost:8080/web/serviceSca.blog?wsdl" />
+
+	<jaxws:client id="post.service"
+		serviceClass="org.assembly.nornas.service.post.PostService" address="http://localhost:8080/web/serviceSca.post"
+		wsdlLocation="http://localhost:8080/web/serviceSca.post?wsdl" />
+
+	<bean id="jaxbProvider" class="org.apache.cxf.jaxrs.provider.JAXBElementProvider" />
+
+	<bean id='jacksonProvider' class='org.codehaus.jackson.jaxrs.JacksonJaxbJsonProvider' />
+
+	<jaxrs:server id="post">
+		<jaxrs:serviceBeans>
+			<ref bean="postsRest" />
+		</jaxrs:serviceBeans>
+		<jaxrs:extensionMappings>
+			<entry key="json" value="application/json" />
+			<entry key="xml" value="application/xml" />
+		</jaxrs:extensionMappings>
+		<jaxrs:providers>
+			<ref bean="jaxbProvider" />
+			<ref bean="jacksonProvider" />
+		</jaxrs:providers>
+		<jaxrs:features>
+			<cxf:logging />
+		</jaxrs:features>
+	</jaxrs:server>
+
+	<bean id="postsRest" class="org.assembly.nornas.web.rest.post.PostsRest">
+		<property name="postService">
+			<ref bean="post.service" />
+		</property>
+	</bean>
+
 </beans>
