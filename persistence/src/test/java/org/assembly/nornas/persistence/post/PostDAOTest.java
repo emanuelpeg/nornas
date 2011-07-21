@@ -88,5 +88,22 @@ public class PostDAOTest extends DaoTestBase{
 		assertEquals(posts.size(), 6);
 	}
 	
-	
+	@Test
+	@Transactional
+	public void countPostsByBlogId() {
+		Blog blog = BlogFixture.createBlogOfEmanuel();
+				
+		userDAO.save(blog.getAdmin());
+		blogDAO.save(blog);
+		
+		Author author = blog.getAuthors().iterator().next();
+		authorDAO.save(author);
+		
+		blog.setPosts(PostFixture.createPosts(blog));
+		blogDAO.save(blog);
+		
+		Blog blogSaved = blogDAO.findBy(blog.getId());
+		assertEquals(14, blogSaved.getPosts().size());
+		assertEquals(new Long(11), postDAO.countPostsPublishedByBlogId(blogSaved.getId()));
+	}
 }

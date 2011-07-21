@@ -9,7 +9,7 @@ body {
 	font-size: 12px;
 	line-height: 1.5em;
 	color: #666666;
-	background: #595248;
+	background: #aaaaaa;
 }
 
 a:link, a:visited { color: #8dc641; text-decoration: none; } 
@@ -268,12 +268,45 @@ table {
 }
 .templatemo_bottom_text_left_blog {
 	float: left;
-	margin-left: 10px;
 	width: 740px;
-	height: 220px;
 }
 .templatemo_bottom_text_right_blog {
 	float: right;
 	padding-right: 20px;
 	width: 200px;
 }
+
+.postInfo {
+	font-size: 12px;
+	font-weight: bold;
+	color: #AAAAAA;
+}
+
+.post {
+	font-size: 14px;
+	color: #000000;
+}
+
+.postTitle {
+	font-size: 18px;
+	font-weight: bold;
+	text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.commentTitle {
+	font-size: 15px;
+	font-weight: bold;
+	text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+	padding-left: 30px;
+}
+
+.comment {
+	font-size: 14px;
+	color: #000000;
+}
+
+.comments {
+	padding-top: 15px;
+}
+
+	

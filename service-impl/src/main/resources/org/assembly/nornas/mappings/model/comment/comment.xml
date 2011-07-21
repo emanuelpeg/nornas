@@ -16,8 +16,8 @@
 			<b>content</b>
 		</field>
 	
-		<field map-id="User_UserDTO">
-			<a>author</a>
+		<field>
+			<a>author.nick</a>
 			<b>author</b>
 		</field>
 		
