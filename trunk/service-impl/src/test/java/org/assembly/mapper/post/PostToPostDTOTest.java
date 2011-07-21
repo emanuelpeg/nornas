@@ -68,15 +68,10 @@ public class PostToPostDTOTest extends DozerTest {
 		assertEquals(commentDTO.getContent(), comment.getContent());
 		assertEquals(commentDTO.getCreationDate(), comment.getCreationDate());
 		
-		verifyPerson(commentDTO.getAuthor(), comment.getAuthor());
+		assertEquals(commentDTO.getAuthor(), comment.getAuthor().getNick());
 	}
 
 	
-	private void verifyPerson(UserDTO dto, User user) {
-		assertEquals(dto.getName(), user.getName());
-		assertEquals(dto.getNick(), user.getNick());
-		assertEquals(dto.getBirthDate(), user.getBirthDate());
-		assertEquals(dto.getEmails(), user.getEmails());	
-	}
+
 
 }

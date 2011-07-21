@@ -13,6 +13,8 @@ import org.apache.commons.lang.WordUtils;
 import org.assembly.dto.blog.BlogDTO;
 import org.assembly.nornas.service.blog.BlogService;
 import org.assembly.nornas.web.error.BlogErrorPage;
+import org.assembly.nornas.web.error.MessageErrorPage;
+import org.assembly.nornas.web.rest.post.PostsRest;
 import org.assembly.nornas.web.template.BlogTemplate;
 import org.assembly.nornas.web.user.NewUserPage;
 
@@ -33,10 +35,22 @@ public class IndexPage extends BlogTemplate {
 	private String url;
 	
 	@Bindable
+	private Long blogID;
+	
+	@Bindable
 	private String titlePage;
 	
 	@Bindable
 	private String subTitlePage;
+		
+	@Bindable
+	private String urlPost = "";
+	
+	@Bindable
+	private Long initPost = 0l;
+	
+	@Bindable
+	private Long countPost = new Long(PostsRest.NUMBER_OF_POST);
 	
 	public IndexPage() {
 		super();
@@ -64,8 +78,10 @@ public class IndexPage extends BlogTemplate {
 			return;
 		}
 		
+		blogID = blog.getId();
 		titlePage = blog.getTitle();
 		subTitlePage = blog.getSubTitle();
+		urlPost = this.getContext().getRequest().getContextPath() + "/blogRest/posts/";
 	}
 
 	public String getUrl() {
@@ -74,6 +90,14 @@ public class IndexPage extends BlogTemplate {
 
 	public void setUrl(String url) {
 		this.url = url;
+	}
+
+	public Long getBlogID() {
+		return blogID;
+	}
+
+	public void setBlogID(Long blogID) {
+		this.blogID = blogID;
 	}
 
 	public String getTitlePage() {
@@ -92,4 +116,28 @@ public class IndexPage extends BlogTemplate {
 		this.subTitlePage = subTitlePage;
 	}
 
+	public String getUrlPost() {
+		return urlPost;
+	}
+
+	public void setUrlPost(String urlPost) {
+		this.urlPost = urlPost;
+	}
+
+	public Long getInitPost() {
+		return initPost;
+	}
+
+	public void setInitPost(Long initPost) {
+		this.initPost = initPost;
+	}
+
+	public Long getCountPost() {
+		return countPost;
+	}
+
+	public void setCountPost(Long countPost) {
+		this.countPost = countPost;
+	}
+	
 }

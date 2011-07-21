@@ -25,6 +25,9 @@ public interface PostService {
 	
 	@WebMethod(operationName="findPostsByBlogId")
 	List<PostDTO> findPostsPublishedByBlogId(@WebParam Long blogId, @WebParam Integer from, @WebParam Integer sizes);
+
+	@WebMethod(operationName="countPostsPublishedByBlogId")
+	Long countPostsPublishedByBlogId(Long blogId);
 	
 	
 }

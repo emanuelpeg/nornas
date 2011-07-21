@@ -11,8 +11,8 @@ import org.hibernate.Query;
 
 /**
  * @author emanuel
- *
- * class represents a DAO of Post 
+ * 
+ *         class represents a DAO of Post
  * 
  */
 public class PostDAO extends BaseDao<Post> implements PostRepository {
@@ -24,21 +24,33 @@ public class PostDAO extends BaseDao<Post> implements PostRepository {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Post> findPostsPublishedByBlogId(Long blogId, Integer from, Integer sizes) {
-		String hql = "select p from "+Blog.class.getCanonicalName() + " as b "+
-		                     " inner join b.posts as p "+
-		                     "where b.id = :id " +
-		                     "  and p.state = :state " + 
-		                     "order by p.publishDate desc,  p.id desc ";
+	public List<Post> findPostsPublishedByBlogId(Long blogId, Integer from,
+			Integer sizes) {
+		String hql = "select p from " + Blog.class.getCanonicalName()
+				+ " as b " + " inner join b.posts as p " + "where b.id = :id "
+				+ "  and p.state = :state "
+				+ "order by p.publishDate desc,  p.id desc ";
 		Query query = this.getSession().createQuery(hql);
-		
+
 		query.setLong("id", blogId);
 		query.setString("state", StatePost.PUBLISHED.name());
 		query.setFirstResult(from);
 		query.setMaxResults(sizes);
-		
+
 		return query.list();
 	}
-	
+
+	@Override
+	public Long countPostsPublishedByBlogId(Long blogId) {
+		String hql = "select count(*) from " + Blog.class.getCanonicalName()
+				+ " as b " + " inner join b.posts as p " + "where b.id = :id "
+				+ "  and p.state = :state ";
+		Query query = this.getSession().createQuery(hql);
+
+		query.setLong("id", blogId);
+		query.setString("state", StatePost.PUBLISHED.name());
+		
+		return (Long) query.uniqueResult();
+	}
 
 }
