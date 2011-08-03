@@ -12,6 +12,9 @@
         <property name="postDAO">
             <ref bean="dao.post"/>
         </property>
+        <property name="tagDAO">
+            <ref bean="dao.tag"/>
+        </property>
     </bean>
 
 	<sca:service  name="component.postService" 
