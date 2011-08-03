@@ -6,7 +6,11 @@
 
 function addPost(urlPost, blogID) {
 	var url = urlPost + blogID + "/" + initPost;
-	
+	var urlCount = urlPost + "count/" + blogID ;
+	addPostByUrl(url, urlCount, urlPost, blogID);
+}
+
+function addPostByUrl(url, urlCount, urlPost, blogID) {
 	$.getJSON(url, function(data) {
 		var div = $('<div/>');
 
@@ -41,39 +45,110 @@ function addPost(urlPost, blogID) {
 			div.append(divPost);
 		});
 
-		$('#post').html("");
+		$('#post').empty();
 		div.appendTo('#post');
-		div.accordion(); 
-		var divFooter = $('<div/>');
-		var urlCount = urlPost + "count/" + blogID ;
+		div.accordion(); 	
+		div.hide();
+		div.fadeIn("slow");
+		addPostFooterByUrl(urlCount, urlPost, blogID);
+	});
+}
+
+function createPageFooter(from, to, divFooter, urlPost, blogID) {
+	for(var i = from; i < to; i++) {
+		var buttonDiv = $('<span/>');
+		var button;
 		
-		$.getJSON(urlCount, function(data) {
-			var pages = Math.round(data / countPost) + 1;
-			for(var i = 0; i < 3; i++) {
-				var button = $('<div/>');
-				button.append(i+1).button().click(function () {
-					alert(i);
-				});
-				divFooter.append(button);
-			}
-			var avg = Math.round(pages/2);
-			for(var i = avg; i < avg + 3; i++) {
-				var button = $('<div/>');
-				button.append(i+1).button().click(function () {
-					alert(i);
-				});
-				divFooter.append(button);
-			}
-			for(var i = pages - 3; i < pages; i++) {
-				var button = $('<div/>');
-				button.append(i+1).button().click(function () {
-					alert(i);
-				});
-				divFooter.append(button);
+		if (initPost == i) {
+			buttonDiv.addClass("ui-button ui-widget ui-corner-all ui-button-text-only ui-state-active");
+			button = $('<span/>');
+			button.addClass("ui-button-text");
+			button.append(i+1);
+			buttonDiv.append(button);
+		} else {
+			button = buttonDiv.append(i+1);
+			button = button.button();
+			button.click(function () {
+				initPost = $(this).find(".ui-button-text").html() - 1;
+				addPost(urlPost, blogID);
+			});
+		}
+		
+		divFooter.append(buttonDiv);
+	}
+}
+
+function addPostFooterByUrl(urlCount, urlPost, blogID) {
+	$.getJSON(urlCount, function(data) {
+	    var divFooter = $('<div/>');
+	    divFooter.attr("align", "center");
+		var pages = Math.ceil(data / countPost);
+		var avg = Math.round(pages/2);
+		
+		var buttonBack = $('<span/>');
+		buttonBack = buttonBack.append("&lt;&lt;");
+		buttonBack = buttonBack.button();
+		buttonBack.click(function () {
+			if (initPost > 0) {
+				initPost = initPost - 1;
+				addPost(urlPost, blogID);
 			}
 		});
+		divFooter.append(buttonBack);
 		
-		divFooter.appendTo('#post');		
+		if( pages <= 3) {
+			createPageFooter(0, pages, divFooter, urlPost, blogID);
+		} else {
+			createPageFooter(0, 3, divFooter, urlPost, blogID);
+		}
+		if( pages > 6) {
+			if (avg > 4) {
+				divFooter.append($("<span> </span>"));
+				if (initPost > 2 && initPost < (pages-3)) {
+					createPageFooter(initPost - 1, initPost + 2, divFooter, urlPost, blogID);												
+				} else {
+					createPageFooter(avg - 1, avg + 2, divFooter, urlPost, blogID);	
+				}
+				divFooter.append($("<span> </span>"));
+			} else {
+				createPageFooter(3 , 3 + 4 - avg, divFooter, urlPost, blogID);	
+			}
+		}
+		if( pages > 3) {
+			var del = (pages > 6) ? 3 : 6 - pages;
+			createPageFooter(pages - del, pages, divFooter, urlPost, blogID);			
+		}
+		var buttonNext = $('<span/>');
+		buttonNext = buttonNext.append("&lt;&lt;");
+		buttonNext = buttonNext.button();
+		buttonNext.click(function () {
+			if (initPost < pages-1) {
+				initPost = initPost + 1;
+				addPost(urlPost, blogID);
+			}
+		});
+		divFooter.append(buttonNext);
+		divFooter.appendTo('#post');	
 	});
-
 }
+
+function addTags(urlTags, blogID) {
+	var url = urlTags + blogID;
+
+	$.getJSON(url, function(data) {
+		var divTag = $('<div/>');
+
+		$.each(data, function(index, tag) {
+			divTag.append(
+					$("<div>"+tag.name+"</div>").button().click(function () {
+							alert(tag.name);
+						}
+					)
+			);
+		});
+		
+		$('#tags').empty();
+		divTag.appendTo('#tags');		
+	});
+}
+

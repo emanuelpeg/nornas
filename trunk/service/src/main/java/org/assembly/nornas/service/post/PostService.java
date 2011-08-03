@@ -10,6 +10,7 @@ import javax.jws.WebParam;
 import javax.jws.WebService;
 
 import org.assembly.dto.post.PostDTO;
+import org.assembly.dto.tag.TagDTO;
 import org.osoa.sca.annotations.Remotable;
 
 /**
@@ -27,7 +28,10 @@ public interface PostService {
 	List<PostDTO> findPostsPublishedByBlogId(@WebParam Long blogId, @WebParam Integer from, @WebParam Integer sizes);
 
 	@WebMethod(operationName="countPostsPublishedByBlogId")
-	Long countPostsPublishedByBlogId(Long blogId);
+	Long countPostsPublishedByBlogId(@WebParam Long blogId);
+
+	@WebMethod(operationName="getTagsByBlogId")
+	List<TagDTO> getTagsByBlogId(@WebParam Long blogId);
 	
 	
 }
