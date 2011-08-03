@@ -2,6 +2,7 @@ package org.assembly.nornas.persistence.post;
 
 import java.util.List;
 
+import org.apache.commons.lang.StringUtils;
 import org.assembly.nornas.model.blog.Blog;
 import org.assembly.nornas.model.post.Post;
 import org.assembly.nornas.model.post.StatePost;
@@ -25,15 +26,32 @@ public class PostDAO extends BaseDao<Post> implements PostRepository {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Post> findPostsPublishedByBlogId(Long blogId, Integer from,
-			Integer sizes) {
+			Integer sizes, String tag) {
+
 		String hql = "select p from " + Blog.class.getCanonicalName()
-				+ " as b " + " inner join b.posts as p " + "where b.id = :id "
-				+ "  and p.state = :state "
-				+ "order by p.publishDate desc,  p.id desc ";
+				+ "              as b inner join b.posts as p ";
+
+		if (!StringUtils.isEmpty(tag)) {
+			hql += "                   left join p.tags as t ";
+		}
+
+		hql += "   where b.id = :id " + "     and p.state = :state ";
+
+		if (!StringUtils.isEmpty(tag)) {
+			hql += "    and t.name = :name  ";
+		}
+
+		hql += "order by p.publishDate desc,  p.id desc ";
+
 		Query query = this.getSession().createQuery(hql);
 
 		query.setLong("id", blogId);
 		query.setString("state", StatePost.PUBLISHED.name());
+
+		if (!StringUtils.isEmpty(tag)) {
+			query.setString("name", tag);
+		}
+
 		query.setFirstResult(from);
 		query.setMaxResults(sizes);
 
@@ -41,15 +59,28 @@ public class PostDAO extends BaseDao<Post> implements PostRepository {
 	}
 
 	@Override
-	public Long countPostsPublishedByBlogId(Long blogId) {
-		String hql = "select count(*) from " + Blog.class.getCanonicalName()
-				+ " as b " + " inner join b.posts as p " + "where b.id = :id "
-				+ "  and p.state = :state ";
+	public Long countPostsPublishedByBlogId(Long blogId, String tag) {
+		String hql = "select count(p) from " + Blog.class.getCanonicalName()
+				+ "       as b inner join b.posts as p ";
+
+		if (!StringUtils.isEmpty(tag)) {
+			hql += "            left join p.tags as t ";
+		}
+		hql += "  where b.id = :id " + "  and p.state = :state ";
+
+		if (!StringUtils.isEmpty(tag)) {
+			hql += "    and t.name = :name  ";
+		}
+
 		Query query = this.getSession().createQuery(hql);
 
 		query.setLong("id", blogId);
 		query.setString("state", StatePost.PUBLISHED.name());
-		
+
+		if (!StringUtils.isEmpty(tag)) {
+			query.setString("name", tag);
+		}
+
 		return (Long) query.uniqueResult();
 	}
 

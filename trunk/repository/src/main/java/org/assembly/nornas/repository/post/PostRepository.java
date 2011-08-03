@@ -19,9 +19,9 @@ public interface PostRepository {
 	
 	List<Post> findAll();
 
-	List<Post> findPostsPublishedByBlogId(Long blogId, Integer from, Integer sizes);
+	List<Post> findPostsPublishedByBlogId(Long blogId, Integer from, Integer sizes, String tag);
 
-	Long countPostsPublishedByBlogId(Long blogId);
+	Long countPostsPublishedByBlogId(Long blogId, String tag);
 
 
 }

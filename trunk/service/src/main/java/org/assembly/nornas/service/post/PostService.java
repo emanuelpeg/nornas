@@ -17,21 +17,22 @@ import org.osoa.sca.annotations.Remotable;
  * 
  * @author emanuel
  * 
- *   Interface represents services of Blog
- *
+ *         Interface represents services of Blog
+ * 
  */
 @Remotable
 @WebService
 public interface PostService {
-	
-	@WebMethod(operationName="findPostsByBlogId")
-	List<PostDTO> findPostsPublishedByBlogId(@WebParam Long blogId, @WebParam Integer from, @WebParam Integer sizes);
 
-	@WebMethod(operationName="countPostsPublishedByBlogId")
-	Long countPostsPublishedByBlogId(@WebParam Long blogId);
+	@WebMethod(operationName = "findPostsByBlogId")
+	List<PostDTO> findPostsPublishedByBlogId(@WebParam Long blogId,
+			@WebParam Integer from, @WebParam Integer sizes,
+			@WebParam String tag);
 
-	@WebMethod(operationName="getTagsByBlogId")
+	@WebMethod(operationName = "countPostsPublishedByBlogId")
+	Long countPostsPublishedByBlogId(@WebParam Long blogId, @WebParam String tag);
+
+	@WebMethod(operationName = "getTagsByBlogId")
 	List<TagDTO> getTagsByBlogId(@WebParam Long blogId);
-	
-	
+
 }

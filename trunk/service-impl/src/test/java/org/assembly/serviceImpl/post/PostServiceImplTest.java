@@ -9,6 +9,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.apache.commons.lang.StringUtils;
 import org.assembly.dto.blog.BlogDTO;
 import org.assembly.dto.blog.fixture.BlogDTOFixture;
 import org.assembly.dto.post.PostDTO;
@@ -67,16 +68,16 @@ public class PostServiceImplTest extends BaseServiceTest {
 		Blog blogSaved = blogDAO.findBy(blog.getId());
 		assertEquals(blogSaved.getPosts().size(), 14);
 		
-		List<PostDTO> posts =postService.findPostsPublishedByBlogId(blogSaved.getId(), 0, 28);
+		List<PostDTO> posts =postService.findPostsPublishedByBlogId(blogSaved.getId(), 0, 28, StringUtils.EMPTY);
 		assertEquals(posts.size(), 11);
 		
-		posts =postService.findPostsPublishedByBlogId(blogSaved.getId(), 0, 10);
+		posts =postService.findPostsPublishedByBlogId(blogSaved.getId(), 0, 10, StringUtils.EMPTY);
 		assertEquals(posts.size(), 10);
 		
-		posts =postService.findPostsPublishedByBlogId(blogSaved.getId(), 4, 10);
+		posts =postService.findPostsPublishedByBlogId(blogSaved.getId(), 4, 10, StringUtils.EMPTY);
 		assertEquals(posts.size(), 7);
 		
-		posts =postService.findPostsPublishedByBlogId(blogSaved.getId(), 5, 10);
+		posts =postService.findPostsPublishedByBlogId(blogSaved.getId(), 5, 10, StringUtils.EMPTY);
 		assertEquals(posts.size(), 6);
 		
 	}
