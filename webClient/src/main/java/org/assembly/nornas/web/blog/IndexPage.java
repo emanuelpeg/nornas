@@ -50,6 +50,9 @@ public class IndexPage extends BlogTemplate {
 	private String urlTags = "";
 	
 	@Bindable
+	private String tag = "";
+	
+	@Bindable
 	private Long initPost = 0l;
 	
 	@Bindable
@@ -150,6 +153,14 @@ public class IndexPage extends BlogTemplate {
 
 	public void setCountPost(Long countPost) {
 		this.countPost = countPost;
+	}
+
+	public String getTag() {
+		return tag;
+	}
+
+	public void setTag(String tag) {
+		this.tag = tag;
 	}
 	
 }

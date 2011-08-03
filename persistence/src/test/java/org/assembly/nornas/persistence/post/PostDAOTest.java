@@ -9,6 +9,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.apache.commons.lang.StringUtils;
 import org.assembly.nornas.model.author.Author;
 import org.assembly.nornas.model.blog.Blog;
 import org.assembly.nornas.model.blog.fixture.BlogFixture;
@@ -75,16 +76,16 @@ public class PostDAOTest extends DaoTestBase{
 		Blog blogSaved = blogDAO.findBy(blog.getId());
 		assertEquals(blogSaved.getPosts().size(), 14);
 		
-		List<Post> posts =postDAO.findPostsPublishedByBlogId(blog.getId(), 0, 28);
+		List<Post> posts =postDAO.findPostsPublishedByBlogId(blog.getId(), 0, 28, StringUtils.EMPTY);
 		assertEquals(posts.size(), 11);
 		
-		posts =postDAO.findPostsPublishedByBlogId(blog.getId(), 0, 10);
+		posts =postDAO.findPostsPublishedByBlogId(blog.getId(), 0, 10, StringUtils.EMPTY);
 		assertEquals(posts.size(), 10);
 		
-		posts =postDAO.findPostsPublishedByBlogId(blog.getId(), 4, 10);
+		posts =postDAO.findPostsPublishedByBlogId(blog.getId(), 4, 10, StringUtils.EMPTY);
 		assertEquals(posts.size(), 7);
 		
-		posts =postDAO.findPostsPublishedByBlogId(blog.getId(), 5, 10);
+		posts =postDAO.findPostsPublishedByBlogId(blog.getId(), 5, 10, StringUtils.EMPTY);
 		assertEquals(posts.size(), 6);
 	}
 	
@@ -104,6 +105,6 @@ public class PostDAOTest extends DaoTestBase{
 		
 		Blog blogSaved = blogDAO.findBy(blog.getId());
 		assertEquals(14, blogSaved.getPosts().size());
-		assertEquals(new Long(11), postDAO.countPostsPublishedByBlogId(blogSaved.getId()));
+		assertEquals(new Long(11), postDAO.countPostsPublishedByBlogId(blogSaved.getId(), StringUtils.EMPTY));
 	}
 }

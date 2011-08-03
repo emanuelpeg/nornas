@@ -4,13 +4,13 @@
  *                                                                   *
  ********************************************************************/
 
-function addPost(urlPost, blogID) {
-	var url = urlPost + blogID + "/" + initPost;
-	var urlCount = urlPost + "count/" + blogID ;
-	addPostByUrl(url, urlCount, urlPost, blogID);
+function addPost(urlPost, blogID, tag) {
+	var url = urlPost + blogID + "/" + initPost + "?tag=" + tag;
+	var urlCount = urlPost + "count/" + blogID + "?tag=" + tag;
+	addPostByUrl(url, urlCount, urlPost, blogID, tag);
 }
 
-function addPostByUrl(url, urlCount, urlPost, blogID) {
+function addPostByUrl(url, urlCount, urlPost, blogID, tag) {
 	$.getJSON(url, function(data) {
 		var div = $('<div/>');
 
@@ -25,7 +25,8 @@ function addPostByUrl(url, urlCount, urlPost, blogID) {
 			$.each(post.tags, function(index, tag) {
 				divPost.append(
 						$("<div>"+tag.name+"</div>").button().click(function () {
-								alert(tag.name);
+								initPost = 0;
+								addPost(urlPost, blogID, tag.name);
 							}
 						)
 				);
@@ -50,11 +51,11 @@ function addPostByUrl(url, urlCount, urlPost, blogID) {
 		div.accordion(); 	
 		div.hide();
 		div.fadeIn("slow");
-		addPostFooterByUrl(urlCount, urlPost, blogID);
+		addPostFooterByUrl(urlCount, urlPost, blogID, tag);
 	});
 }
 
-function createPageFooter(from, to, divFooter, urlPost, blogID) {
+function createPageFooter(from, to, divFooter, urlPost, blogID, tag) {
 	for(var i = from; i < to; i++) {
 		var buttonDiv = $('<span/>');
 		var button;
@@ -70,7 +71,7 @@ function createPageFooter(from, to, divFooter, urlPost, blogID) {
 			button = button.button();
 			button.click(function () {
 				initPost = $(this).find(".ui-button-text").html() - 1;
-				addPost(urlPost, blogID);
+				addPost(urlPost, blogID, tag);
 			});
 		}
 		
@@ -78,7 +79,7 @@ function createPageFooter(from, to, divFooter, urlPost, blogID) {
 	}
 }
 
-function addPostFooterByUrl(urlCount, urlPost, blogID) {
+function addPostFooterByUrl(urlCount, urlPost, blogID, tag) {
 	$.getJSON(urlCount, function(data) {
 	    var divFooter = $('<div/>');
 	    divFooter.attr("align", "center");
@@ -91,32 +92,32 @@ function addPostFooterByUrl(urlCount, urlPost, blogID) {
 		buttonBack.click(function () {
 			if (initPost > 0) {
 				initPost = initPost - 1;
-				addPost(urlPost, blogID);
+				addPost(urlPost, blogID, tag);
 			}
 		});
 		divFooter.append(buttonBack);
 		
 		if( pages <= 3) {
-			createPageFooter(0, pages, divFooter, urlPost, blogID);
+			createPageFooter(0, pages, divFooter, urlPost, blogID, tag);
 		} else {
-			createPageFooter(0, 3, divFooter, urlPost, blogID);
+			createPageFooter(0, 3, divFooter, urlPost, blogID, tag);
 		}
 		if( pages > 6) {
 			if (avg > 4) {
 				divFooter.append($("<span> </span>"));
 				if (initPost > 2 && initPost < (pages-3)) {
-					createPageFooter(initPost - 1, initPost + 2, divFooter, urlPost, blogID);												
+					createPageFooter(initPost - 1, initPost + 2, divFooter, urlPost, blogID, tag);												
 				} else {
-					createPageFooter(avg - 1, avg + 2, divFooter, urlPost, blogID);	
+					createPageFooter(avg - 1, avg + 2, divFooter, urlPost, blogID, tag);	
 				}
 				divFooter.append($("<span> </span>"));
 			} else {
-				createPageFooter(3 , 3 + 4 - avg, divFooter, urlPost, blogID);	
+				createPageFooter(3 , 3 + 4 - avg, divFooter, urlPost, blogID, tag);	
 			}
 		}
 		if( pages > 3) {
 			var del = (pages > 6) ? 3 : 6 - pages;
-			createPageFooter(pages - del, pages, divFooter, urlPost, blogID);			
+			createPageFooter(pages - del, pages, divFooter, urlPost, blogID, tag);			
 		}
 		var buttonNext = $('<span/>');
 		buttonNext = buttonNext.append("&lt;&lt;");
@@ -124,7 +125,7 @@ function addPostFooterByUrl(urlCount, urlPost, blogID) {
 		buttonNext.click(function () {
 			if (initPost < pages-1) {
 				initPost = initPost + 1;
-				addPost(urlPost, blogID);
+				addPost(urlPost, blogID, tag);
 			}
 		});
 		divFooter.append(buttonNext);
@@ -132,7 +133,7 @@ function addPostFooterByUrl(urlCount, urlPost, blogID) {
 	});
 }
 
-function addTags(urlTags, blogID) {
+function addTags(urlPost, urlTags, blogID) {
 	var url = urlTags + blogID;
 
 	$.getJSON(url, function(data) {
@@ -141,7 +142,8 @@ function addTags(urlTags, blogID) {
 		$.each(data, function(index, tag) {
 			divTag.append(
 					$("<div>"+tag.name+"</div>").button().click(function () {
-							alert(tag.name);
+							initPost = 0;
+							addPost(urlPost, blogID, tag.name);
 						}
 					)
 			);
