@@ -22,4 +22,6 @@ public interface TagRepository {
 
 	Tag findByName(String name);
 
+	List<Tag> findByBlogId(Long blogId);
+
 }
