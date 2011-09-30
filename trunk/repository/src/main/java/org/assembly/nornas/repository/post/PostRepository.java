@@ -23,5 +23,7 @@ public interface PostRepository {
 
 	Long countPostsPublishedByBlogId(Long blogId, String tag);
 
+	List<Post> findPostsPublished();
+
 
 }

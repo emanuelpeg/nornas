@@ -41,7 +41,7 @@ public class TagDAO extends BaseDao<Tag> implements TagRepository {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Tag> findByBlogId(Long blogId) {
-		String hql = "select t from "+ Blog.class.getCanonicalName() +" b inner join b.posts p inner join p.tags t " +
+		String hql = "select distinct t from "+ Blog.class.getCanonicalName() +" b inner join b.posts p inner join p.tags t " +
 				"             where b.id = :blogId ";
 		
 		Query query = this.getSession().createQuery(hql);
