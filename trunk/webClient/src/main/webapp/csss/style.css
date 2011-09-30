@@ -199,8 +199,13 @@ table {
 	width: 975px;
 	background: #f1eee6;
 }
+#templatemo_content_bot_blog {
+	float: left;
+	width: 975px;
+	background: #f1eee6;
+}
+
 #templatemo_content_bot li{
-	padding-left: 0px;
 	padding-right: 30px;
 	text-align: justify;
 }
@@ -218,6 +223,12 @@ table {
 	padding-right: 10px;
 	text-align: justify;	
 }
+
+#history {
+	font-size: 14px;
+	text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+}
+
 .templatemo_bottom_text_left {
 	float: left;
 	width: 590px;
