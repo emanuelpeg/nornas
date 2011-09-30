@@ -4,13 +4,13 @@
 	<div id="templatemo_slogan_blog">$subTitlePage</div>
 
 </div>
-<div id="templatemo_content_bot">
+<div id="templatemo_content_bot_blog">
 	<div id="post" class="templatemo_bottom_text_left_blog">
 		
 	</div>
 	<div class="templatemo_bottom_text_right_blog">
 		<div id="author_info"></div>
-		<div id="history"></div>
+		<div id="history"> </div>
 		<div id="tags"></div>	
 	</div>
 </div>
@@ -19,4 +19,5 @@
     var countPost = $countPost;
 	$(document).ready(addPost("$urlPost", $blogID, "$tag"));
 	$(document).ready(addTags("$urlPost", "$urlTags", $blogID));
+	$(document).ready(addHistory("$urlHistory", $blogID));
 </script>

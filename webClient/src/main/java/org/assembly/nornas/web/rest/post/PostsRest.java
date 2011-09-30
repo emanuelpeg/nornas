@@ -14,6 +14,8 @@ import javax.ws.rs.QueryParam;
 
 import org.apache.commons.lang.StringUtils;
 import org.assembly.dto.post.PostDTO;
+import org.assembly.dto.post.PostHistoryDTO;
+import org.assembly.dto.post.PostsHistoryRoot;
 import org.assembly.dto.tag.TagDTO;
 import org.assembly.nornas.service.post.PostService;
 
@@ -55,6 +57,13 @@ public class PostsRest {
 	@Produces("application/json")
 	public List<TagDTO> getTagsByBlogId(@PathParam("blogId") Long blogId) {
 		return this.postService.getTagsByBlogId(blogId);
+	}
+	
+	@GET
+	@Path("/history/{blogId}")
+	@Produces("application/json")
+	public PostsHistoryRoot getHistoryByBlogId(@PathParam("blogId") Long blogId) {
+		return this.postService.getHistoryByBlogId(blogId);
 	}
 	
 }

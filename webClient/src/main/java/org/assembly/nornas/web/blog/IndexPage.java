@@ -50,6 +50,9 @@ public class IndexPage extends BlogTemplate {
 	private String urlTags = "";
 	
 	@Bindable
+	private String urlHistory = "";
+	
+	@Bindable
 	private String tag = "";
 	
 	@Bindable
@@ -89,6 +92,7 @@ public class IndexPage extends BlogTemplate {
 		subTitlePage = blog.getSubTitle();
 		urlPost = this.getContext().getRequest().getContextPath() + "/blogRest/posts/";
 		urlTags = this.getContext().getRequest().getContextPath() + "/blogRest/posts/tags/";
+		urlHistory = this.getContext().getRequest().getContextPath() + "/blogRest/posts/history/";
 	}
 
 	public String getUrl() {
@@ -137,6 +141,14 @@ public class IndexPage extends BlogTemplate {
 
 	public void setUrlTags(String urlTags) {
 		this.urlTags = urlTags;
+	}
+	
+	public String getUrlHistory() {
+		return urlHistory;
+	}
+
+	public void setUrlHistory(String urlHistory) {
+		this.urlHistory = urlHistory;
 	}
 
 	public Long getInitPost() {

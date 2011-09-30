@@ -42,7 +42,20 @@ function addPostByUrl(url, urlCount, urlPost, blogID, tag) {
 				
 			});
 			
+			var divAddComment = $("<div/>");
+			divAddComment.append(
+					$("<div> Add Comment </div>").button().click(function () {
+							$.get("addComment.htm?postId="+post.id, function(data) {
+								var dialog = $("<div/>");
+								dialog.append(data);
+								dialog.dialog({ modal: true, title : "Add Comment" });
+							});
+						}
+					)
+			);
+			
 			divPost.append(divComment);
+			divPost.append(divAddComment);
 			div.append(divPost);
 		});
 
@@ -151,6 +164,51 @@ function addTags(urlPost, urlTags, blogID) {
 		
 		$('#tags').empty();
 		divTag.appendTo('#tags');		
+	});
+}
+
+function addHistory(urlHistory, blogID) {
+	var url = urlHistory + blogID;
+
+    $.getJSON(url, function(data) {
+		var ulHistory = $('<ul/>');
+	
+		$.each(data.years, function(index, postYear) {
+			var liYear = $("<li/>");
+			liYear.append(postYear.year);
+			
+			var ulMonths = $("<ul/>");
+			
+			$.each(postYear.months, function(index, postMonth) {
+				var liMonth = $("<li/>");
+				liMonth.append(dateFormat.i18n.monthNames[postMonth.month-1]);
+				
+				var ulposts = $("<ul/>");
+				$.each(postMonth.posts, function(index, post) {
+					var liPost = $("<li/>");
+					liPost.append(post.title);
+					ulposts.append(liPost);
+				});
+				
+				liMonth.append(ulposts);
+				ulMonths.append(liMonth);
+			});
+			
+			liYear.append(ulMonths);
+			ulHistory.append(liYear);
+		});
+		
+		
+		
+		ulHistory.treeview({
+			collapsed: true,
+			animated: "medium",
+			control:"#sidetreecontrol",
+			persist: "location"
+		});
+		
+		$('#history').empty();
+		ulHistory.appendTo('#history');		
 	});
 }
 
