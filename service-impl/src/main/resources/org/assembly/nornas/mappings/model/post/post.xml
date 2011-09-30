@@ -53,4 +53,26 @@
 		</field> 
 	
 	</mapping>
+	
+	<mapping wildcard="false" map-id="post_postHistoryDTO">
+		<class-a>org.assembly.nornas.model.post.Post</class-a>
+		<class-b>org.assembly.dto.post.PostHistoryDTO</class-b>
+
+        <field>
+			<a>id</a>
+			<b>id</b>
+		</field>
+
+	 	<field>
+			<a>title</a>
+			<b>title</b>
+		</field>
+
+
+		<field>
+			<a>publishDate</a>
+			<b>publishDate</b>
+		</field>
+	
+	</mapping>
 </mappings>

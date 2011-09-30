@@ -10,6 +10,8 @@ import javax.jws.WebParam;
 import javax.jws.WebService;
 
 import org.assembly.dto.post.PostDTO;
+import org.assembly.dto.post.PostHistoryDTO;
+import org.assembly.dto.post.PostsHistoryRoot;
 import org.assembly.dto.tag.TagDTO;
 import org.osoa.sca.annotations.Remotable;
 
@@ -34,5 +36,8 @@ public interface PostService {
 
 	@WebMethod(operationName = "getTagsByBlogId")
 	List<TagDTO> getTagsByBlogId(@WebParam Long blogId);
+
+	@WebMethod(operationName = "getHistoryByBlogId")
+	PostsHistoryRoot getHistoryByBlogId(Long blogId);
 
 }

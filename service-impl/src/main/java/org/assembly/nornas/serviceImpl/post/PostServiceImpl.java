@@ -3,9 +3,14 @@
  */
 package org.assembly.nornas.serviceImpl.post;
 
+import java.util.Calendar;
 import java.util.List;
 
 import org.assembly.dto.post.PostDTO;
+import org.assembly.dto.post.PostHistoryDTO;
+import org.assembly.dto.post.PostsHistoryMonth;
+import org.assembly.dto.post.PostsHistoryRoot;
+import org.assembly.dto.post.PostsHistoryYear;
 import org.assembly.dto.tag.TagDTO;
 import org.assembly.norna.common.util.transformer.DozerTransformer;
 import org.assembly.nornas.model.post.Post;
@@ -63,6 +68,46 @@ public class PostServiceImpl extends BaseServiceImpl implements PostService {
 		DozerTransformer<TagDTO, Tag> transformer = new DozerTransformer<TagDTO, Tag>(this.getDtoMapper(), TagDTO.class);
 		
 		return transformer.transformar(tags, "tag_tagDTO");
+	}
+
+	@Override
+	public PostsHistoryRoot getHistoryByBlogId(Long blogId) {
+		List<Post> posts = postDAO.findPostsPublished();
+
+		DozerTransformer<PostHistoryDTO, Post> transformer = new DozerTransformer<PostHistoryDTO, Post>(this.getDtoMapper(), PostHistoryDTO.class);
+		
+		List<PostHistoryDTO> postsDTO = transformer.transformar(posts, "post_postHistoryDTO");
+		
+		return createTree(postsDTO);
+	}
+
+	private PostsHistoryRoot createTree(List<PostHistoryDTO> postsDTO) {
+		PostsHistoryRoot root = new PostsHistoryRoot();
+		
+		PostsHistoryYear postYear = null;
+		PostsHistoryMonth postMonth = null;
+		
+		for (PostHistoryDTO post : postsDTO) {
+			Calendar calendar = Calendar.getInstance();
+			calendar.setTime(post.getPublishDate());
+			Integer year = calendar.get(Calendar.YEAR);
+			Integer month = calendar.get(Calendar.MONTH) + 1;
+			
+			if (postYear == null || !postYear.getYear().equals(year)) {
+				postYear = new PostsHistoryYear(year);
+				root.getYears().add(postYear);
+			}
+			
+			if (postMonth == null || !postMonth.getMonth().equals(month)) {
+				postMonth = new PostsHistoryMonth(month);
+				postYear.getMonths().add(postMonth);
+			}
+			
+			postMonth.getPosts().add(post);
+			
+		}
+
+		return root;
 	}
 
 
