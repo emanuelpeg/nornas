@@ -8,7 +8,10 @@ import org.assembly.nornas.model.post.Post;
 import org.assembly.nornas.model.post.StatePost;
 import org.assembly.nornas.persistence.BaseDao;
 import org.assembly.nornas.repository.post.PostRepository;
+import org.hibernate.Criteria;
 import org.hibernate.Query;
+import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Restrictions;
 
 /**
  * @author emanuel
@@ -83,5 +86,15 @@ public class PostDAO extends BaseDao<Post> implements PostRepository {
 
 		return (Long) query.uniqueResult();
 	}
+
+	@Override
+	public List<Post> findPostsPublished() {
+		Criteria criteria = this.createCriteria();
+		criteria.add(Restrictions.eq("state", StatePost.PUBLISHED));
+		criteria.addOrder(Order.asc("publishDate"));
+		
+		return criteria.list();
+	}
+	
 
 }
