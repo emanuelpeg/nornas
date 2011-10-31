@@ -4,7 +4,7 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
 
     <bean id="dao.base"
-          class="com.assembly.theFamily.persistence.BaseDao"
+          class="org.assembly.nornas.persistence.BaseDao"
           abstract="true">
           <property name="sessionFactory" ref="sessionFactory"></property>
     </bean>
