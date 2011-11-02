@@ -13,6 +13,7 @@ import org.apache.commons.lang.StringUtils;
 import org.assembly.nornas.model.author.Author;
 import org.assembly.nornas.model.blog.Blog;
 import org.assembly.nornas.model.blog.fixture.BlogFixture;
+import org.assembly.nornas.model.comment.Comment;
 import org.assembly.nornas.model.post.Post;
 import org.assembly.nornas.model.post.fixture.PostFixture;
 import org.assembly.nornas.model.user.User;
@@ -107,4 +108,28 @@ public class PostDAOTest extends DaoTestBase{
 		assertEquals(14, blogSaved.getPosts().size());
 		assertEquals(new Long(11), postDAO.countPostsPublishedByBlogId(blogSaved.getId(), StringUtils.EMPTY));
 	}
+	
+	@Test
+	@Transactional
+	public void findPostsWithComment() {
+		Blog blog = BlogFixture.createBlogOfEmanuel();
+				
+		userDAO.save(blog.getAdmin());
+		blogDAO.save(blog);
+		
+		Author author = blog.getAuthors().iterator().next();
+		authorDAO.save(author);
+		
+		blog.setPosts(PostFixture.createPosts(blog));
+		blogDAO.save(blog);
+		
+		Post post = blog.getPosts().get(0);
+		post.getComments().add(new Comment(post, "Muy bueno", author.getUser()));
+		
+		postDAO.save(post);
+		
+		Post postSaved = postDAO.findBy(post.getId());
+		assertEquals(1, postSaved.getComments().size());
+	}
+	
 }

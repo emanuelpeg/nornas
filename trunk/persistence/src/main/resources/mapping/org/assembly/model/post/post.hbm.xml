@@ -29,7 +29,7 @@
    
     <list name="tags" table="POSTS_TAGS" >
     	<key column="id_post" />
-    	<index column="index_post" />
+    	<list-index column="index_post" />
     	<many-to-many column="id_tag" 
     	              unique="true" 
     	              class="org.assembly.nornas.model.tag.Tag" 
@@ -37,8 +37,8 @@
     </list>
     
     <list name="comments" cascade="all" inverse="true"  >
-       <key column="id_post" />
-       <list-index column="index_post" />
+       <key column="id_post"  />
+       <index column="id_comment" />
        <one-to-many class="org.assembly.nornas.model.comment.Comment" />
     </list>
     

@@ -13,10 +13,13 @@ import org.assembly.dto.post.PostsHistoryRoot;
 import org.assembly.dto.post.PostsHistoryYear;
 import org.assembly.dto.tag.TagDTO;
 import org.assembly.norna.common.util.transformer.DozerTransformer;
+import org.assembly.nornas.model.comment.Comment;
 import org.assembly.nornas.model.post.Post;
 import org.assembly.nornas.model.tag.Tag;
+import org.assembly.nornas.model.user.User;
 import org.assembly.nornas.repository.post.PostRepository;
 import org.assembly.nornas.repository.tag.TagRepository;
+import org.assembly.nornas.repository.user.UserRepository;
 import org.assembly.nornas.service.post.PostService;
 import org.assembly.nornas.serviceImpl.BaseServiceImpl;
 import org.osoa.sca.annotations.Service;
@@ -43,6 +46,12 @@ public class PostServiceImpl extends BaseServiceImpl implements PostService {
 		this.tagDAO = tagDAO;
 	}
 
+	private UserRepository userDAO;
+	
+	public void setUserDAO(UserRepository userDAO) {
+		this.userDAO = userDAO;
+	}
+	
 	@Override
 	@Transactional
 	public List<PostDTO> findPostsPublishedByBlogId(Long blogId, Integer from,
@@ -62,6 +71,7 @@ public class PostServiceImpl extends BaseServiceImpl implements PostService {
 	}
 
 	@Override
+	@Transactional
 	public List<TagDTO> getTagsByBlogId(Long blogId) {
 		List<Tag> tags = tagDAO.findByBlogId(blogId);
 		
@@ -71,6 +81,7 @@ public class PostServiceImpl extends BaseServiceImpl implements PostService {
 	}
 
 	@Override
+	@Transactional
 	public PostsHistoryRoot getHistoryByBlogId(Long blogId) {
 		List<Post> posts = postDAO.findPostsPublished();
 
@@ -108,6 +119,15 @@ public class PostServiceImpl extends BaseServiceImpl implements PostService {
 		}
 
 		return root;
+	}
+
+	@Override
+	@Transactional
+	public void addComment(Long postId, String comment) {
+		Post post = this.postDAO.findBy(postId);
+		User author = this.userDAO.findAll().get(0); 
+		post.getComments().add(new Comment(post, comment, author));
+		this.postDAO.save(post);
 	}
 
 
