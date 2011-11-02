@@ -40,4 +40,7 @@ public interface PostService {
 	@WebMethod(operationName = "getHistoryByBlogId")
 	PostsHistoryRoot getHistoryByBlogId(Long blogId);
 
+	@WebMethod(operationName = "addComment")
+	void addComment(@WebParam Long postId, @WebParam String comment);
+
 }

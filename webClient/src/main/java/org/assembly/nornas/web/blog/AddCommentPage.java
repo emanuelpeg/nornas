@@ -17,7 +17,14 @@ public class AddCommentPage extends Page {
 	@Bindable
 	private String postId;
 
+	@Bindable
+	private String urlAddComment;
 	
+	@Override
+	public void onInit() {
+		super.onInit();
+		urlAddComment = this.getContext().getRequest().getContextPath() + "/blogRest/posts/addComment/" + postId + "/";
+	}
 	
 	public String getPostId() {
 		return postId;
@@ -25,7 +32,15 @@ public class AddCommentPage extends Page {
 
 	public void setPostId(String postId) {
 		this.postId = postId;
+	}
+
+	public String getUrlAddComment() {
+		return urlAddComment;
+	}
+
+	public void setUrlAddComment(String urlAddComment) {
+		this.urlAddComment = urlAddComment;
 	} 
-	
+
 
 }

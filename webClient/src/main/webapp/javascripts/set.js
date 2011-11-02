@@ -19,9 +19,6 @@ var mySettings = {
 		{name:'Stroke through', key:'S', openWith:'<del>', closeWith:'</del>' },
 		{separator:'---------------' },
 		{name:'Bulleted List', openWith:'    <li>', closeWith:'</li>', multiline:true, openBlockWith:'<ul>\n', closeBlockWith:'\n</ul>'},
-		{name:'Numeric List', openWith:'    <li>', closeWith:'</li>', multiline:true, openBlockWith:'<ol>\n', closeBlockWith:'\n</ol>'},
-		{separator:'---------------' },
-		{name:'Clean', className:'clean', replaceWith:function(markitup) { return markitup.selection.replace(/<(.*?)>/g, "") } },		
-		{name:'Preview', className:'preview',  call:'preview'}
+		{name:'Numeric List', openWith:'    <li>', closeWith:'</li>', multiline:true, openBlockWith:'<ol>\n', closeBlockWith:'\n</ol>'}		
 	]
 }

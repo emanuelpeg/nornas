@@ -34,11 +34,13 @@ function addPostByUrl(url, urlCount, urlPost, blogID, tag) {
 					
 			var divComment = $('<div class="comments" />');
 			$.each(post.comments, function(index, comment) {
-				var creationDate = new Date(comment.creationDate);
-				var creationDateLabel = creationDate.format("fullDate");
-				
-				divComment.append(' <h3 class="ui-accordion-header ui-helper-reset ui-state-active ui-corner-top">  <span class="commentTitle"> '+ creationDateLabel +' - ' + comment.author + '  </span>  </h3>');
-				divComment.append(' <div class="ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom ui-accordion-content-active">  <div class="comment">' +   comment.content + ' </div> </div>');
+				if (comment != null) {
+					var creationDate = new Date(comment.creationDate);
+					var creationDateLabel = creationDate.format("fullDate");
+					
+					divComment.append(' <h3 class="ui-accordion-header ui-helper-reset ui-state-active ui-corner-top">  <span class="commentTitle"> '+ creationDateLabel +' - ' + comment.author + '  </span>  </h3>');
+					divComment.append(' <div class="ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom ui-accordion-content-active">  <div class="comment">' +   comment.content + ' </div> </div>');
+				}
 				
 			});
 			
@@ -46,9 +48,16 @@ function addPostByUrl(url, urlCount, urlPost, blogID, tag) {
 			divAddComment.append(
 					$("<div> Add Comment </div>").button().click(function () {
 							$.get("addComment.htm?postId="+post.id, function(data) {
-								var dialog = $("<div/>");
+								var dialog = $("<div id='addCommentDiv'> </div>");
 								dialog.append(data);
-								dialog.dialog({ modal: true, title : "Add Comment" });
+								dialog.dialog({ 
+									            modal: true, 
+									            title : "Add Comment", 
+									            height: 550, 
+									            width: 790,
+									            beforeClose: function(event, ui) { dialog.remove(); },
+												open: function(event, ui) { $('#comment').markItUp(mySettings); } 
+									           });
 							});
 						}
 					)
@@ -133,7 +142,7 @@ function addPostFooterByUrl(urlCount, urlPost, blogID, tag) {
 			createPageFooter(pages - del, pages, divFooter, urlPost, blogID, tag);			
 		}
 		var buttonNext = $('<span/>');
-		buttonNext = buttonNext.append("&lt;&lt;");
+		buttonNext = buttonNext.append("&gt;&gt;");
 		buttonNext = buttonNext.button();
 		buttonNext.click(function () {
 			if (initPost < pages-1) {
@@ -210,5 +219,13 @@ function addHistory(urlHistory, blogID) {
 		$('#history').empty();
 		ulHistory.appendTo('#history');		
 	});
+}
+
+function addComment(urlAddComment, postID) {
+	$.post(urlAddComment, { comment: $("#comment").val()  },
+			function(data) {
+				$("addCommentDiv").dialog("close");	
+			}		        
+	);
 }
 

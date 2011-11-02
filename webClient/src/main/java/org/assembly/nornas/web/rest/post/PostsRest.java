@@ -6,7 +6,9 @@ package org.assembly.nornas.web.rest.post;
 import java.util.List;
 
 import javax.ws.rs.DefaultValue;
+import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -64,6 +66,12 @@ public class PostsRest {
 	@Produces("application/json")
 	public PostsHistoryRoot getHistoryByBlogId(@PathParam("blogId") Long blogId) {
 		return this.postService.getHistoryByBlogId(blogId);
+	}
+	
+	@POST
+	@Path("/addComment/{postId}")
+	public void addComment(@PathParam("postId") Long postId, @FormParam("comment") String comment) {
+		this.postService.addComment(postId, comment);
 	}
 	
 }

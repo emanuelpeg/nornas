@@ -1,17 +1,14 @@
-<div id="addComment">
+<div id="addComment" align="center">
 
-<textarea id="comment" rows="10" cols="100"  >
-</textarea>
+<textarea id="comment" rows="10" cols="50"  >
+</textarea> <br/>
 
 </div>
-<script type="text/javascript">
-$(document).ready(function()	{
-	iniciarAddComentarios();
-});
 
-function iniciarAddComentarios() {
-	$('#comment').markItUp();
-	
-}
+<div id="addComment" align="right">
 
-</script>
+<input type="button" value="Add Comment" onclick="addComment('$urlAddComment');" />
+
+</div>
+
+
