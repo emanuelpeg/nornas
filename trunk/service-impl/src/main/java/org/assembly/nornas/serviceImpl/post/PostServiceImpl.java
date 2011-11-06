@@ -130,5 +130,12 @@ public class PostServiceImpl extends BaseServiceImpl implements PostService {
 		this.postDAO.save(post);
 	}
 
+	@Override
+	@Transactional
+	public PostDTO get(Long postId) {
+		Post post = this.postDAO.findBy(postId);
+		return this.getDtoMapper().map(post, PostDTO.class, "post_postDTO");
+	}
+
 
 }

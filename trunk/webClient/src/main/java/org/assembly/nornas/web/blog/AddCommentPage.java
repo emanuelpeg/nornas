@@ -20,10 +20,21 @@ public class AddCommentPage extends Page {
 	@Bindable
 	private String urlAddComment;
 	
+	@Bindable
+	private String urlRefreshPost;
+	
+	@Bindable
+	private String urlPost;
+	
+	@Bindable
+	private Long blogID;
+	
 	@Override
 	public void onInit() {
 		super.onInit();
 		urlAddComment = this.getContext().getRequest().getContextPath() + "/blogRest/posts/addComment/" + postId + "/";
+		urlRefreshPost = this.getContext().getRequest().getContextPath() + "/blogRest/posts/" + postId + "/";
+		urlPost = this.getContext().getRequest().getContextPath() + "/blogRest/posts/";
 	}
 	
 	public String getPostId() {
@@ -40,7 +51,30 @@ public class AddCommentPage extends Page {
 
 	public void setUrlAddComment(String urlAddComment) {
 		this.urlAddComment = urlAddComment;
+	}
+
+	public String getUrlRefreshPost() {
+		return urlRefreshPost;
+	}
+
+	public void setUrlRefreshPost(String urlRefreshPost) {
+		this.urlRefreshPost = urlRefreshPost;
+	}
+
+	public String getUrlPost() {
+		return urlPost;
+	}
+
+	public void setUrlPost(String urlPost) {
+		this.urlPost = urlPost;
+	}
+
+	public Long getBlogID() {
+		return blogID;
+	}
+
+	public void setBlogID(Long blogID) {
+		this.blogID = blogID;
 	} 
-
-
+	
 }

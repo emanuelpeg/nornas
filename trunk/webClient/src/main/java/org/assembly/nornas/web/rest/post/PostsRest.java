@@ -45,8 +45,7 @@ public class PostsRest {
 		List<PostDTO> posts = this.postService.findPostsPublishedByBlogId(blogId, from * NUMBER_OF_POST, NUMBER_OF_POST, tag);
 		return posts;
 	}
-
-
+	
 	@GET
 	@Path("/count/{blogId}")
 	@Produces("application/json")
@@ -72,6 +71,14 @@ public class PostsRest {
 	@Path("/addComment/{postId}")
 	public void addComment(@PathParam("postId") Long postId, @FormParam("comment") String comment) {
 		this.postService.addComment(postId, comment);
+	}
+	
+	@GET
+	@Path("/{postId}")
+	@Produces("application/json")
+	public PostDTO findPostsById(@PathParam("postId") Long postId) {
+		PostDTO post = this.postService.get(postId);
+		return post;
 	}
 	
 }
