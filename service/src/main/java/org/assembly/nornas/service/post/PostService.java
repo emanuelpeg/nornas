@@ -43,4 +43,7 @@ public interface PostService {
 	@WebMethod(operationName = "addComment")
 	void addComment(@WebParam Long postId, @WebParam String comment);
 
+	@WebMethod(operationName = "get")
+	PostDTO get(@WebParam Long postId);
+
 }

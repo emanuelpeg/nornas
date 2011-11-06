@@ -18,53 +18,14 @@ function addPostByUrl(url, urlCount, urlPost, blogID, tag) {
 			
 			var datePost = new Date(post.publishDate);
 			var datePostLabel = datePost.format("fullDate");
+			var divPost = $('<div id="post'+ post.id +'"></div>');
+			var divHead = $('<div/>');
+	
+			divHead.append('<h3><a  href="#"> <span class="postTitle"> ' + post.title + '</span> by ' + post.author + ' <br/> '+datePostLabel+' </a>  </h3>');
+		
+			divPost.append(createPostBody(post, urlPost, blogID));
 			
-			div.append('<h3><a  href="#"> <span class="postTitle"> ' + post.title + '</span> by ' + post.author + ' <br/> '+datePostLabel+' </a>  </h3>');
-			var divPost = $('<div/>').append( $('<span class="post">' +   post.content + ' <br/> </span>'));
-			
-			$.each(post.tags, function(index, tag) {
-				divPost.append(
-						$("<div>"+tag.name+"</div>").button().click(function () {
-								initPost = 0;
-								addPost(urlPost, blogID, tag.name);
-							}
-						)
-				);
-			});
-					
-			var divComment = $('<div class="comments" />');
-			$.each(post.comments, function(index, comment) {
-				if (comment != null) {
-					var creationDate = new Date(comment.creationDate);
-					var creationDateLabel = creationDate.format("fullDate");
-					
-					divComment.append(' <h3 class="ui-accordion-header ui-helper-reset ui-state-active ui-corner-top">  <span class="commentTitle"> '+ creationDateLabel +' - ' + comment.author + '  </span>  </h3>');
-					divComment.append(' <div class="ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom ui-accordion-content-active">  <div class="comment">' +   comment.content + ' </div> </div>');
-				}
-				
-			});
-			
-			var divAddComment = $("<div/>");
-			divAddComment.append(
-					$("<div> Add Comment </div>").button().click(function () {
-							$.get("addComment.htm?postId="+post.id, function(data) {
-								var dialog = $("<div id='addCommentDiv'> </div>");
-								dialog.append(data);
-								dialog.dialog({ 
-									            modal: true, 
-									            title : "Add Comment", 
-									            height: 550, 
-									            width: 790,
-									            beforeClose: function(event, ui) { dialog.remove(); },
-												open: function(event, ui) { $('#comment').markItUp(mySettings); } 
-									           });
-							});
-						}
-					)
-			);
-			
-			divPost.append(divComment);
-			divPost.append(divAddComment);
+			div.append(divHead);
 			div.append(divPost);
 		});
 
@@ -75,6 +36,59 @@ function addPostByUrl(url, urlCount, urlPost, blogID, tag) {
 		div.fadeIn("slow");
 		addPostFooterByUrl(urlCount, urlPost, blogID, tag);
 	});
+}
+
+function createPostBody(post, urlPost, blogID) {
+	     
+	var divBody = $('<div/>');
+	
+	divBody.append( $('<span class="post">' +   post.content + ' <br/> </span>'));
+	
+	$.each(post.tags, function(index, tag) {
+		divBody.append(
+				$("<div>"+tag.name+"</div>").button().click(function () {
+						initPost = 0;
+						addPost(urlPost, blogID, tag.name);
+					}
+				)
+		);
+	});
+			
+	var divComment = $('<div class="comments" />');
+	$.each(post.comments, function(index, comment) {
+		if (comment != null) {
+			var creationDate = new Date(comment.creationDate);
+			var creationDateLabel = creationDate.format("fullDate");
+			
+			divComment.append(' <h3 class="ui-accordion-header ui-helper-reset ui-state-active ui-corner-top">  <span class="commentTitle"> '+ creationDateLabel +' - ' + comment.author + '  </span>  </h3>');
+			divComment.append(' <div class="ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom ui-accordion-content-active">  <div class="comment">' +   comment.content + ' </div> </div>');
+		}
+		
+	});
+	
+	var divAddComment = $("<div/>");
+	divAddComment.append(
+			$("<div> Add Comment </div>").button().click(function () {
+					$.get("addComment.htm?postId="+post.id+"&blogID="+blogID, function(data) {
+						var dialog = $("<div id='addCommentDiv'> </div>");
+						dialog.append(data);
+						dialog.dialog({ 
+							            modal: true, 
+							            title : "Add Comment", 
+							            height: 550, 
+							            width: 790,
+							            beforeClose: function(event, ui) { dialog.remove(); },
+										open: function(event, ui) { $('#comment').markItUp(mySettings); } 
+							           });
+					});
+				}
+			)
+	);
+	
+	divBody.append(divComment);
+	divBody.append(divAddComment);
+	
+	return divBody;
 }
 
 function createPageFooter(from, to, divFooter, urlPost, blogID, tag) {
@@ -221,11 +235,31 @@ function addHistory(urlHistory, blogID) {
 	});
 }
 
-function addComment(urlAddComment, postID) {
+function addComment(urlAddComment, url, postID, urlPost, blogID) {
 	$.post(urlAddComment, { comment: $("#comment").val()  },
 			function(data) {
-				$("addCommentDiv").dialog("close");	
+				$("#addCommentDiv").dialog("close");
+				
+				$.getJSON(url, function(post) {
+					$("#post" + postID).html(createPostBody(post, urlPost, blogID));
+				});
 			}		        
 	);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
