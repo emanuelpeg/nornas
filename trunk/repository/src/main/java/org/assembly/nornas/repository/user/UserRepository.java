@@ -23,4 +23,6 @@ public interface UserRepository {
 
 	User findByNick(String nick);
 
+	User findByNickAndPassword(String userNick, String userPassword);
+
 }

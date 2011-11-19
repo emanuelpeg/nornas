@@ -42,13 +42,29 @@ public class UserDAO extends BaseDao<User> implements UserRepository {
 
 	@Override
 	public User findByNick(String nick) {
-		Criteria criteria = this.createCriteria();
-		criteria.add(Restrictions.eq("nick", nick));
+		Criteria criteria = getCriteriaByNick(nick);
 		List<User> users = criteria.list();
 		if (!users.isEmpty()) {
 			return users.get(0);
 		}
 		return null;
+	}
+
+	@Override
+	public User findByNickAndPassword(String userNick, String userPassword) {
+		Criteria criteria = getCriteriaByNick(userNick);
+		criteria.add(Restrictions.eq("password", userPassword));
+		List<User> users = criteria.list();
+		if (!users.isEmpty()) {
+			return users.get(0);
+		}
+		return null;
+	}
+
+	private Criteria getCriteriaByNick(String userNick) {
+		Criteria criteria = this.createCriteria();
+		criteria.add(Restrictions.eq("nick", userNick));
+		return criteria;
 	}
 
 

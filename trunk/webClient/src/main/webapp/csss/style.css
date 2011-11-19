@@ -319,3 +319,7 @@ table {
 .comments {
 	padding-top: 15px;
 }
+
+#logout {
+	float: right;	
+}

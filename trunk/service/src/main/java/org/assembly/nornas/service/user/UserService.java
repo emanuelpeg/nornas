@@ -31,6 +31,12 @@ public interface UserService {
 	UserDTO findUserById(@WebParam Long id);
 	
 	@WebMethod(operationName="saveUser")
-	Long saveUser(@WebParam UserDTO personDTO) throws DuplicateDataUsersException;	
+	Long saveUser(@WebParam UserDTO personDTO) throws DuplicateDataUsersException;
+
+	@WebMethod(operationName="login")
+	UserDTO login(@WebParam String userName, @WebParam String userPassword);
+
+	@WebMethod(operationName="getUser")
+	UserDTO getUser(@WebParam String userNick, @WebParam String userPassword);	
 	
 }

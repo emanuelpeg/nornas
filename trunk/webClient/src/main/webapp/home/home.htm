@@ -38,7 +38,21 @@
 	    </div>
 	    <div class="templatemo_bottom_text_right">
 	     <img src="../csss/images/User_Preppy_Green-01.png" alt="sing in" class="icon" /> <h2> $messages.logIn </h2>
-	      
+	      ${loginUserForm.startTag()}
+	        <table >
+	        	<tr>
+	        		<td> $messages.userName <span class="requiered">*</span> </td>
+	        		<td> ${loginUserForm.fields.userName} </td>
+	        	</tr>
+	           	<tr>
+	        		<td> $messages.userPassword <span class="requiered">*</span> </td>
+	        		<td> ${loginUserForm.fields.userPassword} </td>
+	        	</tr>
+	        	<tr>
+	        		<td colspan="2" align="center"> ${loginUserForm.fields.login} </td>
+	        	</tr>
+	        </table>
+	        ${loginUserForm.endTag()}
 	    </div>
    </div>
    <!-- TODO:Add to favorites -->

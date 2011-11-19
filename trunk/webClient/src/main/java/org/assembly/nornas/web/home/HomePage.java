@@ -26,6 +26,7 @@ import org.assembly.nornas.service.user.UserService;
 import org.assembly.nornas.web.error.MessageErrorPage;
 import org.assembly.nornas.web.template.Template;
 import org.assembly.nornas.web.user.NewUserPage;
+import org.assembly.nornas.web.welcomeUser.WelcomeUserPage;
 
 /**
  * Home Page
@@ -43,8 +44,13 @@ public class HomePage extends Template {
 	@Bindable
 	private Form newUserForm = new Form("newUserForm");
 	
+	@Bindable
+	private Form loginUserForm = new Form("loginUserForm");
+	
 	public HomePage() {
 		createNewUserForm();
+		createLoginUserForm();
+		getContext().getSession().invalidate();
 	}
 	
 	@Override
@@ -78,6 +84,17 @@ public class HomePage extends Template {
 		addControl(newUserForm);
 	}
 	
+	private void createLoginUserForm() {
+		loginUserForm.setJavaScriptValidation(false);
+		loginUserForm.setMethod("GET");
+		loginUserForm.add(new TextField("userName", true));
+		loginUserForm.add(new PasswordField("userPassword", true));
+		
+		loginUserForm.add(new Submit("login", getMessage("login.user"), this, "onSubmitLoginForm"));
+		
+		addControl(loginUserForm);
+	}
+	
 	public boolean onSubmitNewUserForm() {
 		if (newUserForm.isValid()) {
 			UserDTO user = getUser();
@@ -99,6 +116,31 @@ public class HomePage extends Template {
 		return true;
 	}
 
+	public boolean onSubmitLoginForm() {
+		if (newUserForm.isValid()) {
+			String userName = loginUserForm.getFieldValue("userName");
+			String userPassword = loginUserForm.getFieldValue("userPassword");
+			try {
+			    UserDTO user = userService.login(userName, userPassword);
+			    if (user != null) {
+			    	getContext().setCookie("userName", user.getNick(), 1000000);
+			    	getContext().setCookie("userPassword", user.getPassword(), 1000000);
+					setRedirect(WelcomeUserPage.class);
+			    	return true;
+			    }
+			} catch (WebServiceException e) {
+				e.printStackTrace();
+				SoapFault fault = (SoapFault) e.getCause();
+				String error = fault.getMessage();
+				String url = getContext().getPagePath(MessageErrorPage.class) + "?error=" + error;
+				setRedirect(url);
+				return true;
+			}	
+			return false;
+		}
+		return false;
+	}
+	
 	public UserDTO getUser() {
 		UserDTO user = new UserDTO();
 		user.setName(newUserForm.getFieldValue("userName"));
