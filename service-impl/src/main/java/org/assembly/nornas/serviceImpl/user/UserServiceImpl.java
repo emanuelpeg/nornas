@@ -68,7 +68,6 @@ public class UserServiceImpl extends BaseServiceImpl implements UserService {
 			try {
 				throw new DuplicateDataUsersException(userDataDuplicate,new Exception());
 			} catch (SOAPException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -87,6 +86,30 @@ public class UserServiceImpl extends BaseServiceImpl implements UserService {
 			datas.add(NICK);
 		}
 		return datas;
+	}
+
+	@Override
+	public UserDTO login(String userName, String userPassword) {
+		User user = this.userDAO.findByNick(userName);
+		
+		if (user != null) {
+			if (user.isPasword(userPassword)) {
+				return this.getDtoMapper().map(user, UserDTO.class, "User_UserDTO");
+			}
+		}
+		
+		return null;
+	}
+
+	@Override
+	public UserDTO getUser(String userNick, String userPassword) {
+		User user = this.userDAO.findByNickAndPassword(userNick, userPassword);
+		
+		if (user != null) {
+			return this.getDtoMapper().map(user, UserDTO.class, "User_UserDTO");
+		}
+		
+		return null;
 	}
 
 }

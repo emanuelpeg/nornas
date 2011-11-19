@@ -38,7 +38,7 @@ public class User extends PersistenEntity {
 	public User(String nick, String email, String password) {
 		this.nick = nick;
 		this.emails.add(email);
-		this.password = password;
+		this.password = EncryptUtil.encrypt(password);
 	}
 	
 	public User(String nick, List<String> emails, String password) {
@@ -127,6 +127,10 @@ public class User extends PersistenEntity {
 	}
 	
 	
+	public boolean isPasword(String userPassword) {
+		return EncryptUtil.encrypt(userPassword).equals(password);
+	}
+	
 	@Override
 	public boolean equals(Object obj) {
 		if (obj == null)
@@ -152,6 +156,5 @@ public class User extends PersistenEntity {
 	// is used by Hibernate.
 	public User() {
 	}
-
 
 }
