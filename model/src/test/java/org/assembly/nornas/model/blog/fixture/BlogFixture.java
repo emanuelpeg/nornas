@@ -26,10 +26,6 @@ public class BlogFixture {
 		Blog ablog = new Blog("pepeBlog", "El Blog de pepe", "me dicen pepe",
 				pedro);
 
-		Set<Author> authors = new HashSet<Author>();
-		authors.add(new Author(pedro, ablog));
-		ablog.setAuthors(authors);
-
 		ablog.setStyle(StyleFixture.createStyleGreen());
 
 		return ablog;

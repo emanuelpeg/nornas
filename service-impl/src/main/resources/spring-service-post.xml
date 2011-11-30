@@ -18,6 +18,9 @@
          <property name="userDAO">
             <ref bean="dao.user"/>
         </property>
+        <property name="synchronizerPost">
+            <ref bean="synchronizer.post"/>
+        </property>
     </bean>
 
 	<sca:service  name="component.postService" 

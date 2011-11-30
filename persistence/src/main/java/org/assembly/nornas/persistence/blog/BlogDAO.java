@@ -2,10 +2,12 @@ package org.assembly.nornas.persistence.blog;
 
 import java.util.List;
 
+import org.assembly.nornas.model.author.Author;
 import org.assembly.nornas.model.blog.Blog;
 import org.assembly.nornas.persistence.BaseDao;
 import org.assembly.nornas.repository.blog.BlogRepository;
 import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.criterion.Restrictions;
 
 /**
@@ -34,5 +36,6 @@ public class BlogDAO extends BaseDao<Blog> implements BlogRepository {
 		
 		return blogs.get(0);
 	}
+
 
 }

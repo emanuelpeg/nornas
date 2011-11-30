@@ -37,6 +37,7 @@ public interface UserService {
 	UserDTO login(@WebParam String userName, @WebParam String userPassword);
 
 	@WebMethod(operationName="getUser")
-	UserDTO getUser(@WebParam String userNick, @WebParam String userPassword);	
+	UserDTO getUser(@WebParam String userNick, @WebParam String userPassword);
+
 	
 }

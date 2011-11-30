@@ -3,8 +3,15 @@
  */
 package org.assembly.nornas.serviceImpl.blog;
 
+import java.util.List;
+import java.util.Set;
+
 import org.assembly.dto.blog.BlogDTO;
+import org.assembly.dto.user.UserDTO;
+import org.assembly.norna.common.util.transformer.DozerTransformer;
+import org.assembly.nornas.model.author.Author;
 import org.assembly.nornas.model.blog.Blog;
+import org.assembly.nornas.persistence.author.AuthorDAO;
 import org.assembly.nornas.repository.blog.BlogRepository;
 import org.assembly.nornas.service.blog.BlogService;
 import org.assembly.nornas.serviceImpl.BaseServiceImpl;
@@ -28,6 +35,12 @@ public class BlogServiceImpl extends BaseServiceImpl implements BlogService {
 		this.blogDAO = blogDAO;
 	}
 
+	private AuthorDAO authorDAO;
+	
+	public void setAuthorDAO(AuthorDAO authorDAO) {
+		this.authorDAO = authorDAO;
+	}
+	
 	private Synchronizer<BlogDTO, Blog> synchronizerBlog;
 	
 	public void setSynchronizerBlog(Synchronizer<BlogDTO, Blog> synchronizerBlog) {
@@ -60,6 +73,18 @@ public class BlogServiceImpl extends BaseServiceImpl implements BlogService {
 		}
 		
 		return this.getDtoMapper().map(blog, BlogDTO.class, "blog_blogDTO");
+	}
+
+	@Transactional
+	@Override
+	public List<BlogDTO> findBlogByUser(UserDTO user) {
+		Author author = this.authorDAO.findBy(user.getId());
+		
+		Set<Blog> blogs = author.getBlogs();
+		
+		DozerTransformer<BlogDTO, Blog> transformer = new DozerTransformer<BlogDTO, Blog>(this.getDtoMapper(), BlogDTO.class);
+		
+		return transformer.transformar(blogs, "blog_blogDTO");
 	}
 
 

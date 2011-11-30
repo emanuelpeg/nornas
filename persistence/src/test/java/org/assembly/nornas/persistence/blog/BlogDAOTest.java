@@ -4,8 +4,10 @@
 package org.assembly.nornas.persistence.blog;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.util.Iterator;
+import java.util.List;
 
 import javax.annotation.Resource;
 
@@ -14,6 +16,7 @@ import org.assembly.nornas.model.blog.Blog;
 import org.assembly.nornas.model.blog.fixture.BlogFixture;
 import org.assembly.nornas.model.user.User;
 import org.assembly.nornas.persistence.DaoTestBase;
+import org.assembly.nornas.persistence.author.AuthorDAO;
 import org.assembly.nornas.persistence.user.UserDAO;
 import org.junit.Test;
 import org.springframework.transaction.annotation.Transactional;
@@ -38,6 +41,13 @@ public class BlogDAOTest extends DaoTestBase{
 	
 	public void setUserDAO(UserDAO userDAO) {
 		this.userDAO = userDAO;
+	}
+	
+	@Resource
+	private AuthorDAO authorDAO;
+	
+	public void setAuthorDAO(AuthorDAO authorDAO) {
+		this.authorDAO = authorDAO;
 	}
 
 	@Test
@@ -64,6 +74,8 @@ public class BlogDAOTest extends DaoTestBase{
 		
 		assertEqualsBlog(blog, blogFromDataBase);		
 	}
+	
+
 	
 	private void assertEqualsBlog(Blog blog, Blog blogFromDataBase) {
 		assertEquals(blog.getId(), blogFromDataBase.getId());

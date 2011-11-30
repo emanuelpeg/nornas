@@ -46,4 +46,7 @@ public interface PostService {
 	@WebMethod(operationName = "get")
 	PostDTO get(@WebParam Long postId);
 
+	@WebMethod(operationName = "save")
+	void save(@WebParam PostDTO post);
+
 }

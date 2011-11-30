@@ -50,7 +50,10 @@ public class HomePage extends Template {
 	public HomePage() {
 		createNewUserForm();
 		createLoginUserForm();
+		// delete session
 		getContext().getSession().invalidate();
+		getContext().setCookie("userName", null, 0);
+		getContext().setCookie("userPassword", null, 0);	
 	}
 	
 	@Override
@@ -72,7 +75,7 @@ public class HomePage extends Template {
 	private void createNewUserForm() {
 	
 		newUserForm.setJavaScriptValidation(false);
-		newUserForm.setMethod("GET");
+		newUserForm.setMethod("POST");
 		newUserForm.add(new TextField("userName", true));
 		newUserForm.add(new TextField("userNick", true));
 		newUserForm.add(new TextField("userBirthDate"));
@@ -86,7 +89,7 @@ public class HomePage extends Template {
 	
 	private void createLoginUserForm() {
 		loginUserForm.setJavaScriptValidation(false);
-		loginUserForm.setMethod("GET");
+		loginUserForm.setMethod("POST");
 		loginUserForm.add(new TextField("userName", true));
 		loginUserForm.add(new PasswordField("userPassword", true));
 		
@@ -117,7 +120,7 @@ public class HomePage extends Template {
 	}
 
 	public boolean onSubmitLoginForm() {
-		if (newUserForm.isValid()) {
+		if (loginUserForm.isValid()) {
 			String userName = loginUserForm.getFieldValue("userName");
 			String userPassword = loginUserForm.getFieldValue("userPassword");
 			try {
@@ -127,6 +130,11 @@ public class HomePage extends Template {
 			    	getContext().setCookie("userPassword", user.getPassword(), 1000000);
 					setRedirect(WelcomeUserPage.class);
 			    	return true;
+			    } else {
+			    	String loginError = getMessage("login.error");
+			    	String url = getContext().getPagePath(MessageErrorPage.class) + "?error=" + loginError;
+					setRedirect(url);
+					return true;
 			    }
 			} catch (WebServiceException e) {
 				e.printStackTrace();
@@ -136,7 +144,6 @@ public class HomePage extends Template {
 				setRedirect(url);
 				return true;
 			}	
-			return false;
 		}
 		return false;
 	}

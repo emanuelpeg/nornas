@@ -12,6 +12,7 @@ import org.assembly.dto.user.UserDTO;
 import org.assembly.norna.common.type.exceptions.user.DuplicateDataUsersException;
 import org.assembly.norna.common.util.transformer.DozerTransformer;
 import org.assembly.nornas.model.user.User;
+import org.assembly.nornas.persistence.author.AuthorDAO;
 import org.assembly.nornas.repository.user.UserRepository;
 import org.assembly.nornas.service.user.UserService;
 import org.assembly.nornas.serviceImpl.BaseServiceImpl;
@@ -36,7 +37,7 @@ public class UserServiceImpl extends BaseServiceImpl implements UserService {
 	public void setUserDAO(UserRepository userDAO) {
 		this.userDAO = userDAO;
 	}
-
+	
 	private Synchronizer<UserDTO, User> synchronizerUser;
 
 	public void setSynchronizerUser(Synchronizer<UserDTO, User> synchronizerUser) {
@@ -88,6 +89,7 @@ public class UserServiceImpl extends BaseServiceImpl implements UserService {
 		return datas;
 	}
 
+	@Transactional
 	@Override
 	public UserDTO login(String userName, String userPassword) {
 		User user = this.userDAO.findByNick(userName);
@@ -101,6 +103,7 @@ public class UserServiceImpl extends BaseServiceImpl implements UserService {
 		return null;
 	}
 
+	@Transactional
 	@Override
 	public UserDTO getUser(String userNick, String userPassword) {
 		User user = this.userDAO.findByNickAndPassword(userNick, userPassword);

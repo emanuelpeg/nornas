@@ -21,5 +21,4 @@ public interface BlogRepository {
 
 	Blog findBlogByUrl(String url);
 
-
 }

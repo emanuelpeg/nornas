@@ -23,6 +23,12 @@ public class TagDTO implements Serializable {
 	
 	private String name;
 
+	public TagDTO() {	}
+	
+	public TagDTO(String tag) {
+		name = tag;
+	}
+
 	public Long getId() {
 		return id;
 	}

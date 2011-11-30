@@ -263,15 +263,6 @@ table {
 	padding-top: 30px;
 }
 
-.icon_big{
-	width: 150px;
-	height: 150px;
-	padding-left: 30px;
-	padding-top: 15px;
-	float: left;	
-	border: 0px;
-}
-
 .templatemo_bottom_text_left_blog_error {
 	float: left;
 	width: 490px;
@@ -321,5 +312,8 @@ table {
 }
 
 #logout {
-	float: right;	
+	float: right;
+	margin-right: 3px;
+	margin-top: -245px;
+	text-align: right;
 }

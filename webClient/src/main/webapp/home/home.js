@@ -51,6 +51,48 @@ function addValidationNewUserForm() {
 			}
 	);
 	
+	
+	$('#loginUserForm').submit(
+			function() {
+				var msg = "";
+				var dateFormat = $('#dateFromat').html();
+				
+				/* Requiered validation */
+				msg += isRequeired('#loginUserForm_userName','#errorUserName',count);
+				msg += isRequeired('#loginUserForm_userPassword','#errorUserPassword',count);
+				var count = $(msg).length; 
+				
+				if (count > 0){
+					if (count > 1){
+						msg = $('#validatorErrors').html() + "<br/> <ul>" + msg + "</ul>";
+					} else {
+						msg = $('#oneValidatorError').html() + "<br/> <ul>" + msg + "</ul>";
+					}
+					
+				}
+							
+				if (msg != ""){
+					validationError(msg);
+					return false;
+				}
+				
+				ajaxSubmit($('#loginUserForm'), 
+				          function(html){
+					        if ($("<div>").html(html).find("#messageError").length == 0){
+					        	document.write(html);
+					        	$("#logout").button().click(function () {
+									document.location.href = '$logoutURL';
+								});
+					        } else {
+					        	validationError(html);
+					        }
+				          }		
+				);
+				
+				return false;
+			}
+	);
+	
 	var dateFormat = $('#dateFromat').html();
 	var datePickerSetting= {'defaultDate': -6480, 'dateFormat':dateFormat };
 	$("#newUserForm_userBirthDate").datepicker(datePickerSetting);

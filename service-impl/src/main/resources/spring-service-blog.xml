@@ -12,6 +12,9 @@
         <property name="blogDAO">
             <ref bean="dao.blog"/>
         </property>
+        <property name="authorDAO">
+            <ref bean="dao.author"/>
+        </property>
         <property name="synchronizerBlog">
             <ref bean="synchronizer.blog"/>
         </property>
