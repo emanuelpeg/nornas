@@ -3,25 +3,34 @@
  */
 package org.assembly.nornas.web.security;
 
+import org.apache.click.Page;
 import org.apache.click.doubleclick.inject.annotation.InjectBean;
+import org.apache.click.util.Bindable;
 import org.assembly.dto.user.UserDTO;
 import org.assembly.nornas.service.user.UserService;
 import org.assembly.nornas.web.home.HomePage;
-import org.assembly.nornas.web.template.Template;
-import org.assembly.nornas.web.user.NewUserPage;
 
 /**
  * @author emanuel
  *
  */
-public class SecurityPage extends Template {
+public class SecurityPage extends Page {
 
 	private static final long serialVersionUID = -7957933531257152528L;
 
+	@Bindable
+	private String logoutURL;
+	
 	@InjectBean
-	private UserService userService;	
+	protected UserService userService;	
 	
 	private UserDTO user;
+	
+	@Override
+	public void onInit() {
+		super.onInit();
+		logoutURL = getContext().getRequest().getContextPath() + getContext().getPagePath(HomePage.class);		
+	}
 	
 	public boolean onSecurityCheck() {
 		String userNick = getContext().getCookieValue("userName");
@@ -36,11 +45,21 @@ public class SecurityPage extends Template {
         }
     }
 	
-	protected void logout() {
-		getContext().getSession().invalidate();
-		getContext().setCookie("userName", null, 0);
-		getContext().setCookie("userPassword", null, 0);
+	@Override
+	public String getTemplate() {
+		return "/template/securityTemplate.htm";
+	}
+	
+	public String getLogoutURL() {
+		return logoutURL;
 	}
 
+	public void setLogoutURL(String logoutURL) {
+		this.logoutURL = logoutURL;
+	}
+
+	protected UserDTO getUser() {
+		return user;
+	}
 	
 }

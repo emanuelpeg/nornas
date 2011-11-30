@@ -13,10 +13,9 @@
       
     <one-to-one name="user" class="org.assembly.nornas.model.user.User" constrained="true" /> 
        
-    <set name="blogs" table="BLOGS_AUTHORS" inverse="true" >
+    <set name="blogs" table="BLOGS_AUTHORS" inverse="true" cascade="all">
     	<key column="id_author" />
     	<many-to-many column="id_blog" 
-    	              unique="true" 
     	              class="org.assembly.nornas.model.blog.Blog" 
     	 />
     </set>

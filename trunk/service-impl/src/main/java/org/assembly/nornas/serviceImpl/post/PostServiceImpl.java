@@ -15,6 +15,7 @@ import org.assembly.dto.tag.TagDTO;
 import org.assembly.norna.common.util.transformer.DozerTransformer;
 import org.assembly.nornas.model.comment.Comment;
 import org.assembly.nornas.model.post.Post;
+import org.assembly.nornas.model.post.StatePost;
 import org.assembly.nornas.model.tag.Tag;
 import org.assembly.nornas.model.user.User;
 import org.assembly.nornas.repository.post.PostRepository;
@@ -22,6 +23,7 @@ import org.assembly.nornas.repository.tag.TagRepository;
 import org.assembly.nornas.repository.user.UserRepository;
 import org.assembly.nornas.service.post.PostService;
 import org.assembly.nornas.serviceImpl.BaseServiceImpl;
+import org.assembly.nornas.synchronizer.post.SynchronizerPost;
 import org.osoa.sca.annotations.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -38,6 +40,12 @@ public class PostServiceImpl extends BaseServiceImpl implements PostService {
 	
 	public void setPostDAO(PostRepository postDAO) {
 		this.postDAO = postDAO;
+	}
+	
+	private SynchronizerPost synchronizerPost;
+	
+	public void setSynchronizerPost(SynchronizerPost synchronizerPost) {
+		this.synchronizerPost = synchronizerPost;
 	}
 
 	private TagRepository tagDAO;
@@ -135,6 +143,14 @@ public class PostServiceImpl extends BaseServiceImpl implements PostService {
 	public PostDTO get(Long postId) {
 		Post post = this.postDAO.findBy(postId);
 		return this.getDtoMapper().map(post, PostDTO.class, "post_postDTO");
+	}
+
+	@Override
+	public void save(PostDTO postDTO) {
+		Post post = synchronizerPost.synchronize(postDTO);
+		post.setPublishDate(Calendar.getInstance().getTime());
+		post.setState(StatePost.PUBLISHED);
+		this.postDAO.save(post);
 	}
 
 

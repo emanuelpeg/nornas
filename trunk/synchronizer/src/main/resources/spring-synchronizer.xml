@@ -28,5 +28,19 @@
         </property>
     </bean>
 
+	<bean id="synchronizer.post" class="org.assembly.nornas.synchronizer.post.SynchronizerPost"  >
+        <property name="postDAO">
+            <ref bean="dao.post"/>
+        </property>
+        <property name="userDAO">
+            <ref bean="dao.user"/>
+        </property>
+        <property name="authorDAO">
+            <ref bean="dao.author"/>
+        </property>
+        <property name="tagDAO">
+            <ref bean="dao.tag"/>
+        </property>
+    </bean>
 
 </beans>
