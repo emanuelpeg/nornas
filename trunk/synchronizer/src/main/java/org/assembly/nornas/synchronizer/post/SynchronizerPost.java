@@ -62,7 +62,6 @@ public class SynchronizerPost implements Synchronizer<PostDTO, Post>{
 			Tag tag = this.tagDAO.findByName(tagDTO.getName());
 			if (tag == null) {
 				tag = new Tag(tagDTO.getName());
-				this.tagDAO.save(tag);
 			 }
 			tags.add(tag);
 		}
@@ -76,7 +75,7 @@ public class SynchronizerPost implements Synchronizer<PostDTO, Post>{
 		} else {
 			aPost = new Post(dto.getTitle(), dto.getContent(), author);
 		}
-		aPost.setTags(tags);
+		aPost.getTags().addAll(tags);
 		
 		return aPost;
 	}
