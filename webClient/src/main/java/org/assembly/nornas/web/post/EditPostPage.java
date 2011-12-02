@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.click.control.Form;
+import org.apache.click.control.HiddenField;
 import org.apache.click.control.Submit;
 import org.apache.click.control.TextArea;
 import org.apache.click.control.TextField;
@@ -16,7 +17,9 @@ import org.apache.click.util.Bindable;
 import org.assembly.dto.post.PostDTO;
 import org.assembly.dto.tag.TagDTO;
 import org.assembly.dto.user.UserDTO;
+import org.assembly.nornas.service.blog.BlogService;
 import org.assembly.nornas.service.post.PostService;
+import org.assembly.nornas.web.error.MessageErrorPage;
 import org.assembly.nornas.web.security.SecurityPage;
 import org.assembly.nornas.web.welcomeUser.WelcomeUserPage;
 
@@ -43,12 +46,12 @@ public class EditPostPage extends SecurityPage {
 	
 	public EditPostPage() {
 		super();
-		createPostForm();
 	}
 	
     @Override
     public void onInit() {
     	super.onInit();
+		createPostForm();
     }
 
     private void createPostForm() {
@@ -62,10 +65,27 @@ public class EditPostPage extends SecurityPage {
     	content.setRows(10);
     	TextField tags = new TextField("tags");
     	
+    	String postIdStr = this.getContext().getRequestParameter("postId");
+    	
+    	if (postIdStr != null) {
+    		HiddenField hiddenPostId = new HiddenField("postId", postIdStr);
+    		postForm.add(hiddenPostId);
+    		
+    		PostDTO post = postService.get(Long.parseLong(postIdStr));
+    		
+    		title.setValue(post.getTitle());
+    		content.setValue(post.getContent());
+    		tags.setValue(post.getTagsToStr());
+    	} else {
+    		String blogIdStr = this.getContext().getRequestParameter("blogId");
+        	HiddenField hiddenBlogId = new HiddenField("blogId", blogIdStr);
+        	postForm.add(hiddenBlogId);
+    	}
+    	
     	postForm.add(title);
     	postForm.add(content);
     	postForm.add(tags);
-		
+    	
     	postForm.add(new Submit("save", getMessage("post.save"), this, "onSubmitEditForm"));
 		
     	Submit cancel = new PageSubmit("cancel", WelcomeUserPage.class);
@@ -82,10 +102,13 @@ public class EditPostPage extends SecurityPage {
 			String content = postForm.getFieldValue("content");
 			String tags = postForm.getFieldValue("tags");
 			
+			String postIdStr = this.getContext().getRequestParameter("postId");
+			String blogIdStr = this.getContext().getRequestParameter("blogId");
+			
 			List<TagDTO> tagsDTO = new ArrayList<TagDTO>();
 			
 			for (String tag : tags.split(",")) {
-				tagsDTO.add(new TagDTO(tag));
+				tagsDTO.add(new TagDTO(tag.trim()));
 			}
 			
 			if (post == null) {
@@ -100,7 +123,19 @@ public class EditPostPage extends SecurityPage {
 			
 			post.setAuthor(user.getNick());
 			
+			if (blogIdStr != null) {
+				post.setBlogId(Long.parseLong(blogIdStr));				
+			} 
+			
+			if (postIdStr != null) {
+				post.setId(Long.parseLong(postIdStr));				
+			} 
+			
 			postService.save(post);
+			
+			String url = getContext().getPagePath(WelcomeUserPage.class);
+			setRedirect(url);
+			return true;
     	}
     	return false;
     }

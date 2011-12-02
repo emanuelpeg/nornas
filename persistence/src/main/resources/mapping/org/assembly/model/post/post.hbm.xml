@@ -27,7 +27,7 @@
     
     <property column="COMMENT_ALLOW" name="commentAllow" not-null="true" type="boolean"  />
    
-    <list name="tags" table="POSTS_TAGS" >
+    <list name="tags" table="POSTS_TAGS" cascade="all" >
     	<key column="id_post" />
     	<list-index column="index_post" />
     	<many-to-many column="id_tag" 

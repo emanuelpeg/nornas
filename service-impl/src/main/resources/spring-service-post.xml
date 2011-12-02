@@ -15,8 +15,11 @@
         <property name="tagDAO">
             <ref bean="dao.tag"/>
         </property>
-         <property name="userDAO">
+        <property name="userDAO">
             <ref bean="dao.user"/>
+        </property>
+        <property name="blogDAO">
+            <ref bean="dao.blog"/>
         </property>
         <property name="synchronizerPost">
             <ref bean="synchronizer.post"/>

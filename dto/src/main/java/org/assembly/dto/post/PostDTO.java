@@ -12,6 +12,7 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlList;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import org.apache.commons.lang.StringUtils;
 import org.assembly.dto.comment.CommentDTO;
 import org.assembly.dto.tag.TagDTO;
 
@@ -44,6 +45,7 @@ public class PostDTO implements Serializable {
 
 	private List<CommentDTO> comments = new ArrayList<CommentDTO>();
 	
+	private Long blogId;
 
 	public Long getId() {
 		return id;
@@ -116,6 +118,24 @@ public class PostDTO implements Serializable {
 	public void setComments(List<CommentDTO> comments) {
 		this.comments = comments;
 	}
-	
 
+	public Long getBlogId() {
+		return blogId;
+	}
+
+	public void setBlogId(Long blogId) {
+		this.blogId = blogId;
+	}
+
+	public String getTagsToStr() {
+		String result = "";
+		for (TagDTO tag : this.getTags()) {
+			result += tag.getName() + ", ";
+		}
+		if (!StringUtils.isEmpty(result)) {
+			result = result.substring(0, result.length() - 2);
+		}
+		return result;
+	}
+	
 }

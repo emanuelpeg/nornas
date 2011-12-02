@@ -13,11 +13,13 @@ import org.assembly.dto.post.PostsHistoryRoot;
 import org.assembly.dto.post.PostsHistoryYear;
 import org.assembly.dto.tag.TagDTO;
 import org.assembly.norna.common.util.transformer.DozerTransformer;
+import org.assembly.nornas.model.blog.Blog;
 import org.assembly.nornas.model.comment.Comment;
 import org.assembly.nornas.model.post.Post;
 import org.assembly.nornas.model.post.StatePost;
 import org.assembly.nornas.model.tag.Tag;
 import org.assembly.nornas.model.user.User;
+import org.assembly.nornas.repository.blog.BlogRepository;
 import org.assembly.nornas.repository.post.PostRepository;
 import org.assembly.nornas.repository.tag.TagRepository;
 import org.assembly.nornas.repository.user.UserRepository;
@@ -58,6 +60,12 @@ public class PostServiceImpl extends BaseServiceImpl implements PostService {
 	
 	public void setUserDAO(UserRepository userDAO) {
 		this.userDAO = userDAO;
+	}
+	
+	private BlogRepository blogDAO;
+	
+	public void setBlogDAO(BlogRepository blogDAO) {
+		this.blogDAO = blogDAO;
 	}
 	
 	@Override
@@ -146,11 +154,18 @@ public class PostServiceImpl extends BaseServiceImpl implements PostService {
 	}
 
 	@Override
+	@Transactional
 	public void save(PostDTO postDTO) {
 		Post post = synchronizerPost.synchronize(postDTO);
 		post.setPublishDate(Calendar.getInstance().getTime());
 		post.setState(StatePost.PUBLISHED);
 		this.postDAO.save(post);
+		
+		if(postDTO.getBlogId() != null) {
+			Blog blog = this.blogDAO.findBy(postDTO.getBlogId());
+			blog.getPosts().add(post);
+			this.blogDAO.save(blog);
+		}
 	}
 
 
